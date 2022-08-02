@@ -90,4 +90,21 @@ We will be using the Amadeus travel API which connects to flight search, flight 
 | PATCH |    `/:id/:activityId`  |    `update`       |
 | DELETE|       `/:id`           |     `destroy`     |
 
+## Sign Up
+![Read me Images](public/images/1.png)
+
+## Sign In
+![Read me Images](public/images/2.png)
+
+## Index Page
+![Read me Images](public/images/3.png)
+
+## Plan Trip Page
+![Read me Images](public/images/4.png)
+
+## Show Page
+![Read me Images](public/images/5.png)
+
+## Activity Show Page
+![Read me Images](public/images/6.png)
 

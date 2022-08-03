@@ -6,7 +6,12 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
+<<<<<<< HEAD
 	getDestinationsFailure: "failed to find destinations"
+=======
+	createDestinationSuccess: 'Destination created Successfully!',
+	createDestinationFailure: 'Something went wrong, please try again.',
+>>>>>>> origin/DestinationsCreateRoute
 }
 
 module.exports = messages

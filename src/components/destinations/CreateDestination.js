@@ -35,29 +35,27 @@ const CreateDestination = (props) => {
     }
 
     // We'll add a handleSubmit here that makes an api request, then handles the response
-    const handleSubmit = (e) => {
-        // e equals the event
-        e.preventDefault()
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    
         createDestination(user, destination)
-            .then(res => { navigate(`/destinations/${res.data.destination.id}`)})
-            // send a success message to the user
-            .then(() => {
-                msgAlert({
-                    heading: 'Oh Yeah!',
-                    message: createDestinationSuccess,
-                    variant: 'success'
-                })
+        .then(res => {navigate(`/destinations/${res.data.destination.id}`)})
+          .then(() =>
+            msgAlert({
+              heading: "oh yea!",
+              message: createDestinationSuccess,
+              variant: "success",
             })
-            // if there is an error, tell the user about it
-            .catch(() => 
-                msgAlert({
-                    heading: 'Oh No!',
-                    message: createDestinationFailure,
-                    variant: 'danger'
-                })
-            )
-    }
+          )
+          .catch(() =>
+            msgAlert({
+              heading: "oh no!",
+              message: createDestinationFailure,
+              variant: "danger",
+            })
+          );
+      };
 
     return (
         <DestinationForm 

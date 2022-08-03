@@ -13,7 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateDestination from './components/destinations/CreateDestination'
-import ShowDestination from './components/pets/ShowDestination'
+import ShowDestination from './components/destinations/ShowDestination'
 
 
 const App = () => {
@@ -73,16 +73,16 @@ const App = () => {
           />
 		  	<Route
 					path="/destinations/:id"
-					element={ <ShowDestinatino user={ user } msgAlert={ msgAlert } />}
+					element={ <ShowDestination user={ user } msgAlert={ msgAlert } />}
 				/>
-		  	<Route
-					path="/addDestination"
-					element={
-						<RequireAuth user={ user }>
-							<CreateDestination msgAlert={msgAlert} user={user}/>
-						</RequireAuth>  
-					}
-				/>
+        <Route
+          path="/addDestination"
+          element={
+            <RequireAuth user={user}>
+              <CreateDestination msgAlert={msgAlert} user={user} />
+            </RequireAuth>
+          }
+        />
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

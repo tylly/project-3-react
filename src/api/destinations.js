@@ -14,8 +14,9 @@ export const getOneDestination = (id) => {
 
 // CREATE
 export const createDestination = (user, newDestination) => {
+    console.log('hit')
 	return axios({
-		url: apiUrl + '/destinations',
+		url: apiUrl + '/destinations/:id',
 		method: 'POST',
 		headers: {
 			Authorization: `Token token=${user.token}`,

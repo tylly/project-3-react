@@ -11,7 +11,5 @@ const messages = {
 	createDestinationFailure: 'Something went wrong, please try again.',
 	removeDestinationSuccess: 'Destination has been removed',
 	removeDestinationFailure: 'There was a problem removing the destination'
-
 }
-
 module.exports = messages

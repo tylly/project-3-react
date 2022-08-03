@@ -101,17 +101,17 @@ const ShowDestination = (props) => {
         <>
             <Container className="fluid">
                 <Card>
-                    <Card.Header>{ destination.fullTitle }</Card.Header>
+                    <Card.Header>{ destination.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Age: { destination.age }</small></div>
-                            <div><small>Type: { destination.type }</small></div>
+                            <div><small>Schedule: { destination.schedule }</small></div>
+                            {/* <div><small>Type: { destination.type }</small></div>
                             <div><small>
                                 Adoptable: { destination.adoptable ? 'yes' : 'no'}
-                            </small></div>
+                            </small></div> */}
                         </Card.Text>
                     </Card.Body>
-                    <Card.Footer>
+                    {/* <Card.Footer>
                         <Button onClick={() => setActivityModalShow(true)}
                             className="m-2" variant="info"
                         >
@@ -137,7 +137,7 @@ const ShowDestination = (props) => {
                             :
                             null
                         }
-                    </Card.Footer>
+                    </Card.Footer> */}
                 </Card>
             </Container>
             <Container style={cardContainerLayout}>

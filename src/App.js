@@ -56,41 +56,33 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
-		  	<Route
-					path="/destinations/:id"
-					element={ <ShowDestination user={ user } msgAlert={ msgAlert } />}
-				/>
-		  	<Route
-					path="/addDestination"
-					element={
-						<RequireAuth user={ user }>
-							<CreateDestination msgAlert={msgAlert} user={user}/>
-						</RequireAuth>  
-					}
-				/>
-        <Route
-          path="/addDestination"
-          element={
-            <RequireAuth user={user}>
-              <CreateDestination msgAlert={msgAlert} user={user} />
-            </RequireAuth>
-          }
-        />
+					<Route
+						path='/sign-out'
+						element={
+						<RequireAuth user={user}>
+							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+						</RequireAuth>
+						}
+					/>
+					<Route
+						path='/change-password'
+						element={
+						<RequireAuth user={user}>
+							<ChangePassword msgAlert={msgAlert} user={user} />
+						</RequireAuth>}
+					/>
+					<Route
+							path="/destinations/:id"
+							element={ <ShowDestination user={ user } msgAlert={ msgAlert } />}
+						/>
+					<Route
+							path="/addDestination"
+							element={
+								<RequireAuth user={ user }>
+									<CreateDestination msgAlert={msgAlert} user={user}/>
+								</RequireAuth>  
+							}
+						/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

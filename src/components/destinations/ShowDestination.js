@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react'
-
 import { useParams, useNavigate } from 'react-router-dom'
 // useParams will allow us to see our parameters
 // useNavigate will allow us to navigate to a specific page
-
 import { Container, Card, Button } from 'react-bootstrap'
-
 import LoadingScreen from '../shared/LoadingScreen'
 import { getOneDestination, updateDestination, removeDestination } from '../../api/destinations'
 import messages from '../shared/AutoDismissAlert/messages'
-// import EditDestinationModal from './EditDestinationModal'
+import EditDestinationModal from './EditDestinationModal'
 // import NewActivityModal from '../activities/NewActivityModal'
 // import ShowActivity from '../activities/ShowActivity'
 
@@ -26,7 +23,7 @@ const cardContainerLayout = {
 
 const ShowDestination = (props) => {
     const [destination, setDestination] = useState(null)
-    // const [editModalShow, setEditModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
     // const [activityModalShow, setActivityModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
@@ -140,10 +137,10 @@ const ShowDestination = (props) => {
                     </Card.Footer> */}
                 </Card>
             </Container>
-            {/* <Container style={cardContainerLayout}>
-                {activityCards}
-            </Container> */}
-            {/* <EditDestinationModal 
+            <Container style={cardContainerLayout}>
+                {/* {activityCards} */}
+            </Container>
+            <EditDestinationModal 
                 user={user}
                 destination={destination} 
                 show={editModalShow} 
@@ -152,7 +149,7 @@ const ShowDestination = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
             />
-            <NewActivityModal 
+            {/* <NewActivityModal 
                 destination={destination}
                 show={activityModalShow}
                 user={user}

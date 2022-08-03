@@ -7,6 +7,10 @@ Team Manager: James Adams
 Front End : Dan Stacy
 Back End: Amanda Corral
 
+## API's
+Open Trip Map API - provides geo location and images for location
+Amadeus - provides recommended activities for location
+
 ## User Stories
 
 As a user I want to be able to create an account.
@@ -55,12 +59,6 @@ You probably will only need to interact with files in `app/models`,
 `app/routes`, and `server.js`. You'll need to edit `db/config.js` just once,
 to change the name of your app.
 
-## API 
-
-https://developers.amadeus.com/
-
-We will be using the Amadeus travel API which connects to flight search, flight booking, hotel and destination content that powers the biggest names in travel.
-
 ### Authentication
 
 | Verb   | URI Pattern         | Controller#Action |
@@ -78,7 +76,7 @@ We will be using the Amadeus travel API which connects to flight search, flight 
 | GET   |      `/:id`         |     `show`        |
 | POST  |       `/`           |     `add`         |
 | PATCH |       `/:id`        |    `update`       |
-| DELETE|       `/`           |      `destroy`    |
+| DELETE|       `/:id`           |      `destroy`    |
 
 ### ACTIVITES
 
@@ -88,23 +86,73 @@ We will be using the Amadeus travel API which connects to flight search, flight 
 | GET   |    `/:id/:activityId`  |     `show`        |
 | POST  |       `/:id`           |     `add`         |
 | PATCH |    `/:id/:activityId`  |    `update`       |
-| DELETE|       `/:id`           |     `destroy`     |
+| DELETE|    `/:id/:activityId`  |     `destroy`     |
+
+
+# Models
+
+## USERS COLLECTION
+
+email: {
+    type: String,
+    required: true,
+    unique: true
+}
+
+hashedPassword: {
+    type: String, 
+    required: true
+}
+
+token: String
+
+
+## DESTINATIONS
+
+name: {
+    type: String,
+    required: true
+}
+
+images: String
+
+schedule: string
+
+owner: String
+
+activities: []
+
+## ACTIVITIES 
+
+name: {
+    type: String,
+    required: true
+}
+
+address: string
+
+schedule: String
+
+priority: number
+
+# ERD 
+
+![Read me Images](erd.png)
 
 ## Sign Up
-![Read me Images](public/images/1.png)
+![Read me Images](images/1.png)
 
 ## Sign In
-![Read me Images](public/images/2.png)
+![Read me Images](images/2.png)
 
 ## Index Page
-![Read me Images](public/images/3.png)
+![Read me Images](images/3.png)
 
 ## Plan Trip Page
-![Read me Images](public/images/4.png)
+![Read me Images](images/4.png)
 
 ## Show Page
-![Read me Images](public/images/5.png)
+![Read me Images](images/5.png)
 
 ## Activity Show Page
-![Read me Images](public/images/6.png)
-
+![Read me Images](images/6.png)

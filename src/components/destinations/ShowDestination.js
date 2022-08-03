@@ -141,7 +141,7 @@ const ShowDestination = (props) => {
                 </Card>
             </Container>
             <Container style={cardContainerLayout}>
-                {activityCards}
+                {/* {activityCards} */}
             </Container>
             {/* <EditDestinationModal 
                 user={user}

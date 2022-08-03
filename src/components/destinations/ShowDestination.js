@@ -10,7 +10,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneDestination, updateDestination, removeDestination } from '../../api/destinations'
 import messages from '../shared/AutoDismissAlert/messages'
 // import EditDestinationModal from './EditDestinationModal'
-// import NewActivityModal from '../activities/NewActivityModal'
+import NewActivityModal from '../activities/NewActivityModal'
 // import ShowActivity from '../activities/ShowActivity'
 
 // We need to get the pet's id from the parameters
@@ -142,7 +142,7 @@ const ShowDestination = (props) => {
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}
-            </Container> */}
+            </Container>  */}
             {/* <EditDestinationModal 
                 user={user}
                 destination={destination} 
@@ -151,17 +151,17 @@ const ShowDestination = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            />
+            /> */}
             <NewActivityModal 
                 destination={destination}
-                show={activityModalShow}
                 user={user}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setActivityModalShow(false)} 
-            /> */}
+                />
         </>
     )
 }
 
 export default ShowDestination
+// show={activityModalShow}
+// handleClose={() => setActivityModalShow(false)} 

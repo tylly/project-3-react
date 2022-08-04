@@ -10,6 +10,9 @@ const messages = {
 	createDestinationSuccess: 'Destination created Successfully!',
 	createDestinationFailure: 'Something went wrong, please try again.',
 	removeDestinationSuccess: 'Destination has been removed',
-	removeDestinationFailure: 'There was a problem removing the destination'
+	removeDestinationFailure: 'There was a problem removing the destination',
+	getActivityFailure: "failed to find your activity",
+	removeActivitySuccess: 'You have removed the activity',
+	removeActivityFailure: 'There was a problem removing your activity'
 }
 module.exports = messages

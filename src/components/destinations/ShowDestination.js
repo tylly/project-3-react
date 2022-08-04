@@ -13,7 +13,7 @@ import EditDestinationModal from './EditDestinationModal'
 import NewActivityModal from '../activities/NewActivityModal'
 import ShowActivity from '../activities/ShowActivity'
 
-// We need to get the pet's id from the parameters
+// We need to get the destination's id from the parameters
 // Then we need to make a request to the api
 // Then we need to display the results in this component
 
@@ -155,19 +155,6 @@ const ShowDestination = (props) => {
                 >
                     Create an Activity
                 </Button>
-                <Button 
-                    className="m-2"
-                    variant="warning"
-                >
-                    Edit your Activity
-                </Button>
-                <Button 
-                    className="m-2"
-                    variant="danger"
-                >
-                    Delete your Activity
-                </Button>
-                
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}

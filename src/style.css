@@ -24,7 +24,8 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
-#sign-in, #sign-up{
+
+#sign-in, #sign-up, #destinationForm{
     position: absolute;
     z-index: 1;
     display:flex;
@@ -47,6 +48,3 @@
     z-index: 2
 }
 
-#destinationForm{
-    z-index: 2;
-}

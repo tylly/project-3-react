@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import {Button, ButtonGroup} from 'react-bootstrap'
+import {Button, ButtonGroup, Container} from 'react-bootstrap'
 
 import { signOut } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -30,10 +30,13 @@ const SignOut = (props) => {
 
 	return (
 		<>
+        <Container style={{position: 'absolute', zIndex: '2'}} >
             <div className='row'>
-                <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+                <div className='col-sm col-md mx-auto mt-5'style={{color: 'white', justifyContent: 'center',}}>
                     <h2>Are you sure you want to sign out?</h2>
-                    <small>We hate to see you go...</small><br/>
+                    <small>We hate to see you go...</small>
+                    <br/>
+                    <br/>
                     <ButtonGroup>
                         <Button variant='danger' onClick={onSignOut}>
                             Sign Out
@@ -44,6 +47,7 @@ const SignOut = (props) => {
                     </ButtonGroup>
                 </div>
             </div>
+            </Container>
 		</>
 	)
 }

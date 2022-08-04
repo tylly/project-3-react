@@ -9,6 +9,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getAllDestinations } from '../../api/destinations'
 import messages from '../shared/AutoDismissAlert/messages'
 import { Button } from 'bootstrap'
+import '../../style.css'
 
 // SnowboardsIndex should make a request to the api
 // To get all snowboards
@@ -55,7 +56,7 @@ const DestinationsIndex = (props) => {
     }
 
     const destinationCards = destinations.map(destination => (
-        <Card style={{ width: '30%', margin: 5}} key={ destination.id }>
+        <Card className="cards" style={{ width: '30%', margin: 5}} key={ destination.id }>
             <Card.Header>{ destination.name }</Card.Header>
             <Card.Body>
                 <Card.Text>

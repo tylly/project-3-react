@@ -18,6 +18,9 @@ export const createActivity = (user, destinationId, newActivity) => {
 	return axios({
 		url: `${apiUrl}/activities/${destinationId}`,
 		method: 'POST',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
 		data: { activity: newActivity }
 	})
 }

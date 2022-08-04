@@ -2,7 +2,6 @@
 import React, { useState, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
@@ -14,6 +13,8 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateDestination from './components/destinations/CreateDestination'
 import ShowDestination from './components/destinations/ShowDestination'
+import BackgroundVideo from './components/auth/BackgroundVideo'
+import './style.css'
 
 
 const App = () => {
@@ -45,6 +46,8 @@ const App = () => {
 
 		return (
 			<Fragment>
+				{/* <BackgroundVideo
+				/> */}
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />

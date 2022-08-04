@@ -8,12 +8,7 @@ import "../../style.css";
 import { Container, Card, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import LoadingScreen from "../shared/LoadingScreen";
-import {
-  getOneDestination,
-  updateDestination,
-  removeDestination,
-} from "../../api/destinations";
-import { createActivity } from "../../api/activities";
+import { getOneDestination, updateDestination, removeDestination} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditDestinationModal from "./EditDestinationModal";
 import NewActivityModal from "../activities/NewActivityModal";
@@ -21,16 +16,19 @@ import ShowActivity from "../activities/ShowActivity";
 import axios from "axios";
 const Amadeus = require("amadeus");
 
+let bussin
 let amadeus = new Amadeus({
   clientId: "GwYuf8jB0JRp1bTKSbXy5GHgdQ8ly8JT",
   clientSecret: "eFzStO9lvuEChUZJ",
 });
 
 const bussinFrFr = () => {
+    console.log(bussin)
   let yo = amadeus.shopping.activities
+  
     .get({
-      latitude: 41.397158,
-      longitude: 2.160873,
+      latitude: bussin.lat,
+      longitude: bussin.lon,
     })
     .then(function (response) {
       console.log(response);
@@ -46,10 +44,9 @@ const bussinFrFr = () => {
 
 // we'll use a style object to lay out the activity cards
 const cardContainerLayout = {
-  display: "flex",
-  justifyContent: "center",
-  flexFlow: "row wrap",
-};
+    display: 'flex',
+    justifyContent: 'center',
+}
 
 const ShowDestination = (props) => {
   const [destination, setDestination] = useState(null);
@@ -70,7 +67,10 @@ const ShowDestination = (props) => {
 
   useEffect(() => {
     getOneDestination(id)
-      .then((res) => setDestination(res.data.destination))
+      .then((res) => {
+          setDestination(res.data.destination)
+        bussin = res.data.destination
+        })
       .catch((err) => {
         msgAlert({
           heading: "Error getting destination",
@@ -128,13 +128,13 @@ const ShowDestination = (props) => {
     return <LoadingScreen />;
   }
 
-const activityList = activity.map(activity => (
-<Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
+// const activityList = activity.map(activity => (
+{/* <Link to={`/activities/${activity._id}`}> { activity.name }</Link>)) */}
 
   return (
     <>
       <Container className="fluid">
-        <Card style={{ width: "30rem" }} className="mx-auto mt-4" id="card">
+        <Card style={{ width: "30rem", zIndex: "2" }} className="mx-auto mt-4" id="card">
           <Card.Img
             id="card-img"
             variant="top"
@@ -149,9 +149,9 @@ const activityList = activity.map(activity => (
           <Card.Body>
                 <Card.Text>
                     <h3 style={cardContainerLayout}>Activities</h3>
-                    <div key={ activity._id }> 
+                    {/* <div key={ activity._id }> 
                         {activityList}
-                    </div>
+                    </div> */}
                 </Card.Text>
           </Card.Body>
           <Card.Footer>

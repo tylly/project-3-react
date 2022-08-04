@@ -43,6 +43,7 @@ const CreateDestination = (props) => {
         console.log('testing', testing.data)
         destination.lat = testing.data.lat
         destination.lon = testing.data.lon
+        destination.population = testing.data.population
         console.log(destination)
         createDestination(user, destination)
         .then(res => {

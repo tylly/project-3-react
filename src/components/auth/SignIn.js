@@ -6,6 +6,8 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { Container } from 'react-bootstrap'
+import BackgroundVideo from './BackgroundVideo'
 
 const SignIn = (props) => {
 	// constructor(props) {
@@ -49,6 +51,8 @@ const SignIn = (props) => {
 	}
 
     return (
+        <>
+        <BackgroundVideo />
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Sign In</h3>
@@ -81,6 +85,7 @@ const SignIn = (props) => {
                 </Form>
             </div>
         </div>
+        </>
     )
 }
 

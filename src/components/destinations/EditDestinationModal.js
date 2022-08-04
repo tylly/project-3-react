@@ -21,7 +21,7 @@ export default function EditDestinationModal(props) {
           };
           return {
             ...prevDestination,
-            ...updateDestination,
+            ...updatedDestination,
           };
         });
       };

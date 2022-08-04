@@ -29,7 +29,7 @@ export const createDestination = (user, newDestination) => {
 export const updateDestination = (user, updatedDestination) => {
     console.log('this is updatedDestination', updatedDestination)
 	return axios({
-		url: `${apiUrl}/destinations/${updatedDestination.id}`,
+		url: `${apiUrl}/destinations/${updatedDestination._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,

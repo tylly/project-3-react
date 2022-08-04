@@ -52,15 +52,9 @@ const SignIn = (props) => {
 
     return (
         <>
-<<<<<<< HEAD
-        {/* <BackgroundVideo /> */}
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-=======
         <BackgroundVideo />
         <div className='row'id='sign-in'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5' >
->>>>>>> origin/SignInVidEditing
                 <h3>Sign In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>

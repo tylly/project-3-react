@@ -1,12 +1,17 @@
 import { Form, Button, Container } from "react-bootstrap";
 import '../../style.css'
+import BackgroundVideo from "../auth/BackgroundVideo";
 const DestinationForm = (props) => {
   const { destination, handleChange, heading, handleSubmit } = props;
 
+
+  const formStyle ={
+    zIndex: "2"
+  }
   return (
-    <Container className="justify-content-center">
-      <h3>{heading}</h3>
-      <Form className="cards" onSubmit={handleSubmit}>
+    <Container className="justify-content-center" >
+    <h3>{heading}</h3>
+      <Form className="cards" onSubmit={handleSubmit} style={formStyle} >
         <Form.Label htmlFor="name">Name</Form.Label>
         <Form.Control
           placeholder="What is your destination's name?"

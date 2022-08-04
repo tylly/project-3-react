@@ -8,11 +8,7 @@ import "../../style.css";
 import { Container, Card, Button } from "react-bootstrap";
 
 import LoadingScreen from "../shared/LoadingScreen";
-import {
-  getOneDestination,
-  updateDestination,
-  removeDestination,
-} from "../../api/destinations";
+import { getOneDestination, updateDestination, removeDestination} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditDestinationModal from "./EditDestinationModal";
 import NewActivityModal from "../activities/NewActivityModal";
@@ -48,10 +44,9 @@ const bussinFrFr = () => {
 
 // we'll use a style object to lay out the activity cards
 const cardContainerLayout = {
-  display: "flex",
-  justifyContent: "center",
-  flexFlow: "row wrap",
-};
+    display: 'flex',
+    justifyContent: 'center',
+}
 
 const ShowDestination = (props) => {
   const [destination, setDestination] = useState(null);
@@ -135,7 +130,7 @@ const ShowDestination = (props) => {
   return (
     <>
       <Container className="fluid">
-        <Card style={{ width: "30rem" }} className="mx-auto mt-4" id="card">
+        <Card style={{ width: "30rem", zIndex: "2" }} className="mx-auto mt-4" id="card">
           <Card.Img
             id="card-img"
             variant="top"

@@ -9,7 +9,7 @@
     z-index: 1;
 } 
 
-#bg-video{
+#loginVideo{
     position: absolute;
     top: 58%;
     left: 50%;
@@ -22,4 +22,12 @@
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
+}
+
+#sign-in{
+    position: absolute;
+    z-index: 2;
+    display:flex;
+    top: 40%;
+    left: 40%
 }

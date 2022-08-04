@@ -56,15 +56,17 @@ const DestinationsIndex = (props) => {
     }
 
     const destinationCards = destinations.map(destination => (
-        <Card className="cards" style={{ width: '30%', margin: 5}} key={ destination.id }>
-            <Card.Header>{ destination.name }</Card.Header>
-            <Card.Body>
+        <Card className="cards" style={{ width: '18rem', margin: '15px', borderRadius: '8px'}} key={ destination.id }>
+             <Card.Img style={{borderRadius: '8px 8px 0 0'}}variant="top" src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80" />
+            <Card.Body style={{textAlign: 'center'}}>
+            <Card.Title>{destination.name}</Card.Title>
                 <Card.Text>
-                    <Link to={`/destinations/${destination._id}`}>View { destination.name }</Link>
+                    {destination.schedule}
                 </Card.Text>
-                
+                    <Link to={`/destinations/${destination._id}`}><button type="button" class="btn btn-outline-dark" size="sm">View { destination.name }</button></Link>
             </Card.Body>
         </Card>
+        
     ))
 
     return (

@@ -74,7 +74,7 @@ const CreateDestination = (props) => {
       destination={ destination } 
       handleChange={ handleChange }
       handleSubmit={ handleSubmit }
-      heading="Add a new destination!"
+      heading="Where to?"
       
       />
       </>

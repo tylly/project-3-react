@@ -1,44 +1,52 @@
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import '../../style.css'
-import BackgroundVideo from "../auth/BackgroundVideo";
 const DestinationForm = (props) => {
   const { destination, handleChange, heading, handleSubmit } = props;
 
 
   const formStyle ={
-    zIndex: "2"
+    color: 'white',
+    textAlign: 'center',
+    position: 'absolute',
+    zIndex: '2'
   }
+
   return (
-    <Container className="justify-content-center" >
-    <h3>{heading}</h3>
-      <Form className="cards" onSubmit={handleSubmit} style={formStyle} >
-        <Form.Label htmlFor="name">Name</Form.Label>
-        <Form.Control
-          placeholder="What is your destination's name?"
-          name="name"
-          id="name"
-          value={destination.name}
-          onChange={handleChange}
-        />
-        <Form.Label htmlFor="schedule">Schedule</Form.Label>
-        <Form.Control
-          placeholder="When is this trip?"
-          name="schedule"
-          id="schedule"
-          value={destination.schedule}
-          onChange={handleChange}
-        />
-        <Form.Control
-        style={{display: "none"}}
-          placeholder="When is this trip?"
-          name="schedule"
-          id="schedule"
-          value={destination.schedule}
-          onChange={handleChange}
-        />
-        <Button type="submit">Submit</Button>
-      </Form>
-    </Container>
+    <div className='row'id='destinationForm'style={formStyle}>
+        <div className='col-md mx-auto mt-5' >
+          <h3 style={{color: 'white'}} id="destinationFormHeading">{heading}</h3>
+            <Form className="cards" onSubmit={handleSubmit}>
+              <Form.Control
+                placeholder="Destination name"
+                name="name"
+                id="name"
+                value={destination.name}
+                onChange={handleChange}
+                className="mt-2"
+                style={{textAlign: 'center'}}
+              />
+              <Form.Control
+                placeholder="When is this trip?"
+                name="schedule"
+                id="schedule"
+                value={destination.schedule}
+                onChange={handleChange}
+                className="mt-2"
+                style={{textAlign: 'center'}}
+              />
+              <Form.Control
+              style={{display: "none"}}
+                placeholder="When is this trip?"
+                name="schedule"
+                id="schedule"
+                value={destination.schedule}
+                onChange={handleChange}
+              
+              />
+              <Button type="submit" className="mt-3" size="sm">Submit</Button>
+            </Form>
+        </div>
+      </div>
   );
 };
 

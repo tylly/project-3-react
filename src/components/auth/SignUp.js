@@ -76,7 +76,7 @@ const SignUp = (props) => {
                             value={email}
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
-                            style={signUpStyle}
+                            style={{textAlign: 'center'}}
                             className="mt-3"
                         />
                     </Form.Group>
@@ -88,7 +88,7 @@ const SignUp = (props) => {
                             type='password'
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
-                            style={signUpStyle}
+                            style={{textAlign: 'center'}}
                             className="mt-3"
                         />
                     </Form.Group>
@@ -100,7 +100,7 @@ const SignUp = (props) => {
                             type='password'
                             placeholder='Confirm Password'
                             onChange={e => setPasswordConfirmation(e.target.value)}
-                            style={signUpStyle}
+                            style={{textAlign: 'center'}}
                             className="mt-3"
                         />
                     </Form.Group>

@@ -71,7 +71,7 @@ const SignIn = (props) => {
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
                             className="mt-3"
-                            style={signInStyle}
+                            style={{textAlign: 'center'}}
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
@@ -83,7 +83,7 @@ const SignIn = (props) => {
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
                             className="mt-3"
-                            style={signInStyle}
+                            style={{textAlign: 'center'}}
                         />
                     </Form.Group>
                     <Button variant="info" type='submit'className="mt-3" size="sm">

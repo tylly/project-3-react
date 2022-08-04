@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../../style.css";
 
 import { Container, Card, Button } from "react-bootstrap";
-
+import { Link } from 'react-router-dom'
 import LoadingScreen from "../shared/LoadingScreen";
 import { getOneDestination, updateDestination, removeDestination} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
@@ -53,6 +53,7 @@ const ShowDestination = (props) => {
   const [activityModalShow, setActivityModalShow] = useState(false);
   const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
+  
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -107,25 +108,28 @@ const ShowDestination = (props) => {
         });
       });
   };
-  let activityCards;
-  if (destination) {
-    if (destination.activities.length > 0) {
-      activityCards = destination.activities.map((activity) => (
-        <ShowActivity
-          key={activity._id}
-          activity={activity}
-          destination={destination}
-          user={user}
-          msgAlert={msgAlert}
-          triggerRefresh={() => setUpdated((prev) => !prev)}
-        />
-      ));
-    }
-  }
+//   let activityCards;
+//   if (destination) {
+//     if (destination.activities.length > 0) {
+//       activityCards = destination.activities.map((activity) => (
+//         <ShowActivity
+//           key={activity._id}
+//           activity={activity}
+//           destination={destination}
+//           user={user}
+//           msgAlert={msgAlert}
+//           triggerRefresh={() => setUpdated((prev) => !prev)}
+//         />
+//       ));
+//     }
+//   }
 
   if (!destination) {
     return <LoadingScreen />;
   }
+
+// const activityList = activity.map(activity => (
+// <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
 
   return (
     <>
@@ -135,7 +139,7 @@ const ShowDestination = (props) => {
             id="card-img"
             variant="top"
             src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
-          />
+            />
           <Card.Body>
             <Card.Text>
               <h2 style={cardContainerLayout}>{destination.name}</h2>
@@ -143,17 +147,12 @@ const ShowDestination = (props) => {
             </Card.Text>
           </Card.Body>
           <Card.Body>
-            <Card.Text>
-              <h3 style={cardContainerLayout}>Activities</h3>
-              <ul>
-                <li style={{ listStyle: "none" }}>
-                  Los Angeles County Museum of Art (LACMA)
-                </li>
-                <li style={{ listStyle: "none" }}>Santa Monica Pier</li>
-                <li style={{ listStyle: "none" }}>Disneyland</li>
-                <li style={{ listStyle: "none" }}>Griffith Observatory</li>
-              </ul>
-            </Card.Text>
+                <Card.Text>
+                    <h3 style={cardContainerLayout}>Activities</h3>
+                    {/* <div key={ activity._id }> 
+                        { activityList }
+                    </div> */}
+                </Card.Text>
           </Card.Body>
           <Card.Footer>
             <Button

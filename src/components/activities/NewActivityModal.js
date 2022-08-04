@@ -11,14 +11,14 @@ const NewActivityModal = (props) => {
 
     const [activity, setActivity] = useState({})
 
-    console.log('destination in edit modal', destination)
+    // console.log('destination in edit modal', destination)
 
     const handleChange = (e) => {
         setActivity(prevActivity => {
             let value = e.target.value
             const name = e.target.name
 
-            console.log('this is the input type', e.target.type)
+            // console.log('this is the input type', e.target.type)
 
             const updatedActivity = {
                 [name]: value
@@ -34,7 +34,7 @@ const NewActivityModal = (props) => {
         // e equals the event
         e.preventDefault()
 
-        createActivity(user, destination.id, activity)
+        createActivity(user, destination._id, activity)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
             // send a success message to the user

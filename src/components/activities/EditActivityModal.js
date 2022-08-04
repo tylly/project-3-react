@@ -10,7 +10,7 @@ const EditActivityModal = (props) => {
     } = props
 
     const [activity, setActivity] = useState(props.activity)
-    console.log('this is the activity in the update modal', activity)
+    // console.log('this is the activity in the update modal', activity)
     const handleChange = (e) => {
         setActivity(prevActivity => {
             let value = e.target.value

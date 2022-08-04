@@ -11,7 +11,7 @@ import { getOneDestination, updateDestination, removeDestination } from '../../a
 import messages from '../shared/AutoDismissAlert/messages'
 import EditDestinationModal from './EditDestinationModal'
 import NewActivityModal from '../activities/NewActivityModal'
-// import ShowActivity from '../activities/ShowActivity'
+import ShowActivity from '../activities/ShowActivity'
 
 // We need to get the pet's id from the parameters
 // Then we need to make a request to the api
@@ -78,21 +78,21 @@ const ShowDestination = (props) => {
                 })
             })
     }
-    // let activityCards
-    // if (destination) {
-    //     if (destination.activities.length > 0) {
-    //         activityCards = destination.activities.map(activity => (
-    //             <ShowActivity 
-    //                 key={activity._id}
-    //                 activity={activity}
-    //                 destination={destination}
-    //                 user={user}
-    //                 msgAlert={msgAlert}
-    //                 triggerRefresh={() => setUpdated(prev => !prev)}
-    //             />
-    //         ))
-    //     }
-    // }
+    let activityCards
+    if (destination) {
+        if (destination.activities.length > 0) {
+            activityCards = destination.activities.map(activity => (
+                <ShowActivity 
+                    key={activity._id}
+                    activity={activity}
+                    destination={destination}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
 
     if (!destination) {
         return <LoadingScreen />
@@ -153,12 +153,12 @@ const ShowDestination = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
             />
-            {/* <NewActivityModal 
+            <NewActivityModal 
                 destination={destination}
                 user={user}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-                /> */}
+                />
         </>
     )
 }

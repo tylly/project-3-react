@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { createDestinationSuccess, createDestinationFailure } from '../shared/AutoDismissAlert/messages'
 import DestinationForm from '../shared/DestinationForm'
 import axios from 'axios'
+import '../../style.css'
 
+const formStyle = {
+    zIndex: 2
+}
 const CreateDestination = (props) => {
     //console.log('these are the props in createDestination\n', props)
     const { user, msgAlert } = props

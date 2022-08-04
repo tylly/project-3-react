@@ -101,40 +101,58 @@ const ShowDestination = (props) => {
 
     return (
             <>
-                <Card style={{width: '30rem'}} className="mx-auto mt-4" id="card">
+                <Card  style={{width: '30rem'}} className="mx-auto mt-4" id="card">
                     <Card.Img id="card-img" variant="top" src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80" />
                         <Card.Body>
                         <Card.Text>
-                        <h1 style={cardContainerLayout}>{destination.name}</h1>
+                        <h2 style={cardContainerLayout}>{destination.name}</h2>
                         <h4 style={cardContainerLayout}>{destination.schedule}</h4>
                         </Card.Text>
                         </Card.Body>
                         {
                             // user && destination.owner === user._id 
                             // ?
-                        <>
-                        <span style={{textAlign: 'center'}}>
-                                <Button onClick={() => setEditModalShow(true)} 
-                                    className="m-2" 
-                                    variant="warning"
-                                    size="sm"
-                                    >
-                                    Edit Destination
-                                </Button>
-                                <Button onClick={() => removeTheDestination()}
-                                    className="m-2"
-                                    variant="danger"
-                                    size="sm"
-                                    >
-                                    Delete
-                                </Button>
-                        </span>
-                        </>
+                        // <>
+                        // <span style={{textAlign: 'center'}}>
+                        //         <Button onClick={() => setEditModalShow(true)} 
+                        //             className="m-2" 
+                        //             variant="warning"
+                        //             size="sm"
+                        //             >
+                        //             Edit Destination
+                        //         </Button>
+                        //         <Button onClick={() => removeTheDestination()}
+                        //             className="m-2"
+                        //             variant="danger"
+                        //             size="sm"
+                        //             >
+                        //             Delete
+                        //         </Button>
+                        // </span>
+                        // </>
                             
                             // :
                             // null
                         }
-
+                        <Card.Body>
+                        <Card.Text>
+                        <h3 style={cardContainerLayout}>Activities</h3>
+                            <ul >
+                                <li style={{listStyle: 'none'}}>
+                                   Los Angeles County Museum of Art (LACMA)
+                                </li>
+                                <li style={{listStyle: 'none'}}>
+                                    Santa Monica Pier
+                                </li>
+                                <li style={{listStyle: 'none'}}>
+                                    Disneyland
+                                </li>
+                                <li style={{listStyle: 'none'}}>
+                                    Griffith Observatory
+                                </li>
+                            </ul>
+                        </Card.Text>
+                        </Card.Body>
                 </Card>
                 <br />
             </>

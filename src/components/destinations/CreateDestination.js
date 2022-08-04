@@ -38,9 +38,10 @@ const CreateDestination = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+        
         createDestination(user, destination)
-        .then(res => {navigate(`/destinations/${res.data.destination.id}`)})
+        .then(res => {
+            navigate(`/destinations/${res.data.destination._id}`)})
           .then(() =>
             msgAlert({
               heading: "oh yea!",

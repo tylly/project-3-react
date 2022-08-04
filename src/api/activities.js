@@ -16,7 +16,7 @@ export const createActivity = (user, destinationId, newActivity) => {
     console.log('the user in createActivity', user)
     console.log('the newActivity in createActivity', newActivity)
 	return axios({
-		url: `${apiUrl}/activities/${destinationId}`,
+		url: `${apiUrl}/activities${destinationId}`,
 		method: 'POST',
 		headers: {
 			Authorization: `Token token=${user.token}`,

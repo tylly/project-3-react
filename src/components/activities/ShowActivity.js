@@ -36,7 +36,8 @@ const ShowActivity = (props) => {
 
     const { user, msgAlert } = props
     console.log('user in props', user)
-    console.log('the activity in showActivity', activity)
+    // console.log('the activity in showActivity', activity)
+    
     // destructuring to get the id value from our route parameters
 
     useEffect(() => {

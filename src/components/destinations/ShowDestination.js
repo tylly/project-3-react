@@ -53,7 +53,7 @@ const ShowDestination = (props) => {
   const [activityModalShow, setActivityModalShow] = useState(false);
   const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
-  const [activity, setActivity] = useState(false)
+  
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -128,8 +128,8 @@ const ShowDestination = (props) => {
     return <LoadingScreen />;
   }
 
-const activityList = activity.map(activity => (
-<Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
+// const activityList = activity.map(activity => (
+// <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
 
   return (
     <>
@@ -204,7 +204,6 @@ const activityList = activity.map(activity => (
         user={user}
         destination={destination}
         show={activityModalShow}
-        setActivity={setActivity}
         msgAlert={msgAlert}
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setActivityModalShow(false)}

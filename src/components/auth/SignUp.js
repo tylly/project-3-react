@@ -7,7 +7,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import BackgroundVideo from './BackgroundVideo'
+
 
 const signUpStyle = {
     color: 'white',
@@ -63,7 +63,6 @@ const SignUp = (props) => {
 
     return (
         <>
-        <BackgroundVideo />
         <div className='row' id='sign-up'>
             <div className='col-sm col-md mx-auto mt-5'>
                 <h3 style={signUpStyle}>Sign Up</h3>

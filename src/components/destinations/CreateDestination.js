@@ -7,7 +7,7 @@ import axios from 'axios'
 import '../../style.css'
 
 const formStyle = {
-    zIndex: 2
+    zIndex: "2"
 }
 const CreateDestination = (props) => {
     //console.log('these are the props in createDestination\n', props)
@@ -69,12 +69,15 @@ const CreateDestination = (props) => {
       };
 
     return (
-        <DestinationForm 
-            destination={ destination } 
-            handleChange={ handleChange }
-            handleSubmit={ handleSubmit }
-            heading="Add a new destination!"
-        />
+      <>
+      <DestinationForm 
+      destination={ destination } 
+      handleChange={ handleChange }
+      handleSubmit={ handleSubmit }
+      heading="Add a new destination!"
+      
+      />
+      </>
     )
 }
 

@@ -46,3 +46,7 @@
 .cards {
     z-index: 2
 }
+
+#destinationForm{
+    z-index: 2;
+}

@@ -7,8 +7,6 @@ import "../../style.css";
 
 import { Container, Card, Button } from "react-bootstrap";
 
-import { getOneActivity} from '../../api/activities'
-
 import LoadingScreen from "../shared/LoadingScreen";
 import { getOneDestination, updateDestination, removeDestination} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
@@ -77,9 +75,6 @@ const ShowDestination = (props) => {
       });
   }, [updated]);
 
-  const ShowActivity = (props)=> {
-    const [activity, setActivity] = useState(null);
-  }
   // here we'll declare a function that runs which will remove the destination
   // this function's promise chain should send a message, and then go somewhere
 
@@ -129,7 +124,7 @@ const ShowDestination = (props) => {
   return (
     <>
       <Container className="fluid">
-        <Card style={{ width: "30rem" }} className="mx-auto mt-4" id="card">
+        <Card style={{ width: "30rem", zIndex: "2" }} className="mx-auto mt-4" id="card">
           <Card.Img
             id="card-img"
             variant="top"
@@ -148,7 +143,7 @@ const ShowDestination = (props) => {
                 <li style={{ listStyle: "none" }}>
                   Los Angeles County Museum of Art (LACMA)
                 </li>
-                <li style={{ listStyle: "none" }}>{activity.name}</li>
+                <li style={{ listStyle: "none" }}>Santa Monica Pier</li>
                 <li style={{ listStyle: "none" }}>Disneyland</li>
                 <li style={{ listStyle: "none" }}>Griffith Observatory</li>
               </ul>

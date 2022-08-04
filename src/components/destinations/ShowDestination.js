@@ -128,8 +128,8 @@ const ShowDestination = (props) => {
     return <LoadingScreen />;
   }
 
-// const activityList = activity.map(activity => (
-{/* <Link to={`/activities/${activity._id}`}> { activity.name }</Link>)) */}
+const activityList = activity.map(activity => (
+<Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
 
   return (
     <>
@@ -150,7 +150,7 @@ const ShowDestination = (props) => {
                 <Card.Text>
                     <h3 style={cardContainerLayout}>Activities</h3>
                     {/* <div key={ activity._id }> 
-                        {activityList}
+                        { activityList }
                     </div> */}
                 </Card.Text>
           </Card.Body>

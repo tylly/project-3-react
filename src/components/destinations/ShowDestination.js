@@ -20,16 +20,19 @@ import ShowActivity from "../activities/ShowActivity";
 import axios from "axios";
 const Amadeus = require("amadeus");
 
+let bussin
 let amadeus = new Amadeus({
   clientId: "GwYuf8jB0JRp1bTKSbXy5GHgdQ8ly8JT",
   clientSecret: "eFzStO9lvuEChUZJ",
 });
 
 const bussinFrFr = () => {
+    console.log(bussin)
   let yo = amadeus.shopping.activities
+  
     .get({
-      latitude: 41.397158,
-      longitude: 2.160873,
+      latitude: bussin.lat,
+      longitude: bussin.lon,
     })
     .then(function (response) {
       console.log(response);
@@ -68,7 +71,10 @@ const ShowDestination = (props) => {
 
   useEffect(() => {
     getOneDestination(id)
-      .then((res) => setDestination(res.data.destination))
+      .then((res) => {
+          setDestination(res.data.destination)
+        bussin = res.data.destination
+        })
       .catch((err) => {
         msgAlert({
           heading: "Error getting destination",

@@ -47,8 +47,8 @@ const App = () => {
 
 		return (
 			<Fragment>
-				<BackgroundVideo
-				/>
+				{/* <BackgroundVideo
+				/> */}
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />

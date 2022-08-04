@@ -112,20 +112,25 @@ const ShowDestination = (props) => {
                         {
                             // user && destination.owner === user._id 
                             // ?
-                            <>
+                        <>
+                        <span style={{textAlign: 'center'}}>
                                 <Button onClick={() => setEditModalShow(true)} 
                                     className="m-2" 
                                     variant="warning"
+                                    size="sm"
                                     >
                                     Edit Destination
                                 </Button>
                                 <Button onClick={() => removeTheDestination()}
                                     className="m-2"
                                     variant="danger"
+                                    size="sm"
                                     >
                                     Delete
                                 </Button>
-                            </>
+                        </span>
+                        </>
+                            
                             // :
                             // null
                         }

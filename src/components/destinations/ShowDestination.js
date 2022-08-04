@@ -141,6 +141,12 @@ const ShowDestination = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
+            <Container>
+                Activity
+                <Button>
+                    this is a button
+                </Button>
+            </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}

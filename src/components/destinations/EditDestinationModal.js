@@ -37,9 +37,6 @@ export default function EditDestinationModal(props) {
               variant: "success",
             })
           )
-          //this is that set update fucntion in showdestination component
-          //update is in the showdestinations useffects dependency array
-          //changes to the updated boolean cuase showDestinations useEffect to run again
           .then(() => triggerRefresh())
           .catch(() =>
             msgAlert({

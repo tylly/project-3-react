@@ -34,7 +34,7 @@ const NewActivityModal = (props) => {
         // e equals the event
         e.preventDefault()
 
-        createActivity(user, destination._id, activity)
+        createActivity(user, destination.id, activity)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
             // send a success message to the user
@@ -64,7 +64,7 @@ const NewActivityModal = (props) => {
                     activity={activity}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
-                    heading="Give the destination a activity!"
+                    heading="Plan Something To Do!"
                 />
             </Modal.Body>
         </Modal>

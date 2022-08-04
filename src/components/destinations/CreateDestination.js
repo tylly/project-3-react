@@ -40,7 +40,7 @@ const CreateDestination = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let testing = await axios.get(`https://api.opentripmap.com/0.1/en/places/geoname?name=${destination.name}&apikey=5ae2e3f221c38a28845f05b6ee69c6dabf1a1c065bbb25f00387dbd9`)
-        console.log('testing', testing.data)
+        console.log('testing', testing)
         destination.lat = testing.data.lat
         destination.lon = testing.data.lon
         destination.population = testing.data.population

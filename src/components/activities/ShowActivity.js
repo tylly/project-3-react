@@ -1,86 +1,163 @@
-import React, { useState } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { useState, useEffect } from 'react'
+
+import { useParams, useNavigate } from 'react-router-dom'
+// useParams will allow us to see our parameters
+// useNavigate will allow us to navigate to a specific page
+
+import { Container, Card, Button } from 'react-bootstrap'
+
+import LoadingScreen from '../shared/LoadingScreen'
+import { getOneActivity, updateActivity, removeActivity } from '../../api/activities'
+import messages from '../shared/AutoDismissAlert/messages'
 import EditActivityModal from './EditActivityModal'
-import { deleteActivity } from '../../api/activities'
+
+
+// We need to get the activity's id from the parameters
+// Then we need to make a request to the api
+// Then we need to display the results in this component
+
+// we'll use a style object to lay out the activity cards
+const cardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
 
 const ShowActivity = (props) => {
-    // destructure some props
-    const { activity, destination, user, msgAlert, triggerRefresh } = props
-
-    // here's where we'll put a hook to open the edit activity modal when we get there
+    const [activity, setActivity] = useState(null)
+    // const [activityModalShow, setActivityModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
-    // this will set a color depending on the activity's condition
-    // const setBgCondition = (cond) => {
-    //     if (cond === 'new') {
-    //         return({width: '18rem', backgroundColor:'#b5ead7'})
-    //     } else if (cond === 'used') {
-    //         return({width: '18rem', backgroundColor:'#ffdac1'})
-    //     } else {
-    //         return({width: '18rem', backgroundColor:'#ff9aa2'})
+    const [updated, setUpdated] = useState(false)
+
+    const { id } = useParams()
+    const navigate = useNavigate()
+    // useNavigate returns a function
+    // we can call that function to redirect the user wherever we want to
+
+    const { user, msgAlert } = props
+    console.log('user in props', user)
+    console.log('the activity in showActivity', activity)
+    // destructuring to get the id value from our route parameters
+
+    useEffect(() => {
+        getOneActivity(id)
+            .then(res => setActivity(res.data.activity))
+            .catch(err => {                   
+                msgAlert({
+                    heading: 'Error getting activity',
+                    message: messages.getActivityFailure,
+                    variant: 'danger'
+                })
+                navigate('/destinations/:_id')
+                //navigate back to the destinations page if there's an error fetching
+            })
+    }, [updated])
+
+    // here we'll declare a function that runs which will remove the activity
+    // this function's promise chain should send a message, and then go somewhere
+    const removeTheActivity = () => {
+        removeActivity(user, activity._id)
+            // on success send a success message
+            .then(() => {
+                msgAlert({
+                    heading: 'Success',
+                    message: messages.removeActivitySuccess,
+                    variant: 'success'
+                })
+            })
+            // then navigate to index
+            .then(() => {navigate('/')})
+            // on failure send a failure message
+            .catch(err => {                   
+                msgAlert({
+                    heading: 'Error removing activty',
+                    message: messages.removeActivityFailure,
+                    variant: 'danger'
+                })
+            })
+    }
+    // //////////////////////////////////////////////
+    // // I dont think we want this part for our app.
+    // //////////////////////////////////////////////
+    // let activityCards
+    // if (destination) {
+    //     if (destination.activities.length > 0) {
+    //         activityCards = destination.activities.map(activity => (
+    //             <ShowActivity 
+    //                 key={activity._id}
+    //                 activity={activity}
+    //                 destination={destination}
+    //                 user={user}
+    //                 msgAlert={msgAlert}
+    //                 triggerRefresh={() => setUpdated(prev => !prev)}
+    //             />
+    //         ))
     //     }
     // }
 
-    // calls this to destroy a activity
-    const destroyActivity = () => {
-        deleteActivity(user, destination._id, activity._id)
-            .then(() => 
-                msgAlert({
-                    heading: 'Activity Deleted',
-                    message: 'Bye bye activity!',
-                    variant: 'success'
-                }))
-            .then(() => triggerRefresh())
-            .catch(() => 
-                msgAlert({
-                    heading: 'Oh no!',
-                    message: 'Something went wrong!',
-                    variant: 'danger'
-                }))
+    if (!activity) {
+        return <LoadingScreen />
     }
 
     return (
         <>
-            {/* <Card className="m-2" style={setBgCondition(activity.condition)}>
-                <Card.Header>{activity.name}</Card.Header>
-                <Card.Body>
-                    <small>{activity.description}</small><br/>
-                    <small>
-                        {activity.isSqueaky ? 'squeak squeak' : 'stoic silence'}
-                    </small>
-                </Card.Body>
-                <Card.Footer>
-                    <small>Condition: {activity.condition}</small><br/>
-                    {
-                        user && user._id === destination.owner._id
-                        ?
-                        <>
-                            <Button 
-                                variant="warning"
-                                onClick={() => setEditModalShow(true)}
-                                >Edit Activity</Button>
-                            <Button 
-                                onClick={() => destroyActivity()} 
-                                variant="danger"
-                            >
-                                Delete Activity
-                            </Button>
-                        </>
-                        :
-                        null
-                    }
-                </Card.Footer>
-            </Card> */}
-            <EditActivityModal
+            <Container className="fluid">
+                <Card>
+                    <Card.Header>{ activity.name }</Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            <div><small>Schedule: { activity.schedule }</small></div>
+                            {/* <div><small>Type: { activity.type }</small></div>
+                            <div><small>
+                                Adoptable: { activity.adoptable ? 'yes' : 'no'}
+                            </small></div> */}
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                        {/* <Button onClick={() => setActivityModalShow(true)}
+                            className="m-2" variant="info"
+                        >
+                            Give {activity.name} a activity!
+                        </Button> */}
+                        {
+                            user && activity.owner === user._id 
+                            ?
+                            <>
+                                <Button onClick={() => setEditModalShow(true)} 
+                                    className="m-2" 
+                                    variant="warning"
+                                >
+                                    Edit Activity
+                                </Button>
+                                <Button onClick={() => removeTheActivity()}
+                                    className="m-2"
+                                    variant="danger"
+                                >
+                                    Delete Activity
+                                </Button>
+                            </>
+                            :
+                            null
+                        }
+                    </Card.Footer>
+                </Card>
+            </Container>
+            {/* <Container style={cardContainerLayout}>
+                {activityCards}
+            </Container>  */}
+            <EditActivityModal 
                 user={user}
-                destination={destination}
-                activity={activity}
-                show={editModalShow}
-                handleClose={() => setEditModalShow(false)}
+                activity={activity} 
+                show={editModalShow} 
+                updateActivity={updateActivity}
                 msgAlert={msgAlert}
-                triggerRefresh={triggerRefresh}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setEditModalShow(false)} 
             />
         </>
     )
 }
 
 export default ShowActivity
+// show={activityModalShow}
+// handleClose={() => setActivityModalShow(false)} 

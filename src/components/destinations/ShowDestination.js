@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // useParams will allow us to see our parameters
 // useNavigate will allow us to navigate to a specific page
+import "../../style.css";
 
 import { Container, Card, Button } from "react-bootstrap";
 
@@ -50,10 +51,10 @@ const cardContainerLayout = {
 };
 
 const ShowDestination = (props) => {
-    const [destination, setDestination] = useState(null)
-    const [activityModalShow, setActivityModalShow] = useState(false)
-    const [editModalShow, setEditModalShow] = useState(false)
-    const [updated, setUpdated] = useState(false)
+  const [destination, setDestination] = useState(null);
+  const [activityModalShow, setActivityModalShow] = useState(false);
+  const [editModalShow, setEditModalShow] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -78,8 +79,6 @@ const ShowDestination = (props) => {
         //navigate back to the home page if there's an error fetching
       });
   }, [updated]);
-
-
 
   // here we'll declare a function that runs which will remove the destination
   // this function's promise chain should send a message, and then go somewhere
@@ -130,85 +129,88 @@ const ShowDestination = (props) => {
   return (
     <>
       <Container className="fluid">
-        <Card>
-          <Card.Header>{destination.name}</Card.Header>
+        <Card style={{ width: "30rem" }} className="mx-auto mt-4" id="card">
+          <Card.Img
+            id="card-img"
+            variant="top"
+            src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
+          />
           <Card.Body>
             <Card.Text>
-              <div>
-                <small>Schedule: {destination.schedule}</small>
-              </div>
-              {/* <div><small>Type: { destination.type }</small></div>
-                            <div><small>
-                                Adoptable: { destination.adoptable ? 'yes' : 'no'}
-                            </small></div> */}
-                        </Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                        <Button onClick={() => setActivityModalShow(true)}
-                            className="m-2" variant="info"
-                        >
-                            Plan An Activity
-                        </Button>
-                        {
-                            user && destination.owner === user._id 
-                            ?
-                            <>
-                                <Button onClick={() => setEditModalShow(true)} 
-                                    className="m-2" 
-                                    variant="warning"
-                                >
-                                    Edit Destination
-                                </Button>
-                                <Button onClick={() => removeTheDestination()}
-                                    className="m-2"
-                                    variant="danger"
-                                >
-                                    Delete
-                                </Button>
-                            </>
-                            :
-                            null
-                        }
-                    </Card.Footer>
-                </Card>
-            </Container>
+              <h2 style={cardContainerLayout}>{destination.name}</h2>
+              <h4 style={cardContainerLayout}>{destination.schedule}</h4>
+            </Card.Text>
+          </Card.Body>
+          <Card.Body>
+            <Card.Text>
+              <h3 style={cardContainerLayout}>Activities</h3>
+              <ul>
+                <li style={{ listStyle: "none" }}>
+                  Los Angeles County Museum of Art (LACMA)
+                </li>
+                <li style={{ listStyle: "none" }}>Santa Monica Pier</li>
+                <li style={{ listStyle: "none" }}>Disneyland</li>
+                <li style={{ listStyle: "none" }}>Griffith Observatory</li>
+              </ul>
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <Button
+              onClick={() => setActivityModalShow(true)}
+              className="m-2"
+              variant="info"
+            >
+              Plan An Activity
+            </Button>
 
-            <Container>
-Activity
-<Button onClick={() => bussinFrFr()} className="m-2" variant="info">
-  View Suggested Activities
-</Button>
+            <Button onClick={() => bussinFrFr()} className="m-2" variant="info">
+              View Suggested Activities
+            </Button>
+            {user && destination.owner === user._id ? (
+              <>
+                <Button
+                  onClick={() => setEditModalShow(true)}
+                  className="m-2"
+                  variant="warning"
+                >
+                  Edit Destination
+                </Button>
+                <Button
+                  onClick={() => removeTheDestination()}
+                  className="m-2"
+                  variant="danger"
+                >
+                  Delete
+                </Button>
+              </>
+            ) : null}
+          </Card.Footer>
+        </Card>
+      </Container>
 
-<Button className="m-2" variant="warning">
-  Edit your Activity
-</Button>
-<Button className="m-2" variant="danger">
-  Delete your Activity
-</Button>
-</Container>
-            {/* <Container style={cardContainerLayout}>
+      {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-            <EditDestinationModal 
-                user={user}
-                destination={destination} 
-                show={editModalShow} 
-                updateDestination={updateDestination}
-                msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setEditModalShow(false)} 
-            />
-            <NewActivityModal 
-                user={user}
-                destination={destination}
-                show={activityModalShow}
-                msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setActivityModalShow(false)} 
-                />
-        </>
-    )
-}
+      <EditDestinationModal
+        user={user}
+        destination={destination}
+        show={editModalShow}
+        updateDestination={updateDestination}
+        msgAlert={msgAlert}
+        triggerRefresh={() => setUpdated((prev) => !prev)}
+        handleClose={() => setEditModalShow(false)}
+      />
+      <NewActivityModal
+        user={user}
+        destination={destination}
+        show={activityModalShow}
+        msgAlert={msgAlert}
+        triggerRefresh={() => setUpdated((prev) => !prev)}
+        handleClose={() => setActivityModalShow(false)}
+      />
+    </>
+  );
+};
 
 export default ShowDestination;
 // show={activityModalShow}

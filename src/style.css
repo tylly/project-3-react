@@ -35,3 +35,10 @@
 #basic-navbar-nav{
     z-index: 2;
 }
+
+#card{
+    border-radius: 8px;
+}
+#card-img{
+    border-radius: 8px 8px 0 0;
+}

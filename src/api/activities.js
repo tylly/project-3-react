@@ -1,6 +1,16 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
+// READ => INDEX
+export const getAllActivities = () => {
+    return axios(`${apiUrl}/actiivities`)
+}
+
+// READ => SHOW
+export const getOneActivity = (id) => {
+    return axios(`${apiUrl}/activities/${id}`)
+}
+
 // CREATE Activity
 export const createActivity = (user, destinationId, newActivity) => {
     console.log('the user in createActivity', user)
@@ -26,7 +36,7 @@ export const updateActivity = (user, destinationId, updatedActivity) => {
 }
 
 // DELETE Activity
-export const deleteActivity = (user, destinationId, activityId) => {
+export const removeActivity = (user, destinationId, activityId) => {
 	return axios({
 		url: `${apiUrl}/activities/${destinationId}/${activityId}`,
 		method: 'DELETE',

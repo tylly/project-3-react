@@ -38,7 +38,7 @@ const bussinFrFr = () => {
     });
 };
 
-// We need to get the pet's id from the parameters
+// We need to get the destination's id from the parameters
 // Then we need to make a request to the api
 // Then we need to display the results in this component
 
@@ -50,11 +50,10 @@ const cardContainerLayout = {
 };
 
 const ShowDestination = (props) => {
-  const [destination, setDestination] = useState(null);
-  // const [editModalShow, setEditModalShow] = useState(false)
-  // const [activityModalShow, setActivityModalShow] = useState(false)
-  const [editModalShow, setEditModalShow] = useState(false);
-  const [updated, setUpdated] = useState(false);
+    const [destination, setDestination] = useState(null)
+    const [activityModalShow, setActivityModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -142,71 +141,74 @@ const ShowDestination = (props) => {
                             <div><small>
                                 Adoptable: { destination.adoptable ? 'yes' : 'no'}
                             </small></div> */}
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            {/* <Button onClick={() => setActivityModalShow(true)}
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                        <Button onClick={() => setActivityModalShow(true)}
                             className="m-2" variant="info"
                         >
-                            Give {destination.name} a activity!
-                        </Button> */}
-            {user && destination.owner === user._id ? (
-              <>
-                <Button
-                  onClick={() => setEditModalShow(true)}
-                  className="m-2"
-                  variant="warning"
-                >
-                  Edit Destination
-                </Button>
-                <Button
-                  onClick={() => removeTheDestination()}
-                  className="m-2"
-                  variant="danger"
-                >
-                  Delete
-                </Button>
-              </>
-            ) : null}
-          </Card.Footer>
-        </Card>
-      </Container>
-      <Container>
-        Activity
-        <Button onClick={() => bussinFrFr()} className="m-2" variant="info">
-          View Suggested Activities
-        </Button>
-        <Button className="m-2" variant="success">
-          Create an Activity
-        </Button>
-        <Button className="m-2" variant="warning">
-          Edit your Activity
-        </Button>
-        <Button className="m-2" variant="danger">
-          Delete your Activity
-        </Button>
-      </Container>
-      {/* <Container style={cardContainerLayout}>
+                            Plan An Activity
+                        </Button>
+                        {
+                            user && destination.owner === user._id 
+                            ?
+                            <>
+                                <Button onClick={() => setEditModalShow(true)} 
+                                    className="m-2" 
+                                    variant="warning"
+                                >
+                                    Edit Destination
+                                </Button>
+                                <Button onClick={() => removeTheDestination()}
+                                    className="m-2"
+                                    variant="danger"
+                                >
+                                    Delete
+                                </Button>
+                            </>
+                            :
+                            null
+                        }
+                    </Card.Footer>
+                </Card>
+            </Container>
+
+            <Container>
+Activity
+<Button onClick={() => bussinFrFr()} className="m-2" variant="info">
+  View Suggested Activities
+</Button>
+
+<Button className="m-2" variant="warning">
+  Edit your Activity
+</Button>
+<Button className="m-2" variant="danger">
+  Delete your Activity
+</Button>
+</Container>
+            {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-      <EditDestinationModal
-        user={user}
-        destination={destination}
-        show={editModalShow}
-        updateDestination={updateDestination}
-        msgAlert={msgAlert}
-        triggerRefresh={() => setUpdated((prev) => !prev)}
-        handleClose={() => setEditModalShow(false)}
-      />
-      <NewActivityModal
-        destination={destination}
-        user={user}
-        msgAlert={msgAlert}
-        triggerRefresh={() => setUpdated((prev) => !prev)}
-      />
-    </>
-  );
-};
+            <EditDestinationModal 
+                user={user}
+                destination={destination} 
+                show={editModalShow} 
+                updateDestination={updateDestination}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setEditModalShow(false)} 
+            />
+            <NewActivityModal 
+                user={user}
+                destination={destination}
+                show={activityModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setActivityModalShow(false)} 
+                />
+        </>
+    )
+}
 
 export default ShowDestination;
 // show={activityModalShow}

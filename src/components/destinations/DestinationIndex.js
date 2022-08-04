@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import { getAllDestinations } from '../../api/destinations'
 import messages from '../shared/AutoDismissAlert/messages'
+import { Button } from 'bootstrap'
 
 // SnowboardsIndex should make a request to the api
 // To get all snowboards
@@ -60,6 +61,7 @@ const DestinationsIndex = (props) => {
                 <Card.Text>
                     <Link to={`/destinations/${destination._id}`}>View { destination.name }</Link>
                 </Card.Text>
+                
             </Card.Body>
         </Card>
     ))

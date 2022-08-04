@@ -64,7 +64,7 @@ const NewActivityModal = (props) => {
                     activity={activity}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
-                    heading="Give the destination a activity!"
+                    heading="Plan Something To Do!"
                 />
             </Modal.Body>
         </Modal>

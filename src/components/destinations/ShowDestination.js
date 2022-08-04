@@ -26,8 +26,7 @@ const cardContainerLayout = {
 
 const ShowDestination = (props) => {
     const [destination, setDestination] = useState(null)
-    // const [editModalShow, setEditModalShow] = useState(false)
-    // const [activityModalShow, setActivityModalShow] = useState(false)
+    const [activityModalShow, setActivityModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
@@ -113,11 +112,11 @@ const ShowDestination = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        {/* <Button onClick={() => setActivityModalShow(true)}
+                        <Button onClick={() => setActivityModalShow(true)}
                             className="m-2" variant="info"
                         >
-                            Give {destination.name} a activity!
-                        </Button> */}
+                            Plan An Activity
+                        </Button>
                         {
                             user && destination.owner === user._id 
                             ?
@@ -149,12 +148,6 @@ const ShowDestination = (props) => {
                 >
                     View Suggested Activities
                 </Button>
-                <Button 
-                    className="m-2"
-                    variant="success"
-                >
-                    Create an Activity
-                </Button>
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}
@@ -169,10 +162,12 @@ const ShowDestination = (props) => {
                 handleClose={() => setEditModalShow(false)} 
             />
             <NewActivityModal 
-                destination={destination}
                 user={user}
+                destination={destination}
+                show={activityModalShow}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setActivityModalShow(false)} 
                 />
         </>
     )

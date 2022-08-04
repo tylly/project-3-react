@@ -9,6 +9,11 @@ import Button from 'react-bootstrap/Button'
 import { Container } from 'react-bootstrap'
 import BackgroundVideo from './BackgroundVideo'
 
+const signInStyle = {
+    color: "white",
+    textAlign: 'center'
+}
+
 const SignIn = (props) => {
 	// constructor(props) {
 	// 	super(props)
@@ -53,12 +58,12 @@ const SignIn = (props) => {
     return (
         <>
         <BackgroundVideo />
+        <div class="container-md" id="container-login">
         <div className='row'id='sign-in'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5' >
-                <h3>Sign In</h3>
-                <Form onSubmit={onSignIn}>
+                <h3 style={signInStyle}>Sign In</h3>
+                <Form onSubmit={onSignIn} style={signInStyle}>
                     <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
                         <Form.Control
                             required
                             type='email'
@@ -66,10 +71,10 @@ const SignIn = (props) => {
                             value={email}
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
+                            style={signInStyle}
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
                         <Form.Control
                             required
                             name='password'
@@ -77,13 +82,16 @@ const SignIn = (props) => {
                             type='password'
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
+                            className="mt-3"
+                            style={{textAlign: 'center'}}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant='primary' type='submit' className='mt-3'>
                         Submit
                     </Button>
                 </Form>
             </div>
+        </div>
         </div>
         </>
     )

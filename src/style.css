@@ -15,7 +15,7 @@
     left: 50%;
     min-width: 100%;
     min-height: 100%;
-    width: auto;
+    width: 100%;
     height: auto;
     z-index: 0;
     -ms-transform: translateX(-50%) translateY(-50%);
@@ -24,10 +24,22 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
+/* #container-login{
+    margin-left: 8%;
+    margin-top: 5%;
+    z-index: 2;
+    background-color: white;
+    color: black;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 80%;
+} */
 #sign-in{
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     display:flex;
-    top: 40%;
+    top: 30%;
     left: 40%
 }

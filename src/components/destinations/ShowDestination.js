@@ -143,9 +143,31 @@ const ShowDestination = (props) => {
             </Container>
             <Container>
                 Activity
-                <Button>
-                    this is a button
+                <Button 
+                    className="m-2"
+                    variant="info"
+                >
+                    View Suggested Activities
                 </Button>
+                <Button 
+                    className="m-2"
+                    variant="success"
+                >
+                    Create an Activity
+                </Button>
+                <Button 
+                    className="m-2"
+                    variant="warning"
+                >
+                    Edit your Activity
+                </Button>
+                <Button 
+                    className="m-2"
+                    variant="danger"
+                >
+                    Delete your Activity
+                </Button>
+                
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}

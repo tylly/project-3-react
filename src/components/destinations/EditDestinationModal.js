@@ -37,9 +37,9 @@ export default function EditDestinationModal(props) {
               variant: "success",
             })
           )
-          //this is that set update fucntion in showpet component
-          //update is in the showpets useffects dependency array
-          //changes to the updated boolean cuase showPets useEffect to run again
+          //this is that set update fucntion in showdestination component
+          //update is in the showdestinations useffects dependency array
+          //changes to the updated boolean cuase showDestinations useEffect to run again
           .then(() => triggerRefresh())
           .catch(() =>
             msgAlert({
@@ -60,7 +60,7 @@ export default function EditDestinationModal(props) {
             destination={destination}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
-            heading="Update pet"
+            heading="Update Destination"
             />
         </Modal.Body>
     </Modal>

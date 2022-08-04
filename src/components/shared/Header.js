@@ -2,18 +2,23 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import '../../style.css'
 const linkStyle = {
     color: 'white',
     textDecoration: 'none'
 }
+
+const navStyle ={
+	display: 'inline'
+}
 const authenticatedOptions = (
 	<>
 		<Nav.Item className='m-2'>
-		<Link to="/addDestination" style={linkStyle}>
-        Add Destination
-      </Link>
-	  </Nav.Item>
-	  <Nav.Item className='m-2'>
+			<Link to="/addDestination" style={linkStyle}>
+			Add Destination
+			</Link>
+		</Nav.Item>
+		<Nav.Item className='m-2'>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
@@ -28,7 +33,7 @@ const authenticatedOptions = (
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Item className='m-2'>
+        <Nav.Item className='m-2 mt-2'style={navStyle}>
 		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
         </Nav.Item>
         <Nav.Item className='m-2'>
@@ -39,17 +44,17 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Link className='m-2'>
+		<Nav.Item className='m-2'>
 			<Link to='/' style={linkStyle}>
 				Home
 			</Link>
-		</Nav.Link>
+		</Nav.Item>
 	</>
 )
 
 const Header = ({ user }) => (
 	<Navbar bg='black' variant='dark' expand='md'>
-		<Navbar.Brand className='m-2'>
+		<Navbar.Brand className='ms-2'>
             <Link to='/' style={linkStyle}>
                 Globetrotters
             </Link>

@@ -58,9 +58,8 @@ const SignIn = (props) => {
     return (
         <>
         <BackgroundVideo />
-        <div class="container-md" id="container-login">
         <div className='row'id='sign-in'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5' >
+            <div className='col-sm col-md mx-auto mt-5' >
                 <h3 style={signInStyle}>Sign In</h3>
                 <Form onSubmit={onSignIn} style={signInStyle}>
                     <Form.Group controlId='email'>
@@ -71,6 +70,7 @@ const SignIn = (props) => {
                             value={email}
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
+                            className="mt-3"
                             style={signInStyle}
                         />
                     </Form.Group>
@@ -83,15 +83,14 @@ const SignIn = (props) => {
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
                             className="mt-3"
-                            style={{textAlign: 'center'}}
+                            style={signInStyle}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit' className='mt-3'>
+                    <Button variant="info" type='submit'className="mt-3" size="sm">
                         Submit
                     </Button>
                 </Form>
             </div>
-        </div>
         </div>
         </>
     )

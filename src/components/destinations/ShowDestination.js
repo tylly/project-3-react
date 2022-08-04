@@ -9,7 +9,7 @@ import { Container, Card, Button } from 'react-bootstrap'
 import LoadingScreen from '../shared/LoadingScreen'
 import { getOneDestination, updateDestination, removeDestination } from '../../api/destinations'
 import messages from '../shared/AutoDismissAlert/messages'
-// import EditDestinationModal from './EditDestinationModal'
+import EditDestinationModal from './EditDestinationModal'
 import NewActivityModal from '../activities/NewActivityModal'
 // import ShowActivity from '../activities/ShowActivity'
 
@@ -28,6 +28,7 @@ const ShowDestination = (props) => {
     const [destination, setDestination] = useState(null)
     // const [editModalShow, setEditModalShow] = useState(false)
     // const [activityModalShow, setActivityModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
@@ -111,14 +112,14 @@ const ShowDestination = (props) => {
                             </small></div> */}
                         </Card.Text>
                     </Card.Body>
-                    {/* <Card.Footer>
-                        <Button onClick={() => setActivityModalShow(true)}
+                    <Card.Footer>
+                        {/* <Button onClick={() => setActivityModalShow(true)}
                             className="m-2" variant="info"
                         >
                             Give {destination.name} a activity!
-                        </Button>
+                        </Button> */}
                         {
-                            destination.owner && user && destination.owner._id === user._id 
+                            user && destination.owner === user._id 
                             ?
                             <>
                                 <Button onClick={() => setEditModalShow(true)} 
@@ -137,13 +138,13 @@ const ShowDestination = (props) => {
                             :
                             null
                         }
-                    </Card.Footer> */}
+                    </Card.Footer>
                 </Card>
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-            {/* <EditDestinationModal 
+            <EditDestinationModal 
                 user={user}
                 destination={destination} 
                 show={editModalShow} 
@@ -151,13 +152,13 @@ const ShowDestination = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            /> */}
-            <NewActivityModal 
+            />
+            {/* <NewActivityModal 
                 destination={destination}
                 user={user}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-                />
+                /> */}
         </>
     )
 }

@@ -58,7 +58,7 @@ const ShowDestination = (props) => {
     // here we'll declare a function that runs which will remove the destination
     // this function's promise chain should send a message, and then go somewhere
     const removeTheDestination = () => {
-        removeDestination(user, destination.id)
+        removeDestination(user, destination._id)
             // on success send a success message
             .then(() => {
                 msgAlert({
@@ -132,7 +132,7 @@ const ShowDestination = (props) => {
                                     className="m-2"
                                     variant="danger"
                                 >
-                                    Set {destination.name} Free
+                                    Delete
                                 </Button>
                             </>
                             :

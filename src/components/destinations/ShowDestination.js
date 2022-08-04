@@ -13,6 +13,8 @@ import EditDestinationModal from './EditDestinationModal'
 import NewActivityModal from '../activities/NewActivityModal'
 import ShowActivity from '../activities/ShowActivity'
 
+import '../../style.css'
+
 // We need to get the pet's id from the parameters
 // Then we need to make a request to the api
 // Then we need to display the results in this component
@@ -21,7 +23,6 @@ import ShowActivity from '../activities/ShowActivity'
 const cardContainerLayout = {
     display: 'flex',
     justifyContent: 'center',
-    flexFlow: 'row wrap'
 }
 
 const ShowDestination = (props) => {
@@ -99,95 +100,130 @@ const ShowDestination = (props) => {
     }
 
     return (
-        <>
-            <Container className="fluid">
-                <Card>
-                    <Card.Header>{ destination.name }</Card.Header>
-                    <Card.Body>
+            <>
+                <Card style={{width: '30rem'}} className="mx-auto mt-4" id="card">
+                    <Card.Img id="card-img" variant="top" src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80" />
+                        <Card.Body>
                         <Card.Text>
-                            <div><small>Schedule: { destination.schedule }</small></div>
-                            {/* <div><small>Type: { destination.type }</small></div>
-                            <div><small>
-                                Adoptable: { destination.adoptable ? 'yes' : 'no'}
-                            </small></div> */}
+                        <h1 style={cardContainerLayout}>{destination.name}</h1>
+                        <h4 style={cardContainerLayout}>{destination.schedule}</h4>
                         </Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                        {/* <Button onClick={() => setActivityModalShow(true)}
-                            className="m-2" variant="info"
-                        >
-                            Give {destination.name} a activity!
-                        </Button> */}
+                        </Card.Body>
                         {
-                            user && destination.owner === user._id 
-                            ?
+                            // user && destination.owner === user._id 
+                            // ?
                             <>
                                 <Button onClick={() => setEditModalShow(true)} 
                                     className="m-2" 
                                     variant="warning"
-                                >
+                                    >
                                     Edit Destination
                                 </Button>
                                 <Button onClick={() => removeTheDestination()}
                                     className="m-2"
                                     variant="danger"
-                                >
+                                    >
                                     Delete
                                 </Button>
                             </>
-                            :
-                            null
+                            // :
+                            // null
                         }
-                    </Card.Footer>
+
                 </Card>
-            </Container>
-            <Container>
-                Activity
-                <Button 
-                    className="m-2"
-                    variant="info"
-                >
-                    View Suggested Activities
-                </Button>
-                <Button 
-                    className="m-2"
-                    variant="success"
-                >
-                    Create an Activity
-                </Button>
-                <Button 
-                    className="m-2"
-                    variant="warning"
-                >
-                    Edit your Activity
-                </Button>
-                <Button 
-                    className="m-2"
-                    variant="danger"
-                >
-                    Delete your Activity
-                </Button>
+                <br />
+            </>
+            // <Container className="col-sm col-md mt-3">
+            //     <Card
+            //     name={destination.name}
+            //     schedule={destination.schedule}
+            //     >
+            //         <Card.Header>{ destination.name }</Card.Header>
+            //         <Card.Body>
+            //             <Card.Text>
+            //                 <div><small>Schedule: { destination.schedule }</small></div>
+            //                 <div><small>Type: { destination.type }</small></div>
+            //                 <div><small>
+            //                     Adoptable: { destination.adoptable ? 'yes' : 'no'}
+            //                 </small></div>
+            //             </Card.Text>
+            //         </Card.Body>
+            //         <Card.Footer>
+            //             {/* <Button onClick={() => setActivityModalShow(true)}
+            //                 className="m-2" variant="info"
+            //             >
+            //                 Give {destination.name} a activity!
+            //             </Button> */}
+            //             {
+            //                 user && destination.owner === user._id 
+            //                 ?
+            //                 <>
+            //                     <Button onClick={() => setEditModalShow(true)} 
+            //                         className="m-2" 
+            //                         variant="warning"
+            //                     >
+            //                         Edit Destination
+            //                     </Button>
+            //                     <Button onClick={() => removeTheDestination()}
+            //                         className="m-2"
+            //                         variant="danger"
+            //                     >
+            //                         Delete
+            //                     </Button>
+            //                 </>
+            //                 :
+            //                 null
+            //             }
+            //         </Card.Footer>
+            //     </Card>
+            // </Container>
+            // <Container>
+            //     Activity
+            //     <Button 
+            //         className="m-2"
+            //         variant="info"
+            //     >
+            //         View Suggested Activities
+            //     </Button>
+            //     <Button 
+            //         className="m-2"
+            //         variant="success"
+            //     >
+            //         Create an Activity
+            //     </Button>
+            //     <Button 
+            //         className="m-2"
+            //         variant="warning"
+            //     >
+            //         Edit your Activity
+            //     </Button>
+            //     <Button 
+            //         className="m-2"
+            //         variant="danger"
+            //     >
+            //         Delete your Activity
+            //     </Button>
                 
-            </Container>
-            {/* <Container style={cardContainerLayout}>
-                {activityCards}
-            </Container>  */}
-            <EditDestinationModal 
-                user={user}
-                destination={destination} 
-                show={editModalShow} 
-                updateDestination={updateDestination}
-                msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setEditModalShow(false)} 
-            />
-            <NewActivityModal 
-                destination={destination}
-                user={user}
-                msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                />
-        </>
+            // </Container>
+            // {/* <Container style={cardContainerLayout}>
+            //     {activityCards}
+            // </Container>  */}
+            // <EditDestinationModal 
+            //     user={user}
+            //     destination={destination} 
+            //     show={editModalShow} 
+            //     updateDestination={updateDestination}
+            //     msgAlert={msgAlert}
+            //     triggerRefresh={() => setUpdated(prev => !prev)}
+            //     handleClose={() => setEditModalShow(false)} 
+            // />
+            // <NewActivityModal 
+            //     destination={destination}
+            //     user={user}
+            //     msgAlert={msgAlert}
+            //     triggerRefresh={() => setUpdated(prev => !prev)}
+            //     />
+        // </>
     )
 }
 

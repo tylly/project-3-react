@@ -1,6 +1,6 @@
-import { Form,Button,Container 
-} from 'react-bootstrap'
+import { Form,Button,Container} from 'react-bootstrap'
 import React, { useState } from 'react'
+
 
 const ActivityForm = (props) => {
     const {activity, handleChange, handleSubmit, heading} = props
@@ -17,7 +17,7 @@ const ActivityForm = (props) => {
                         value={ activity.name }
                         onChange={ handleChange }
                     />
-                    <Form.Label htmlFor="address">Address</Form.Label>
+                    <Form.Label htmlFor="address" className='mt-2'>Address</Form.Label>
                     <Form.Control
                         placeholder="What is the address?"
                         name="address"
@@ -25,16 +25,21 @@ const ActivityForm = (props) => {
                         value={ activity.address }
                         onChange={ handleChange }
                     />
-                    <Form.Label htmlFor="schedule">Schedule</Form.Label>
+                    <Form.Label htmlFor="schedule" className='mt-2'>Schedule</Form.Label>
                     <Form.Control
                         placeholder="What time?"
                         name="schedule"
                         id="schedule"
                         value={ activity.schedule}
                         onChange={ handleChange }
+                 />
+                 <Form.Label htmlFor="priority" className='mt-2'>How badly do you want to do this?</Form.Label>
+                    <Form.Range 
+                    name="priority"
+                    id="priority"
+                    value={activity.priority}
+                    onChange={handleChange}
                     />
-                  <h1>Priority rating goes here</h1>
-                  
                     <Button type="submit">Submit</Button>
                 </Form>
             </Container>

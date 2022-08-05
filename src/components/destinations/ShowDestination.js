@@ -128,6 +128,7 @@ const actList = destination.activities.map((a) => (
       <Link style={{textDecoration: 'none', color: 'black'}} to={`/activities/${destination._id}/${a._id}`}>{ a.name }</Link>
   </li>
 ))
+
 console.log('This is the activity list', actList)
 
   return (

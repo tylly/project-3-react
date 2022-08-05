@@ -130,12 +130,12 @@ const ShowDestination = (props) => {
 
 // const activityList = activity.map(activity => (
 // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
-const actList = destination.activities.map((i) => (
+const actList = destination.activities.map((a) => (
   <li>
-      <Link style={{textDecoration: 'none', color: 'black'}} to={`/${destination._id}/${i._id}`}>{ i.name }</Link>
+      <Link style={{textDecoration: 'none', color: 'black'}} to={`/activities/${destination._id}/${a._id}`}>{ a.name }</Link>
   </li>
 ))
-console.log(actList)
+console.log('This is the activity list', actList)
 
   return (
     <>

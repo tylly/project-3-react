@@ -16,7 +16,7 @@ const NewActivityModal = (props) => {
     const handleChange = (e) => {
         setActivity(prevActivity => {
             let value = e.target.value
-            const name = e.target.name
+            let name = e.target.name
             console.log(value)
             // console.log('this is the input type', e.target.type)
 

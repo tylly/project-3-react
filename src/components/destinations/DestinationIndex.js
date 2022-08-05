@@ -80,6 +80,7 @@ const DestinationsIndex = (props) => {
 const removeTheDestination = () => {
     removeDestination(user, destination._id)
     // on success send a success message
+    console.log('this is the destination id', destination._id)
     .then(() => {
         msgAlert({
         heading: "Success",
@@ -112,36 +113,39 @@ const destinationCards = destinations.map(destination => (
             </Card.Text>
                 <Link to={`/destinations/${destination._id}`}><button type="button" class="btn btn-outline-dark" size="sm">View { destination.name }</button></Link>
             </Card.Body>
-            <Card.Footer>
-                <Button>Edit</Button>
-            {/* {user &&  destination.owner === user._id ? ( */}
-                <>
-                    <Button
-                    onClick={() => setEditModalShow(true)}
-                    className="m-2"
-                    variant="warning"
-                    size='sm'
-                    
-                    >
-                    Edit Destination
-                    </Button>
-                    <Button
-                    onClick={() => removeTheDestination()}
-                    className="m-2"
-                    variant="danger"
-                    
-                    >
-                    Delete
-                    </Button>
-                </>
-            {/* ) : null}  */}
-            </Card.Footer>
+            
     </Card>
 ))
+
+const deleteAndEdit =()=>{
+    <Card.Footer>
+    <Button>Edit</Button>
+{/* {user &&  destination.owner === user._id ? ( */}
+    <>
+        <Button
+        onClick={() => setEditModalShow(true)}
+        className="m-2"
+        variant="warning"
+        >
+        Edit Destination
+        </Button>
+        <Button
+        onClick={() => removeTheDestination()}
+        className="m-2"
+        variant="danger"
+        
+        >
+        Delete
+        </Button>
+    </>
+{/* ) : null}  */}
+</Card.Footer>
+}
 
     return (
         <div style={ cardContainerStyle }>
             { destinationCards }
+            { deleteAndEdit }
             <EditDestinationModal
                 user={user}
                 destination={destination}

@@ -10,9 +10,6 @@ import messages from '../shared/AutoDismissAlert/messages'
 import { Button } from 'react-bootstrap'
 import '../../style.css'
 
-// SnowboardsIndex should make a request to the api
-// To get all snowboards
-// Then display them when it gets them
 
 // style for our card container
 const cardContainerStyle = {
@@ -105,6 +102,7 @@ const removeTheDestination = () => {
 };
 
 const destinationCards = destinations.map(destination => (
+
     <Card className="cards" style={{ width: '18rem', margin: '15px', borderRadius: '8px'}} key={ destination.id }>
         <Card.Img style={{borderRadius: '8px 8px 0 0'}}variant="top" src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80" />
         <Card.Body style={{textAlign: 'center'}}>
@@ -116,7 +114,7 @@ const destinationCards = destinations.map(destination => (
             </Card.Body>
             <Card.Footer>
                 <Button>Edit</Button>
-            {user && destination.owner === user._id ? (
+            {/* {user &&  destination.owner === user._id ? ( */}
                 <>
                     <Button
                     onClick={() => setEditModalShow(true)}
@@ -136,7 +134,7 @@ const destinationCards = destinations.map(destination => (
                     Delete
                     </Button>
                 </>
-            ) : null}
+            {/* ) : null}  */}
             </Card.Footer>
     </Card>
 ))

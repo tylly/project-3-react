@@ -132,7 +132,11 @@ const ShowDestination = (props) => {
 // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
 const actList = destination.activities.map((i) => (
   <li>
+<<<<<<< HEAD
       <Link style={{textDecoration: 'none', color: 'black'}} to={`/destinations/${i._id}/view`}>View { i.name }</Link>
+=======
+      <Link style={{textDecoration: 'none', color: 'black'}} to={`/${destination._id}/${i._id}`}>{ i.name }</Link>
+>>>>>>> origin/MandsActivityEdit
   </li>
 ))
 console.log(actList)
@@ -152,49 +156,56 @@ console.log(actList)
               <h4 style={cardContainerLayout}>{destination.schedule}</h4>
             </Card.Text>
           </Card.Body>
+          <hr />
           <Card.Body>
                 <Card.Text>
                     <h3 style={cardContainerLayout}>Activities</h3>
+                    <h6 style={cardContainerLayout}>(Click below to view)</h6>
                     {/* <h3>{destination.activities[0].name}</h3> */}
-                    <ul>
+                    <br />
+                    <ul style={{listStyle: 'none', marginLeft: '25%'}}>
                         { actList }
                     </ul>
                     {/* <div key={ activity._id }> 
                         { activityList }
                     </div> */}
                 </Card.Text>
-          </Card.Body>
-          <Card.Footer>
+                <span >
             <Button
               onClick={() => setActivityModalShow(true)}
               className="m-2"
               variant="info"
-            >
+              >
               Plan An Activity
             </Button>
 
             <Button onClick={() => bussinFrFr()} className="m-2" variant="info">
               View Suggested Activities
             </Button>
+            </span>
             {user && destination.owner === user._id ? (
-              <>
+                <>
+                
                 <Button
                   onClick={() => setEditModalShow(true)}
                   className="m-2"
                   variant="warning"
-                >
+                  size='sm'
+                  
+                  >
                   Edit Destination
                 </Button>
                 <Button
                   onClick={() => removeTheDestination()}
                   className="m-2"
                   variant="danger"
-                >
+                  
+                  >
                   Delete
                 </Button>
               </>
             ) : null}
-          </Card.Footer>
+            </Card.Body>
         </Card>
       </Container>
 

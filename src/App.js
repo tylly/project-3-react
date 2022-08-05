@@ -22,6 +22,7 @@ const App = () => {
 
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
+  const [destination, setDestination] = useState(false)
 
   console.log('user in app', user)
   console.log('message alerts', msgAlerts)
@@ -51,7 +52,7 @@ const App = () => {
 				/> */}
 				<Header user={user} />
 				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+					<Route path='/' element={<Home msgAlert={msgAlert} user={user} destination={destination}/>} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}

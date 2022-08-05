@@ -22,7 +22,7 @@ const SearchActivityModal = (props) => {
   const [recommendedListShow, setRecommendedListShow] = useState(false)
 
   const bussinFrFr = async () => {
-    console.log(Dropdown.Menu)
+    console.log(Dropdown.Toggle)
     let places = await axios.get(
       `https://api.tomtom.com/search/2/categorySearch/important%20tourist%20attraction.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
     );

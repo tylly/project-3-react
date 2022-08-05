@@ -33,7 +33,13 @@ const ActivityForm = (props) => {
                         value={ activity.schedule}
                         onChange={ handleChange }
                     />
-                  <h1>Priority rating goes here</h1>
+                    <Form.Label htmlFor="priority" className='mt-2'>How badly do you want to do this?</Form.Label>
+                    <Form.Range 
+                    name="priority"
+                    id="priority"
+                    value={activity.priority}
+                    onChange={handleChange}
+                    />
                   
                     <Button type="submit">Submit</Button>
                 </Form>

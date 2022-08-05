@@ -3,12 +3,20 @@ import axios from 'axios'
 
 // READ => INDEX
 export const getAllActivities = () => {
-    return axios(`${apiUrl}/actiivities`)
+    return axios(`${apiUrl}/activities`)
 }
 
 // READ => SHOW
-export const getOneActivity = (id) => {
-    return axios(`${apiUrl}/activities/${id}`)
+export const getOneActivity = (user, destinationId, activityId) => {
+	console.log('the user in showActivity', user)
+	console.log('the activity in showActivity', activityId)
+    return axios({
+		url: `${apiUrl}/activities/${destinationId}/${activityId}`,
+		method: 'GET',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		}
+	})
 }
 
 // CREATE Activity

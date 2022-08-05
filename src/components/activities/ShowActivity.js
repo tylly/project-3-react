@@ -10,6 +10,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneActivity, updateActivity, removeActivity } from '../../api/activities'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditActivityModal from './EditActivityModal'
+// import ShowActivity from "../activities/ShowActivity";
 
 
 // We need to get the activity's id from the parameters
@@ -29,7 +30,9 @@ const ShowActivity = (props) => {
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
-    const { id } = useParams()
+    const { destinationId, activityId } = useParams()
+    console.log('this is the destinationId', destinationId)
+    console.log('this is the activityId', activityId)
     const navigate = useNavigate()
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
@@ -41,7 +44,7 @@ const ShowActivity = (props) => {
     // destructuring to get the id value from our route parameters
 
     useEffect(() => {
-        getOneActivity(id)
+        getOneActivity(user, destinationId, activityId)
             .then(res => setActivity(res.data.activity))
             .catch(err => {                   
                 msgAlert({
@@ -49,7 +52,7 @@ const ShowActivity = (props) => {
                     message: messages.getActivityFailure,
                     variant: 'danger'
                 })
-                navigate('/destinations/:_id')
+                navigate(`/activities/${destinationId}/${activityId}`)
                 //navigate back to the destinations page if there's an error fetching
             })
     }, [updated])

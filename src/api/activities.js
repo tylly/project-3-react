@@ -7,8 +7,8 @@ export const getAllActivities = () => {
 }
 
 // READ => SHOW
-export const getOneActivity = (id, activityId) => {
-    return axios(`${apiUrl}/${id}/${activityId}`)
+export const getOneActivity = (id) => {
+    return axios(`${apiUrl}/activities/${id}`)
 }
 
 // CREATE Activity

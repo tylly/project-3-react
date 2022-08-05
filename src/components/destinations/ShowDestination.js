@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 import { useParams, useNavigate } from "react-router-dom";
 // useParams will allow us to see our parameters
@@ -8,7 +8,7 @@ import "../../style.css";
 import { Container, Card, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import LoadingScreen from "../shared/LoadingScreen";
-import { getOneDestination, updateDestination, removeDestination} from "../../api/destinations";
+import { getOneDestination} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditDestinationModal from "./EditDestinationModal";
 import NewActivityModal from "../activities/NewActivityModal";
@@ -51,8 +51,8 @@ const cardContainerLayout = {
 const ShowDestination = (props) => {
   const [destination, setDestination] = useState(null);
   const [activityModalShow, setActivityModalShow] = useState(false);
-  const [editModalShow, setEditModalShow] = useState(false);
-  const [updated, setUpdated] = useState(false);
+  // const [editModalShow, setEditModalShow] = useState(false);
+  // const [updated, setUpdated] = useState(false);
   
 
   const { id } = useParams();
@@ -60,54 +60,54 @@ const ShowDestination = (props) => {
   // useNavigate returns a function
   // we can call that function to redirect the user wherever we want to
 
-  const { user, msgAlert } = props;
-  console.log("user in props", user);
-  console.log("the destination in showDestination", destination);
-  // destructuring to get the id value from our route parameters
+  // const { user, msgAlert } = props;
+  // console.log("user in props", user);
+  // console.log("the destination in showDestination", destination);
+  // // destructuring to get the id value from our route parameters
 
-  useEffect(() => {
-    getOneDestination(id)
-      .then((res) => {
-          setDestination(res.data.destination)
-        bussin = res.data.destination
-        })
-      .catch((err) => {
-        msgAlert({
-          heading: "Error getting destination",
-          message: messages.getDestinationsFailure,
-          variant: "danger",
-        });
-        navigate("/");
-        //navigate back to the home page if there's an error fetching
-      });
-  }, [updated]);
+  // useEffect(() => {
+  //   getOneDestination(id)
+  //     .then((res) => {
+  //         setDestination(res.data.destination)
+  //       bussin = res.data.destination
+  //       })
+  //     .catch((err) => {
+  //       msgAlert({
+  //         heading: "Error getting destination",
+  //         message: messages.getDestinationsFailure,
+  //         variant: "danger",
+  //       });
+  //       navigate("/");
+  //       //navigate back to the home page if there's an error fetching
+  //     });
+  // }, [updated]);
 
   // here we'll declare a function that runs which will remove the destination
   // this function's promise chain should send a message, and then go somewhere
 
-  const removeTheDestination = () => {
-    removeDestination(user, destination._id)
-      // on success send a success message
-      .then(() => {
-        msgAlert({
-          heading: "Success",
-          message: messages.removeDestinationSuccess,
-          variant: "success",
-        });
-      })
-      // then navigate to index
-      .then(() => {
-        navigate("/");
-      })
-      // on failure send a failure message
-      .catch((err) => {
-        msgAlert({
-          heading: "Error removing destination",
-          message: messages.removeDestinationFailure,
-          variant: "danger",
-        });
-      });
-  };
+  // const removeTheDestination = () => {
+  //   removeDestination(user, destination._id)
+  //     // on success send a success message
+  //     .then(() => {
+  //       msgAlert({
+  //         heading: "Success",
+  //         message: messages.removeDestinationSuccess,
+  //         variant: "success",
+  //       });
+  //     })
+  //     // then navigate to index
+  //     .then(() => {
+  //       navigate("/");
+  //     })
+  //     // on failure send a failure message
+  //     .catch((err) => {
+  //       msgAlert({
+  //         heading: "Error removing destination",
+  //         message: messages.removeDestinationFailure,
+  //         variant: "danger",
+  //       });
+  //     });
+  // };
 //   let activityCards;
 //   if (destination) {
 //     if (destination.activities.length > 0) {
@@ -132,11 +132,7 @@ const ShowDestination = (props) => {
 // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
 const actList = destination.activities.map((i) => (
   <li>
-<<<<<<< HEAD
-      <Link style={{textDecoration: 'none', color: 'black'}} to={`/destinations/${i._id}/view`}>View { i.name }</Link>
-=======
       <Link style={{textDecoration: 'none', color: 'black'}} to={`/${destination._id}/${i._id}`}>{ i.name }</Link>
->>>>>>> origin/MandsActivityEdit
   </li>
 ))
 console.log(actList)
@@ -234,5 +230,4 @@ console.log(actList)
 };
 
 export default ShowDestination;
-// show={activityModalShow}
-// handleClose={() => setActivityModalShow(false)}
+

@@ -1,12 +1,9 @@
-import { 
-    useState, 
-    useEffect 
-} from 'react'
+import { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllDestinations } from '../../api/destinations'
+import { getAllDestinations, updateDestination, removeDestination}  from '../../api/destinations'
 import messages from '../shared/AutoDismissAlert/messages'
 import { Button } from 'bootstrap'
 import '../../style.css'
@@ -25,8 +22,10 @@ const cardContainerStyle = {
 const DestinationsIndex = (props) => {
     const [destinations, setDestinations] = useState(null)
     const [error, setError] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false);
+    const [updated, setUpdated] = useState(false);
 
-    const { msgAlert } = props
+    // const { msgAlert } = props
 
     console.log('Props in DestinationsIndex', props)
 
@@ -54,6 +53,52 @@ const DestinationsIndex = (props) => {
     } else if (destinations.length === 0) {
         return <p>No destinations yet. Better add some.</p>
     }
+
+    const { user, msgAlert } = props;
+    console.log("user in props", user);
+    console.log("the destination in showDestination", destination);
+    // destructuring to get the id value from our route parameters
+  
+    useEffect(() => {
+      getOneDestination(id)
+        .then((res) => {
+            setDestination(res.data.destination)
+          bussin = res.data.destination
+          })
+        .catch((err) => {
+          msgAlert({
+            heading: "Error getting destination",
+            message: messages.getDestinationsFailure,
+            variant: "danger",
+          });
+          navigate("/");
+          //navigate back to the home page if there's an error fetching
+        });
+    }, [updated]);
+
+    const removeTheDestination = () => {
+        removeDestination(user, destination._id)
+          // on success send a success message
+          .then(() => {
+            msgAlert({
+              heading: "Success",
+              message: messages.removeDestinationSuccess,
+              variant: "success",
+            });
+          })
+          // then navigate to index
+          .then(() => {
+            navigate("/");
+          })
+          // on failure send a failure message
+          .catch((err) => {
+            msgAlert({
+              heading: "Error removing destination",
+              message: messages.removeDestinationFailure,
+              variant: "danger",
+            });
+          });
+      };
 
     const destinationCards = destinations.map(destination => (
         <Card className="cards" style={{ width: '18rem', margin: '15px', borderRadius: '8px'}} key={ destination.id }>

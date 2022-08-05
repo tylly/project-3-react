@@ -132,11 +132,7 @@ const ShowDestination = (props) => {
 // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
 const actList = destination.activities.map((i) => (
   <li>
-<<<<<<< HEAD
-      <Link style={{textDecoration: 'none', color: 'black'}} to={`/destinations/${i._id}/view`}>View { i.name }</Link>
-=======
       <Link style={{textDecoration: 'none', color: 'black'}} to={`/${destination._id}/${i._id}`}>{ i.name }</Link>
->>>>>>> origin/MandsActivityEdit
   </li>
 ))
 console.log(actList)

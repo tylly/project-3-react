@@ -132,7 +132,9 @@ const ShowDestination = (props) => {
 // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
 const actList = destination.activities.map((i) => (
   // <h3>{ i.name }</h3>
-  <Link to={`/${destination._id}/${i._id}`}>View { i.name }</Link>
+  <li>
+      <Link style={{textDecoration: 'none', color: 'black'}} to={`/${destination._id}/${i._id}`}>View { i.name }</Link>
+  </li>
 ))
 console.log(actList)
 
@@ -155,7 +157,9 @@ console.log(actList)
                 <Card.Text>
                     <h3 style={cardContainerLayout}>Activities</h3>
                     {/* <h3>{destination.activities[0].name}</h3> */}
-                    { actList }
+                    <ul>
+                        { actList }
+                    </ul>
                     {/* <div key={ activity._id }> 
                         { activityList }
                     </div> */}

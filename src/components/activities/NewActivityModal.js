@@ -17,7 +17,7 @@ const NewActivityModal = (props) => {
         setActivity(prevActivity => {
             let value = e.target.value
             const name = e.target.name
-
+            console.log(value)
             // console.log('this is the input type', e.target.type)
 
             const updatedActivity = {
@@ -33,7 +33,7 @@ const NewActivityModal = (props) => {
     const handleSubmit = (e) => {
         // e equals the event
         e.preventDefault()
-
+        console.log(destination)
         createActivity(user, destination._id, activity)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())

@@ -5,12 +5,30 @@ import { createActivity } from "../../api/activities";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Form,Button,Container 
 } from 'react-bootstrap'
+import RecommendedList from './RecommendedList'
+import axios from "axios";
+let bussin = {
+    lat: 69,
+    lon: 69
+}
+
+
 
 const SearchActivityModal = (props) => {
   const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
     props;
 
   const [activity, setActivity] = useState({});
+  const [recommendedListShow, setRecommendedListShow] = useState(false)
+
+  const bussinFrFr = async () => {
+    console.log(Dropdown.Menu)
+    let places = await axios.get(
+      `https://api.tomtom.com/search/2/categorySearch/important%20tourist%20attraction.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
+    );
+  
+    console.log(places);
+  };
 
   // console.log('destination in edit modal', destination)
 
@@ -58,11 +76,12 @@ const SearchActivityModal = (props) => {
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton />
+    <Modal  show={show} onHide={handleClose}>
+        {<h3>Pick a Category</h3>}
+      <Modal.Header  closeButton /> 
       <Modal.Body>
           <Form>
-              {<h3>Pick a Category</h3>}
+              
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Dropdown Button
@@ -81,8 +100,17 @@ const SearchActivityModal = (props) => {
           </Dropdown.Menu>
         </Dropdown>
         </Form>
-        <Button type="submit">Submit</Button>
+        {user && destination.owner === user._id ? (
+              <>
+              <Button onClick={() => bussinFrFr()}>Submit</Button>
+
+              </>
+            ) : null}
       </Modal.Body>
+      
+      <RecommendedList
+  
+      />
     </Modal>
   );
 };

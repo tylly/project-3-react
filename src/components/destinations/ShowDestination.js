@@ -6,36 +6,33 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../../style.css";
 
 import { Container, Card, Button } from "react-bootstrap";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import LoadingScreen from "../shared/LoadingScreen";
-import { getOneDestination, updateDestination, removeDestination} from "../../api/destinations";
+import {
+  getOneDestination,
+  updateDestination,
+  removeDestination,
+} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
 import EditDestinationModal from "./EditDestinationModal";
 import NewActivityModal from "../activities/NewActivityModal";
+import SearchActivityModal from "../activities/SearchActivityModal";
 import ShowActivity from "../activities/ShowActivity";
 import axios from "axios";
 const Amadeus = require("amadeus");
 
-let bussin
+let bussin;
 let amadeus = new Amadeus({
   clientId: "GwYuf8jB0JRp1bTKSbXy5GHgdQ8ly8JT",
   clientSecret: "eFzStO9lvuEChUZJ",
 });
 
-const bussinFrFr = () => {
-    console.log(bussin)
-  let yo = amadeus.shopping.activities
-  
-    .get({
-      latitude: bussin.lat,
-      longitude: bussin.lon,
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (response) {
-      console.error(response);
-    });
+const bussinFrFr = async () => {
+  let places = await axios.get(
+    `https://api.tomtom.com/search/2/categorySearch/important%20tourist%20attraction.json?typeahead=true&lat=${bussin.lat}&lon=${bussin.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
+  );
+
+  console.log(places);
 };
 
 // We need to get the destination's id from the parameters
@@ -44,16 +41,16 @@ const bussinFrFr = () => {
 
 // we'll use a style object to lay out the activity cards
 const cardContainerLayout = {
-    display: 'flex',
-    justifyContent: 'center',
-}
+  display: "flex",
+  justifyContent: "center",
+};
 
 const ShowDestination = (props) => {
   const [destination, setDestination] = useState(null);
   const [activityModalShow, setActivityModalShow] = useState(false);
   const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
-  
+  const [searchActivityModalShow, setSearchActivityModalShow] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -68,9 +65,9 @@ const ShowDestination = (props) => {
   useEffect(() => {
     getOneDestination(id)
       .then((res) => {
-          setDestination(res.data.destination)
-        bussin = res.data.destination
-        })
+        setDestination(res.data.destination);
+        bussin = res.data.destination;
+      })
       .catch((err) => {
         msgAlert({
           heading: "Error getting destination",
@@ -108,48 +105,53 @@ const ShowDestination = (props) => {
         });
       });
   };
-//   let activityCards;
-//   if (destination) {
-//     if (destination.activities.length > 0) {
-//       activityCards = destination.activities.map((activity) => (
-//         <ShowActivity
-//           key={activity._id}
-//           activity={activity}
-//           destination={destination}
-//           user={user}
-//           msgAlert={msgAlert}
-//           triggerRefresh={() => setUpdated((prev) => !prev)}
-//         />
-//       ));
-//     }
-//   }
+  //   let activityCards;
+  //   if (destination) {
+  //     if (destination.activities.length > 0) {
+  //       activityCards = destination.activities.map((activity) => (
+  //         <ShowActivity
+  //           key={activity._id}
+  //           activity={activity}
+  //           destination={destination}
+  //           user={user}
+  //           msgAlert={msgAlert}
+  //           triggerRefresh={() => setUpdated((prev) => !prev)}
+  //         />
+  //       ));
+  //     }
+  //   }
 
   if (!destination) {
     return <LoadingScreen />;
   }
 
-// const activityList = activity.map(activity => (
-// <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
-const actList = destination.activities.map((i) => (
-  <li>
-<<<<<<< HEAD
-      <Link style={{textDecoration: 'none', color: 'black'}} to={`/destinations/${i._id}/view`}>View { i.name }</Link>
-=======
-      <Link style={{textDecoration: 'none', color: 'black'}} to={`/${destination._id}/${i._id}`}>{ i.name }</Link>
->>>>>>> origin/MandsActivityEdit
-  </li>
-))
-console.log(actList)
+  // const activityList = activity.map(activity => (
+  // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
+  const actList = destination.activities.map((i) => (
+    <li>
+      <Link
+        style={{ textDecoration: "none", color: "black" }}
+        to={`/${destination._id}/${i._id}`}
+      >
+        {i.name}
+      </Link>
+    </li>
+  ));
+  console.log(actList);
 
   return (
     <>
       <Container className="fluid">
-        <Card style={{ width: "30rem", zIndex: "2" }} className="mx-auto mt-4" id="card">
+        <Card
+          style={{ width: "30rem", zIndex: "2" }}
+          className="mx-auto mt-4"
+          id="card"
+        >
           <Card.Img
             id="card-img"
             variant="top"
             src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
-            />
+          />
           <Card.Body>
             <Card.Text>
               <h2 style={cardContainerLayout}>{destination.name}</h2>
@@ -158,54 +160,55 @@ console.log(actList)
           </Card.Body>
           <hr />
           <Card.Body>
-                <Card.Text>
-                    <h3 style={cardContainerLayout}>Activities</h3>
-                    <h6 style={cardContainerLayout}>(Click below to view)</h6>
-                    {/* <h3>{destination.activities[0].name}</h3> */}
-                    <br />
-                    <ul style={{listStyle: 'none', marginLeft: '25%'}}>
-                        { actList }
-                    </ul>
-                    {/* <div key={ activity._id }> 
+            <Card.Text>
+              <h3 style={cardContainerLayout}>Activities</h3>
+              <h6 style={cardContainerLayout}>(Click below to view)</h6>
+              {/* <h3>{destination.activities[0].name}</h3> */}
+              <br />
+              <ul style={{ listStyle: "none", marginLeft: "25%" }}>
+                {actList}
+              </ul>
+              {/* <div key={ activity._id }> 
                         { activityList }
                     </div> */}
-                </Card.Text>
-                <span >
-            <Button
-              onClick={() => setActivityModalShow(true)}
-              className="m-2"
-              variant="info"
+            </Card.Text>
+            <span>
+              <Button
+                onClick={() => setActivityModalShow(true)}
+                className="m-2"
+                variant="info"
               >
-              Plan An Activity
-            </Button>
+                Plan An Activity
+              </Button>
 
-            <Button onClick={() => bussinFrFr()} className="m-2" variant="info">
-              View Suggested Activities
-            </Button>
+              <Button
+                onClick={() => setSearchActivityModalShow(true)}
+                className="m-2"
+                variant="info"
+              >
+                View Suggested Activities
+              </Button>
             </span>
             {user && destination.owner === user._id ? (
-                <>
-                
+              <>
                 <Button
                   onClick={() => setEditModalShow(true)}
                   className="m-2"
                   variant="warning"
-                  size='sm'
-                  
-                  >
+                  size="sm"
+                >
                   Edit Destination
                 </Button>
                 <Button
                   onClick={() => removeTheDestination()}
                   className="m-2"
                   variant="danger"
-                  
-                  >
+                >
                   Delete
                 </Button>
               </>
             ) : null}
-            </Card.Body>
+          </Card.Body>
         </Card>
       </Container>
 
@@ -228,6 +231,14 @@ console.log(actList)
         msgAlert={msgAlert}
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setActivityModalShow(false)}
+      />
+      <SearchActivityModal
+        user={user}
+        destination={destination}
+        show={searchActivityModalShow}
+        msgAlert={msgAlert}
+        triggerRefresh={() => setUpdated((prev) => !prev)}
+        handleClose={() => setSearchActivityModalShow(false)}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState, useEffect } from "react";
 
 import { useParams, useNavigate } from "react-router-dom";
 // useParams will allow us to see our parameters
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import LoadingScreen from "../shared/LoadingScreen";
 import { getOneDestination} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
-import EditDestinationModal from "./EditDestinationModal";
+// import EditDestinationModal from "./EditDestinationModal";
 import NewActivityModal from "../activities/NewActivityModal";
 import ShowActivity from "../activities/ShowActivity";
 import axios from "axios";
@@ -52,7 +52,7 @@ const ShowDestination = (props) => {
   const [destination, setDestination] = useState(null);
   const [activityModalShow, setActivityModalShow] = useState(false);
   // const [editModalShow, setEditModalShow] = useState(false);
-  // const [updated, setUpdated] = useState(false);
+  const [updated, setUpdated] = useState(false);
   
 
   const { id } = useParams();
@@ -60,27 +60,27 @@ const ShowDestination = (props) => {
   // useNavigate returns a function
   // we can call that function to redirect the user wherever we want to
 
-  // const { user, msgAlert } = props;
+  const { user, msgAlert } = props;
   // console.log("user in props", user);
   // console.log("the destination in showDestination", destination);
   // // destructuring to get the id value from our route parameters
 
-  // useEffect(() => {
-  //   getOneDestination(id)
-  //     .then((res) => {
-  //         setDestination(res.data.destination)
-  //       bussin = res.data.destination
-  //       })
-  //     .catch((err) => {
-  //       msgAlert({
-  //         heading: "Error getting destination",
-  //         message: messages.getDestinationsFailure,
-  //         variant: "danger",
-  //       });
-  //       navigate("/");
-  //       //navigate back to the home page if there's an error fetching
-  //     });
-  // }, [updated]);
+  useEffect(() => {
+    getOneDestination(id)
+      .then((res) => {
+          setDestination(res.data.destination)
+        bussin = res.data.destination
+        })
+      .catch((err) => {
+        msgAlert({
+          heading: "Error getting destination",
+          message: messages.getDestinationsFailure,
+          variant: "danger",
+        });
+        navigate("/");
+        //navigate back to the home page if there's an error fetching
+      });
+  }, [updated]);
 
   // here we'll declare a function that runs which will remove the destination
   // this function's promise chain should send a message, and then go somewhere
@@ -166,7 +166,6 @@ console.log(actList)
                         { activityList }
                     </div> */}
                 </Card.Text>
-                <span >
             <Button
               onClick={() => setActivityModalShow(true)}
               className="m-2"
@@ -178,7 +177,7 @@ console.log(actList)
             <Button onClick={() => bussinFrFr()} className="m-2" variant="info">
               View Suggested Activities
             </Button>
-            </span>
+            {/* </span>
             {user && destination.owner === user._id ? (
                 <>
                 
@@ -200,7 +199,7 @@ console.log(actList)
                   Delete
                 </Button>
               </>
-            ) : null}
+            ) : null} */}
             </Card.Body>
         </Card>
       </Container>
@@ -208,7 +207,7 @@ console.log(actList)
       {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-      <EditDestinationModal
+      {/* <EditDestinationModal
         user={user}
         destination={destination}
         show={editModalShow}
@@ -216,7 +215,7 @@ console.log(actList)
         msgAlert={msgAlert}
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setEditModalShow(false)}
-      />
+      /> */}
       <NewActivityModal
         user={user}
         destination={destination}

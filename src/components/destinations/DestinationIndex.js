@@ -18,9 +18,6 @@ import EditDestinationModal from "./EditDestinationModal";
 
 
 
-// SnowboardsIndex should make a request to the api
-// To get all snowboards
-// Then display them when it gets them
 
 // style for our card container
 const cardContainerStyle = {
@@ -31,14 +28,17 @@ const cardContainerStyle = {
 
 const DestinationsIndex = (props) => {
     const [destinations, setDestinations] = useState(null)
-    const [destination, setDestination] = useState(true);
-    const [editModalShow, setEditModalShow] = useState(false)
+    const [destination, setDestination] = useState(null);
     const [error, setError] = useState(false)
-    const navigate = useNavigate();
-    const { user, msgAlert } = props
+    const [editModalShow, setEditModalShow] = useState(false);
+    const [updated, setUpdated] = useState(false);
+
+    const { id } = useParams()
+    const navigate = useNavigate()
+    // const { msgAlert } = props
 
     console.log('Props in DestinationsIndex', props)
-    console.log(user)
+   
 
     useEffect(() => {
         console.log(props)
@@ -55,6 +55,27 @@ const DestinationsIndex = (props) => {
     }, [destination])
 
 
+    
+    const { user, msgAlert } = props;
+    console.log("user in props", user);
+    // destructuring to get the id value from our route parameters
+    
+    useEffect(() => {
+        getOneDestination(id)
+        .then((res) => {
+            setDestination(res.data.destination)
+        })
+        .catch((err) => {
+            msgAlert({
+                heading: "Error getting destination",
+                message: messages.getDestinationsFailure,
+                variant: "danger",
+            });
+            navigate("/");
+            //navigate back to the home page if there's an error fetching
+        });
+    }, [updated]);
+    
     if (error) {
         return <p>Error!</p>
     }
@@ -120,13 +141,48 @@ const DestinationsIndex = (props) => {
               </>
             ) : null}
             </Card.Body>
-        </Card>
+            
+    </Card>
+))
+
+const deleteAndEdit =()=>{
+    <Card.Footer>
+    <Button>Edit</Button>
+{/* {user &&  destination.owner === user._id ? ( */}
+    <>
+        <Button
+        onClick={() => setEditModalShow(true)}
+        className="m-2"
+        variant="warning"
+        >
+        Edit Destination
+        </Button>
+        <Button
+        onClick={() => removeTheDestination()}
+        className="m-2"
+        variant="danger"
         
-    ))
+        >
+        Delete
+        </Button>
+    </>
+{/* ) : null}  */}
+</Card.Footer>
+}
 
     return (
         <div style={ cardContainerStyle }>
             { destinationCards }
+            { deleteAndEdit }
+            <EditDestinationModal
+                user={user}
+                destination={destination}
+                show={editModalShow}
+                updateDestination={updateDestination}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated((prev) => !prev)}
+                handleClose={() => setEditModalShow(false)}
+            />
         </div>
     )
 }

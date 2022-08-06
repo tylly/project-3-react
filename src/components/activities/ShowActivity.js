@@ -21,7 +21,6 @@ import EditActivityModal from './EditActivityModal'
 const cardContainerLayout = {
     display: 'flex',
     justifyContent: 'center',
-    flexFlow: 'row wrap'
 }
 
 const ShowActivity = (props) => {
@@ -103,27 +102,58 @@ const ShowActivity = (props) => {
         return <LoadingScreen />
     }
 
+    let priorityLevel 
+    if (activity.priority >= 75 ){
+        priorityLevel = <h2>💯🥵🙌</h2>
+    } else if (activity.priority >= 50){
+        priorityLevel = <h2>👏😄💪</h2>
+    } else if (activity.priority >= 25){
+        priorityLevel = <h2>🤷‍♀️😮‍💨🤷</h2>
+    } else {
+        priorityLevel = <h2>🤦‍♀️👎🤦</h2>
+    }
+
+
     return (
         <>
-            <Container className="fluid">
+        <Container className="fluid">
+        <Card
+          style={{ width: "30rem", zIndex: "2" }}
+          className="mx-auto mt-4"
+          id="card"
+        >
+          <Card.Img
+            id="card-img"
+            variant="top"
+            src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
+          />
+          <Card.Body>
+            <Card.Text>
+              <h1 style={cardContainerLayout}>{activity.name}</h1>
+              <h5 style={cardContainerLayout}>❓ When: {activity.schedule}</h5>
+              <h5 style={cardContainerLayout}> 🚥 Priority level: { priorityLevel } </h5>
+              <h5 style={cardContainerLayout}> 📍 Address: {activity.address}</h5>
+            </Card.Text>
+          </Card.Body>
+            {/* <Container className="fluid">
                 <Card>
                     <Card.Header>{ activity.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Schedule: { activity.schedule }</small></div>
+                            <div><small>Schedule: { activity.schedule }</small></div> */}
                             {/* <div><small>Type: { activity.type }</small></div>
                             <div><small>
                                 Adoptable: { activity.adoptable ? 'yes' : 'no'}
                             </small></div> */}
-                        </Card.Text>
+                        {/* </Card.Text>
                     </Card.Body>
-                    <Card.Footer>
+                    <Card.Footer> */}
                         {/* <Button onClick={() => setActivityModalShow(true)}
                             className="m-2" variant="info"
                         >
                             Give {activity.name} a activity!
                         </Button> */}
-                        {
+                        {/* {
                             user && activity.owner === user._id 
                             ?
                             <>
@@ -143,13 +173,13 @@ const ShowActivity = (props) => {
                             :
                             null
                         }
-                    </Card.Footer>
-                </Card>
+                    </Card.Footer>*/}
+                </Card> 
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-            <EditActivityModal 
+            {/* <EditActivityModal 
                 user={user}
                 activity={activity} 
                 show={editModalShow} 
@@ -157,7 +187,7 @@ const ShowActivity = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            />
+            /> */}
         </>
     )
 }

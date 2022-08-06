@@ -26,7 +26,7 @@ const DestinationsIndex = (props) => {
   const [error, setError] = useState(false);
   const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
-  const { triggerRefresh } = props
+  const { triggerRefresh } = props;
 
   //const { id } = useParams()
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const DestinationsIndex = (props) => {
         });
         setError(true);
       });
-  }, [destination]);
+  }, []);
 
   const { user, msgAlert } = props;
   console.log("user in props", user);
@@ -68,8 +68,13 @@ const DestinationsIndex = (props) => {
           variant: "success",
         });
       })
-      // then navigate to index
-      .then(() => triggerRefresh())
+      .then(() => getAllDestinations())
+      .then((res) => {
+          console.log(res)
+          return setDestinations(res.data.destinations)
+        })
+      //then navigate to index
+    //   .then(() => triggerRefresh())
       // on failure send a failure message
       .catch((err) => {
         msgAlert({

@@ -8,7 +8,7 @@ export default function EditDestinationModal(props) {
 
     const [destination, setDestination] = useState(props.destination)
     
-    console.log(destination)
+
     
     const handleChange = (e) => {
         setDestination((prevDestination) => {

@@ -77,9 +77,9 @@ const DestinationsIndex = (props) => {
             });
           })
           // then navigate to index
-          .then(() => {
-              setDestination()
-            ;
+          .then((res) => {
+              
+  
           })
           // on failure send a failure message
           .catch((err) => {

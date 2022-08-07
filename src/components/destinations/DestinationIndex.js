@@ -27,7 +27,6 @@ const DestinationsIndex = (props) => {
   const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
   const { triggerRefresh } = props;
-  
 
   //const { id } = useParams()
   const navigate = useNavigate();
@@ -58,30 +57,32 @@ const DestinationsIndex = (props) => {
   } else if (destinations.length === 0) {
     return <p>No destinations yet. Better add some.</p>;
   }
-  const removeTheDestination = (yuh) => {
-    console.log(yuh);
-    removeDestination(user, yuh)
-      // on success send a success message
-      .then(() => {
-        msgAlert({
-          heading: "Success",
-          message: messages.removeDestinationSuccess,
-          variant: "success",
-        });
-      })
-      .then(() => getAllDestinations())
-      .then((res) => {
-          console.log(res)
-          return setDestinations(res.data.destinations)
-        })
-      .catch((err) => {
-        msgAlert({
-          heading: "Error removing destination",
-          message: messages.removeDestinationFailure,
-          variant: "danger",
-        });
-      });
-  };
+//   const removeTheDestination = (destId) => {
+//     console.log(destId);
+//     removeDestination(user, destId)
+//       // on success send a success message
+//       .then(() => {
+//         msgAlert({
+//           heading: "Success",
+//           message: messages.removeDestinationSuccess,
+//           variant: "success",
+//         });
+//       })
+//       .then(() => getAllDestinations())
+//       .then((res) => {
+//         console.log(res);
+//         return setDestinations(res.data.destinations);
+//       })
+//       .catch((err) => {
+//         msgAlert({
+//           heading: "Error removing destination",
+//           message: messages.removeDestinationFailure,
+//           variant: "danger",
+//         });
+//       });
+//   };
+
+
 
   const destinationCards = destinations.map((destination) => (
     <Card
@@ -102,14 +103,17 @@ const DestinationsIndex = (props) => {
             View {destination.name}
           </button>
         </Link>
-        {user && destination.owner === user._id ? (
+        {/* {user && destination.owner === user._id ? (
           <>
             <Button
-           
-              onClick={() => setEditModalShow(true)}
+              onClick={() => {
+                navigate(`/destinations/${destination._id}`)  
+                setEditModalShow(true, destination)}}
               className="m-2"
               variant="warning"
               size="sm"
+              destination={destination}
+              key={destination._id}
             >
               Edit Destination
             </Button>
@@ -121,29 +125,22 @@ const DestinationsIndex = (props) => {
               Delete
             </Button>
             <EditDestinationModal
-        user={user}
-        destination={destination}
-        show={editModalShow}
-        updateDestination={updateDestination}
-        msgAlert={msgAlert}
-        triggerRefresh={() => setUpdated((prev) => !prev)}
-        handleClose={() => setEditModalShow(false)}
-      /> 
+              user={user}
+              destination={destination}
+              key={destination._id}
+              show={editModalShow}
+              updateDestination={updateDestination}
+              msgAlert={msgAlert}
+              triggerRefresh={() => setUpdated((prev) => !prev)}
+              handleClose={() => setEditModalShow(false)}
+            />
           </>
-        ) : null}
+        ) : null} */}
       </Card.Body>
-
     </Card>
   ));
 
-
-  return (
-    <div style={cardContainerStyle}>
-      {destinationCards}
- 
-
-    </div>
-  );
+  return <div style={cardContainerStyle}>{destinationCards}</div>;
 };
 
 export default DestinationsIndex;

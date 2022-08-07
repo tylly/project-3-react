@@ -18,8 +18,6 @@ import BackgroundVideo from './components/auth/BackgroundVideo'
 import './style.css'
 
 
-
-
 const App = () => {
 
   const [user, setUser] = useState(null)

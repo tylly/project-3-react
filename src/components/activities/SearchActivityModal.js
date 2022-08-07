@@ -7,33 +7,32 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { Form, Button, Container } from "react-bootstrap";
 import RecommendedList from "./RecommendedList";
 import axios from "axios";
-let bussin = {
-  lat: 69,
-  lon: 69,
-};
 
 const SearchActivityModal = (props) => {
   const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
     props;
   const [value, setValue] = useState("");
+  const [activity, setActivity] = useState({});
+  const [recommendedListShow, setRecommendedListShow] = useState(false);
   const handleSelect = (e) => {
     console.log(e);
     setValue(e);
   };
   console.log(value);
-  const [activity, setActivity] = useState({});
-  const [recommendedListShow, setRecommendedListShow] = useState(false);
-
+ 
+  let places;
+  let items;
   const bussinFrFr = async () => {
     console.log(Dropdown.Toggle);
-    let places = await axios.get(
+    places = await axios.get(
       `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
     );
-
     console.log(places);
+    items = places.data.results.map((i) => 
+    <li>{i.poi.name}</li>);
+    
+    console.log(items);
   };
-
-  // console.log('destination in edit modal', destination)
 
   const handleChange = (e) => {
     setActivity((prevActivity) => {
@@ -109,14 +108,24 @@ const SearchActivityModal = (props) => {
         </Form>
         {user && destination.owner === user._id ? (
           <>
-            <Button onClick={() => bussinFrFr()}>Submit</Button>
+            <Button onClick={() => 
+            {
+                setRecommendedListShow(true)
+                bussinFrFr()
+            
+            }}
+            
+            >Submit</Button>
           </>
         ) : null}
+           <ul>
+    <h1>{items}</h1>
+        {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
+        
+      </ul>
       </Modal.Body>
 
-      <RecommendedList
-      //items={items}
-      />
+   
     </Modal>
   );
 };

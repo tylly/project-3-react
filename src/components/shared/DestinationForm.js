@@ -3,7 +3,7 @@ import '../../style.css'
 const DestinationForm = (props) => {
   const { destination, handleChange, heading, handleSubmit } = props;
 
-
+console.log(destination)
   const formStyle ={
     color: 'white',
     textAlign: 'center',
@@ -19,7 +19,7 @@ const DestinationForm = (props) => {
               <Form.Control
                 placeholder="Destination name"
                 name="name"
-                id="name"
+                id={destination._id}
                 value={destination.name}
                 onChange={handleChange}
                 className="mt-2"
@@ -28,7 +28,7 @@ const DestinationForm = (props) => {
               <Form.Control
                 placeholder="When is this trip?"
                 name="schedule"
-                id="schedule"
+                id={destination._id}
                 value={destination.schedule}
                 onChange={handleChange}
                 className="mt-2"
@@ -38,7 +38,7 @@ const DestinationForm = (props) => {
               style={{display: "none"}}
                 placeholder="When is this trip?"
                 name="schedule"
-                id="schedule"
+                id={destination._id}
                 value={destination.schedule}
                 onChange={handleChange}
               

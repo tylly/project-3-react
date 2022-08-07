@@ -8,9 +8,13 @@ import "../../style.css";
 import { Container, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LoadingScreen from "../shared/LoadingScreen";
-import { getOneDestination} from "../../api/destinations";
+import {
+  getOneDestination,
+  updateDestination,
+  removeDestination,
+} from "../../api/destinations";
 import messages from "../shared/AutoDismissAlert/messages";
-// import EditDestinationModal from "./EditDestinationModal";
+import EditDestinationModal from "./EditDestinationModal";
 import NewActivityModal from "../activities/NewActivityModal";
 import SearchActivityModal from "../activities/SearchActivityModal";
 import ShowActivity from "../activities/ShowActivity";
@@ -44,7 +48,7 @@ const cardContainerLayout = {
 const ShowDestination = (props) => {
   const [destination, setDestination] = useState(null);
   const [activityModalShow, setActivityModalShow] = useState(false);
-  // const [editModalShow, setEditModalShow] = useState(false);
+  const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [searchActivityModalShow, setSearchActivityModalShow] = useState(false);
 
@@ -78,58 +82,63 @@ const ShowDestination = (props) => {
   // here we'll declare a function that runs which will remove the destination
   // this function's promise chain should send a message, and then go somewhere
 
-  // const removeTheDestination = () => {
-  //   removeDestination(user, destination._id)
-  //     // on success send a success message
-  //     .then(() => {
-  //       msgAlert({
-  //         heading: "Success",
-  //         message: messages.removeDestinationSuccess,
-  //         variant: "success",
-  //       });
-  //     })
-  //     // then navigate to index
-  //     .then(() => {
-  //       navigate("/");
-  //     })
-  //     // on failure send a failure message
-  //     .catch((err) => {
-  //       msgAlert({
-  //         heading: "Error removing destination",
-  //         message: messages.removeDestinationFailure,
-  //         variant: "danger",
-  //       });
-  //     });
-  // };
-//   let activityCards;
-//   if (destination) {
-//     if (destination.activities.length > 0) {
-//       activityCards = destination.activities.map((activity) => (
-//         <ShowActivity
-//           key={activity._id}
-//           activity={activity}
-//           destination={destination}
-//           user={user}
-//           msgAlert={msgAlert}
-//           triggerRefresh={() => setUpdated((prev) => !prev)}
-//         />
-//       ));
-//     }
-//   }
+  const removeTheDestination = () => {
+    removeDestination(user, destination._id)
+      // on success send a success message
+      .then(() => {
+        msgAlert({
+          heading: "Success",
+          message: messages.removeDestinationSuccess,
+          variant: "success",
+        });
+      })
+      // then navigate to index
+      .then(() => {
+        navigate("/");
+      })
+      // on failure send a failure message
+      .catch((err) => {
+        msgAlert({
+          heading: "Error removing destination",
+          message: messages.removeDestinationFailure,
+          variant: "danger",
+        });
+      });
+  };
+  //   let activityCards;
+  //   if (destination) {
+  //     if (destination.activities.length > 0) {
+  //       activityCards = destination.activities.map((activity) => (
+  //         <ShowActivity
+  //           key={activity._id}
+  //           activity={activity}
+  //           destination={destination}
+  //           user={user}
+  //           msgAlert={msgAlert}
+  //           triggerRefresh={() => setUpdated((prev) => !prev)}
+  //         />
+  //       ));
+  //     }
+  //   }
 
   if (!destination) {
     return <LoadingScreen />;
   }
 
-// const activityList = activity.map(activity => (
-// <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
-const actList = destination.activities.map((a) => (
-  <li>
-      <Link style={{textDecoration: 'none', color: 'black'}} to={`/activities/${destination._id}/${a._id}`}>{ a.name }</Link>
-  </li>
-))
+  // const activityList = activity.map(activity => (
+  // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
+  const actList = destination.activities.map((a) => (
+    <li>
+      <Link
+        style={{ textDecoration: "none", color: "black" }}
+        to={`/activities/${destination._id}/${a._id}`}
+      >
+        {a.name}
+      </Link>
+    </li>
+  ));
 
-console.log('This is the activity list', actList)
+  console.log("This is the activity list", actList);
 
   return (
     <>
@@ -181,7 +190,7 @@ console.log('This is the activity list', actList)
                 View Suggested Activities
               </Button>
             </span>
-            {/* {user && destination.owner === user._id ? (
+            {user && destination.owner === user._id ? (
               <>
                 <Button
                   onClick={() => setEditModalShow(true)}
@@ -199,15 +208,15 @@ console.log('This is the activity list', actList)
                   Delete
                 </Button>
               </>
-            ) : null} */} 
-            </Card.Body>
+            ) : null}
+          </Card.Body>
         </Card>
       </Container>
 
       {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-      {/* <EditDestinationModal
+      <EditDestinationModal
         user={user}
         destination={destination}
         show={editModalShow}
@@ -215,7 +224,7 @@ console.log('This is the activity list', actList)
         msgAlert={msgAlert}
         triggerRefresh={() => setUpdated((prev) => !prev)}
         handleClose={() => setEditModalShow(false)}
-      /> */}
+      />
       <NewActivityModal
         user={user}
         destination={destination}
@@ -237,4 +246,3 @@ console.log('This is the activity list', actList)
 };
 
 export default ShowDestination;
-

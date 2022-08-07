@@ -7,9 +7,8 @@ export default function EditDestinationModal(props) {
     const { user, show, handleClose, updateDestination, msgAlert, triggerRefresh } = props
 
     const [destination, setDestination] = useState(props.destination)
-    
+
     console.log(destination)
-    
     const handleChange = (e) => {
         setDestination((prevDestination) => {
           let updatedValue = e.target.value;
@@ -47,9 +46,25 @@ export default function EditDestinationModal(props) {
           );
       };
 
+// const forms = destinations.map((destination) => (
+//   <Modal show={show} onHide={handleClose}>
+//   <Modal.Header closeButton />
+//   <Modal.Body>
+//       <DestinationForm 
+//       yp={console.log(destination)}
+//       destination={destination}
+//       handleChange={handleChange}
+//       handleSubmit={handleSubmit}
+//       heading="Update Destination"
+//       />
+//   </Modal.Body>
+// </Modal>
 
-
+// ))
+//console.log(forms)
   return (
+    <>
+    
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton />
         <Modal.Body>
@@ -61,6 +76,11 @@ export default function EditDestinationModal(props) {
             />
         </Modal.Body>
     </Modal>
+
+    
+    </>
+    // <>
+    // {forms}
+    // </>
   )
 }
-

@@ -130,6 +130,8 @@ const ShowDestination = (props) => {
   const actList = destination.activities.map((a) => (
     <li>
       <Link
+        user={user}
+        triggerRefresh= {() => setUpdated(prev => !prev)}
         style={{ textDecoration: "none", color: "black" }}
         to={`/activities/${destination._id}/${a._id}`}
       >
@@ -158,7 +160,7 @@ const ShowDestination = (props) => {
               <h1 style={cardContainerLayout}>{destination.name}</h1>
               <h4 style={cardContainerLayout}>{destination.schedule}</h4>
             </Card.Text>
-            <span style={{margin: '0 auto'}}>
+            <span style={{marginLeft: '25%'}}>
             {user && destination.owner === user._id ? (
               <>
                 <Button
@@ -183,7 +185,7 @@ const ShowDestination = (props) => {
             </span>
           </Card.Body>
           </Card>
-          <Card style={{ width: "30rem", zIndex: "2" }}
+          <Card style={{ width: "30rem", zIndex: "2"}}
           className="mx-auto mt-4" id="card-body">
           <Card.Body>
             <Card.Text>
@@ -191,19 +193,20 @@ const ShowDestination = (props) => {
               <h6 style={cardContainerLayout}>(Click below to view)</h6>
               {/* <h3>{destination.activities[0].name}</h3> */}
               <br />
-              <ul style={{ listStyle: "none", marginLeft: "25%" }}>
+              <ul style={{ listStyle: "none", marginLeft: "15%", width: '20em' }}>
                 {actList}
               </ul>
               {/* <div key={ activity._id }> 
                         { activityList }
                     </div> */}
             </Card.Text>
-            <span>
+            <span style={{marginLeft: '12%'}}>
               <Button
                 onClick={() => setActivityModalShow(true)}
                 className="m-2"
-                variant="outline-info"
+                variant="outline-dark"
                 size="sm"
+                style={{}}
               >
                 Plan An Activity
               </Button>
@@ -211,7 +214,7 @@ const ShowDestination = (props) => {
               <Button
                 onClick={() => setSearchActivityModalShow(true)}
                 className="m-2"
-                variant="outline-info"
+                variant="outline-dark"
                 size="sm"
               >
                 View Suggested Activities

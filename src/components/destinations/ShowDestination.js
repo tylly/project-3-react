@@ -155,11 +155,36 @@ const ShowDestination = (props) => {
           />
           <Card.Body>
             <Card.Text>
-              <h2 style={cardContainerLayout}>{destination.name}</h2>
+              <h1 style={cardContainerLayout}>{destination.name}</h1>
               <h4 style={cardContainerLayout}>{destination.schedule}</h4>
             </Card.Text>
+            <span style={{margin: '0 auto'}}>
+            {user && destination.owner === user._id ? (
+              <>
+                <Button
+                  onClick={() => setEditModalShow(true)}
+                  className="m-2"
+                  variant="outline-primary"
+                  size="sm"
+
+                >
+                  Edit Destination
+                </Button>
+                <Button
+                  onClick={() => removeTheDestination()}
+                  className="m-2"
+                  variant="outline-danger"
+                  size="sm"
+                >
+                  Delete
+                </Button>
+              </>
+            ) : null}
+            </span>
           </Card.Body>
-          <hr />
+          </Card>
+          <Card style={{ width: "30rem", zIndex: "2" }}
+          className="mx-auto mt-4" id="card-body">
           <Card.Body>
             <Card.Text>
               <h3 style={cardContainerLayout}>Activities</h3>
@@ -177,7 +202,8 @@ const ShowDestination = (props) => {
               <Button
                 onClick={() => setActivityModalShow(true)}
                 className="m-2"
-                variant="info"
+                variant="outline-info"
+                size="sm"
               >
                 Plan An Activity
               </Button>
@@ -185,30 +211,13 @@ const ShowDestination = (props) => {
               <Button
                 onClick={() => setSearchActivityModalShow(true)}
                 className="m-2"
-                variant="info"
+                variant="outline-info"
+                size="sm"
               >
                 View Suggested Activities
               </Button>
             </span>
-            {user && destination.owner === user._id ? (
-              <>
-                <Button
-                  onClick={() => setEditModalShow(true)}
-                  className="m-2"
-                  variant="warning"
-                  size="sm"
-                >
-                  Edit Destination
-                </Button>
-                <Button
-                  onClick={() => removeTheDestination()}
-                  className="m-2"
-                  variant="danger"
-                >
-                  Delete
-                </Button>
-              </>
-            ) : null}
+            
           </Card.Body>
         </Card>
       </Container>

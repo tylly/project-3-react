@@ -33,6 +33,7 @@ const ShowActivity = (props) => {
     console.log('this is the destinationId', destinationId)
     console.log('this is the activityId', activityId)
     const navigate = useNavigate()
+    console.log('these are activity show props', props)
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
 
@@ -125,7 +126,7 @@ const ShowActivity = (props) => {
           <Card.Img
             id="card-img"
             variant="top"
-            src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
+            src=""
           />
           <Card.Body>
             <Card.Text style={{paddingTop: '2%'}}>
@@ -156,9 +157,7 @@ const ShowActivity = (props) => {
                         >
                             Give {activity.name} a activity!
                         </Button>  */}
-                        {
-                            user && activity.owner === user._id 
-                            ?
+                        
                             <>
                             <span style={{marginLeft: '25%'}}>
                                 <Button onClick={() => setEditModalShow(true)} 
@@ -177,9 +176,7 @@ const ShowActivity = (props) => {
                                 </Button>
                             </span>
                             </>
-                              :
-                             null
-                        }
+                  
                      </Card.Body>
                 </Card> 
             </Container>

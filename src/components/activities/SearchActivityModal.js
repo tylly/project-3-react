@@ -40,7 +40,9 @@ const SearchActivityModal = (props) => {
   console.log(places.data.results);
 
   let items = places.data.results.map((i) => (
-    <li>{i.poi.name}</li>
+    <li>
+      {i.poi.name}
+      </li>
   ))
 
   const handleChange = (e) => {

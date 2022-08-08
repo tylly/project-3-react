@@ -113,6 +113,10 @@ const SearchActivityModal = (props) => {
               mediterranean
             </Dropdown.Item>
             <Dropdown.Item eventKey="breweries">breweries</Dropdown.Item>
+            <Dropdown.Item eventKey="dispensaries">dispensaries</Dropdown.Item>
+            <Dropdown.Item eventKey="sports">sports</Dropdown.Item>
+            <Dropdown.Item eventKey="gas stations">gas stations</Dropdown.Item>
+            <Dropdown.Item eventKey="coffee">coffee</Dropdown.Item>
           </DropdownButton>
           {/* </Dropdown> */}
         </Form>

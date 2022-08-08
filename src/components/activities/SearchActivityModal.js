@@ -120,6 +120,7 @@ const SearchActivityModal = (props) => {
     <Modal show={show} onHide={handleClose}>
       {<h3>Search {value}</h3>}
       <Modal.Header closeButton />
+      <h3 style={{textAlign: 'center', paddingTop: '8px'}}>Search {value}</h3>
       <Modal.Body>
         <Form>
           {/* <Dropdown>
@@ -161,7 +162,7 @@ const SearchActivityModal = (props) => {
             >Submit</Button>
           </>
         ) : null} */}
-        <ul>
+        <ul style={{listStyle: 'none'}}>
           {items}
           {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
         </ul>

@@ -1,7 +1,6 @@
 import { Form,Button,Container} from 'react-bootstrap'
 import React, { useState } from 'react'
 
-
 const ActivityForm = (props) => {
     const {activity, handleChange, handleSubmit, heading} = props
 

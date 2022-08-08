@@ -5,7 +5,7 @@
     height: 100%;
     width: 100%;
     background-color: black;
-    opacity: 0.5;
+    opacity: 0.3;
     z-index: 1;
 } 
 
@@ -48,3 +48,18 @@
     z-index: 2
 }
 
+/* @media only screen and (max-width: 1280px ){
+    #loginVideo{
+        top: 53%;
+    }
+}
+@media only screen and (max-width: 1920px ){
+    #loginVideo{
+        top: 52%;
+    }
+}
+@media only screen and (max-width: 3840px ){
+    #loginVideo{
+        top: 51%;
+    }
+} */

@@ -1,36 +1,38 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import { DropdownButton, Modal } from "react-bootstrap";
 import ActivityForm from "../shared/ActivityForm";
 import { createActivity } from "../../api/activities";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Form,Button,Container 
-} from 'react-bootstrap'
-import RecommendedList from './RecommendedList'
+
+import { Form, Button, Container } from "react-bootstrap";
+import RecommendedList from "./RecommendedList";
 import axios from "axios";
-let bussin = {
-    lat: 69,
-    lon: 69
-}
-
-
 
 const SearchActivityModal = (props) => {
   const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
     props;
-
+  const [value, setValue] = useState("");
   const [activity, setActivity] = useState({});
-  const [recommendedListShow, setRecommendedListShow] = useState(false)
-
-  const bussinFrFr = async () => {
-    console.log(Dropdown.Toggle)
-    let places = await axios.get(
-      `https://api.tomtom.com/search/2/categorySearch/important%20tourist%20attraction.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
-    );
-  
-    console.log(places);
+  const [recommendedListShow, setRecommendedListShow] = useState(false);
+  const handleSelect = (e) => {
+    console.log(e);
+    setValue(e);
   };
-
-  // console.log('destination in edit modal', destination)
+  console.log(value);
+ 
+  let places;
+  let items;
+  const bussinFrFr = async () => {
+    console.log(Dropdown.Toggle);
+    places = await axios.get(
+      `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
+    );
+    console.log(places);
+    items = places.data.results.map((i) => 
+    <li>{i.poi.name}</li>);
+    
+    console.log(items);
+  };
 
   const handleChange = (e) => {
     setActivity((prevActivity) => {
@@ -76,41 +78,54 @@ const SearchActivityModal = (props) => {
   };
 
   return (
-    <Modal  show={show} onHide={handleClose}>
-        {<h3>Pick a Category</h3>}
-      <Modal.Header  closeButton /> 
+    <Modal show={show} onHide={handleClose}>
+      {<h3>Search {value}</h3>}
+      <Modal.Header closeButton />
       <Modal.Body>
-          <Form>
-              
-        <Dropdown>
+        <Form>
+          {/* <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Dropdown Button
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">important tourist attraction</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">museum</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">parks</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">natural tourist attraction</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">statues</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">skateparks</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Amanda's rec: sushi</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">James' rec: mediterranean</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Dan's rec: breweries</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+          </Dropdown.Toggle> */}
+          <DropdownButton onSelect={handleSelect}>
+            <Dropdown.Item eventKey="important tourist attraction">
+              important tourist attraction
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="museum">museum</Dropdown.Item>
+            <Dropdown.Item eventKey="parks">parks</Dropdown.Item>
+            <Dropdown.Item eventKey="natural tourist attraction">
+              natural tourist attraction
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="statues">statues</Dropdown.Item>
+            <Dropdown.Item eventKey="skatepark">skateparks</Dropdown.Item>
+            <Dropdown.Item eventKey="sushi">sushi</Dropdown.Item>
+            <Dropdown.Item eventKey="mediterranean">
+              mediterranean
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="breweries">breweries</Dropdown.Item>
+          </DropdownButton>
+          {/* </Dropdown> */}
         </Form>
         {user && destination.owner === user._id ? (
-              <>
-              <Button onClick={() => bussinFrFr()}>Submit</Button>
-
-              </>
-            ) : null}
+          <>
+            <Button onClick={() => 
+            {
+                setRecommendedListShow(true)
+                bussinFrFr()
+            
+            }}
+            
+            >Submit</Button>
+          </>
+        ) : null}
+           <ul>
+    <h1>{items}</h1>
+        {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
+        
+      </ul>
       </Modal.Body>
-      
-      <RecommendedList
-  
-      />
+
+   
     </Modal>
   );
 };

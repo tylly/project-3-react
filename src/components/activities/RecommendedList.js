@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 
 const RecommendedList = (props) => {
-    const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
+    const { user, destination, show, handleClose, msgAlert, triggerRefresh, items } =
       props;
-
+console.log(items)
 return (
-    <ul>
-        
-    </ul>
+    <li style={{display: "none"}}>test</li>
 )
 }
 

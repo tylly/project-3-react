@@ -50,15 +50,15 @@ const CreateDestination = (props) => {
         destination.lon = testing.data.lon
         destination.population = testing.data.population
         console.log(destination)
-        // let LALat = '34.05223'
-        // let LALon = '-118.24368'
-        let radiusTester = await axios.get(`https://api.opentripmap.com/0.1/en/places/radius?radius=32186.9&lon=${destination.lon}&lat=${destination.lat}&apikey=5ae2e3f221c38a28845f05b6ee69c6dabf1a1c065bbb25f00387dbd9`)
+        // // let LALat = '34.05223'
+        // // let LALon = '-118.24368'
+        // let radiusTester = await axios.get(`https://api.opentripmap.com/0.1/en/places/radius?radius=32186.9&lon=${destination.lon}&lat=${destination.lat}&apikey=5ae2e3f221c38a28845f05b6ee69c6dabf1a1c065bbb25f00387dbd9`)
 
-        destination.xid = radiusTester.data.features[0].properties.xid
-        console.log('this is the xid', destination.xid)
-        console.log('radiusTester', radiusTester)
-        let imageTester = await axios.get(`https://api.opentripmap.com/0.1/en/places/xid/${destination.xid}&apikey=5ae2e3f221c38a28845f05b6ee69c6dabf1a1c065bbb25f00387dbd9`)
-        console.log('this is the image', imageTester)
+        // destination.xid = radiusTester.data.features[0].properties.xid
+        // console.log('this is the xid', destination.xid)
+        // console.log('radiusTester', radiusTester)
+        // let imageTester = await axios.get(`https://api.opentripmap.com/0.1/en/places/xid/${destination.xid}&apikey=5ae2e3f221c38a28845f05b6ee69c6dabf1a1c065bbb25f00387dbd9`)
+        // console.log('this is the image', imageTester)
         createDestination(user, destination)
         .then(res => {
             navigate(`/destinations/${res.data.destination._id}`)})

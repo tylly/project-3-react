@@ -46,7 +46,7 @@ const alwaysOptions = (
 	<>
 		<Nav.Item className='m-2'>
 			<Link to='/' style={linkStyle}>
-				Home
+				My Trips
 			</Link>
 		</Nav.Item>
 	</>

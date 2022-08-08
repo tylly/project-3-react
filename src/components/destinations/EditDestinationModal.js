@@ -67,15 +67,15 @@ export default function EditDestinationModal(props) {
     <>
     
     <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton />
-        <Modal.Body>
+        {/* <Modal.Header closeButton />
+        <Modal.Body> */}
             <DestinationForm 
             destination={destination}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             heading="Update Destination"
             />
-        </Modal.Body>
+        {/* </Modal.Body> */}
     </Modal>
 
     

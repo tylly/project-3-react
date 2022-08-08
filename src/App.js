@@ -17,6 +17,9 @@ import ShowActivity from './components/activities/ShowActivity'
 import BackgroundVideo from './components/auth/BackgroundVideo'
 import './style.css'
 
+// import fetch from 'node-fetch';
+// global.fetch = fetch;
+
 
 const App = () => {
 
@@ -49,10 +52,12 @@ const App = () => {
 	}
 
 		return (
+			<>
+			
 			<Fragment>
-				{/* <BackgroundVideo
-				/> */}
 				<Header user={user} />
+				{/* <BackgroundVideo
+					/> */}
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} destination={destination}/>} />
 					<Route
@@ -93,6 +98,7 @@ const App = () => {
 								</RequireAuth>}
 					/>
 					</Routes>
+					
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
 						key={msgAlert.id}
@@ -104,6 +110,8 @@ const App = () => {
 					/>
 				))}
 			</Fragment>
+			</>
+			
 		)
 }
 

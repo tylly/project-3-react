@@ -93,7 +93,7 @@ const DestinationsIndex = (props) => {
       <Card.Img
         style={{ borderRadius: "8px 8px 0 0" }}
         variant="top"
-        src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
+        src={destination.images}
       />
       <Card.Body style={{ textAlign: "center" }}>
         <Card.Title>{destination.name}</Card.Title>

@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import '../../style.css'
 const linkStyle = {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+	zIndex: '2'
 }
 
 const navStyle ={

@@ -35,25 +35,38 @@ const SearchActivityModal = (props) => {
       func();
     }, [value]
   );
-
+  function changeBackground(e){
+    e.target.style.background = '#a6e7f7'
+  }
+  function originalBackground(e){
+    e.target.style.background = 'white'
+  }
   console.log(places.data.results);
 
   let items = places.data.results.map((i) => (
     <>
       <li>
-        <Button
+      <button
+        style={{color: 'black', marginBottom: '4px', borderRadius: '8px', transition: '0.25s ease-in-out' }}
+        class="btn btn-outline-light"
+        
+        onMouseOver={changeBackground}
+        onMouseLeave={originalBackground}
+        
           id={i.id}
           onClick={() => {
             setActivity({
               name: i.poi.name,
-              address: i.address.freeformAddress
+              address: i.address.freeformAddress,
+              schedule: "",
+              priority: 0
             })
             setRecActivityModalShow(true);
             console.log(activity);
           }}
         >
           {i.poi.name}
-        </Button>
+        </button>
       </li>
 
     </>
@@ -113,7 +126,7 @@ const SearchActivityModal = (props) => {
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Dropdown Button
           </Dropdown.Toggle> */}
-          <DropdownButton onSelect={handleSelect}>
+          <DropdownButton onSelect={handleSelect} variant="info">
             <Dropdown.Item eventKey="important tourist attraction">
               important tourist attraction
             </Dropdown.Item>
@@ -160,6 +173,8 @@ const SearchActivityModal = (props) => {
         show={recActivityModalShow}
         msgAlert={msgAlert}
         activity={activity}
+        triggerRefresh={props.triggerRefresh}
+        handleChange={handleChange}
         handleClose={() => setRecActivityModalShow(false)}
       />
     </Modal>

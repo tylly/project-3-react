@@ -13,10 +13,9 @@ console.log(destination)
   }
 
   return (
-    <Container className="justify-content-center">
-      {/* <div className='row'id='destinationForm'style={formStyle}>
-          <div className='col-md mx-auto mt-5' > */}
-            <h3 style={{color: 'black'}} id="destinationFormHeading">{heading}</h3>
+      <div className='row'id='destinationForm'style={formStyle}>
+          <div className='col-md mx-auto mt-5' >
+            <h3 style={{color: 'white'}} id="destinationFormHeading">{heading}</h3>
               <Form className="cards" onSubmit={handleSubmit}>
                 <Form.Control
                   placeholder="Destination name"
@@ -47,9 +46,8 @@ console.log(destination)
                 />
                 <Button type="submit" className="mt-3" size="sm">Submit</Button>
               </Form>
-          {/* </div>
-        </div> */}
-      </Container>
+          </div>
+        </div>
   );
 };
 

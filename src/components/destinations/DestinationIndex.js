@@ -55,7 +55,8 @@ const DestinationsIndex = (props) => {
   if (!destinations) {
     return <LoadingScreen />;
   } else if (destinations.length === 0) {
-    return <p>No destinations yet. Better add some.</p>;
+    { navigate('/addDestination') }
+    // return <p>No destinations yet. Better add some.</p>;
   }
 //   const removeTheDestination = (destId) => {
 //     console.log(destId);

@@ -101,7 +101,7 @@ const DestinationsIndex = (props) => {
         <Card.Text>{destination.schedule}</Card.Text>
         <Link to={`/destinations/${destination._id}`}>
           <button type="button" class="btn btn-outline-dark" size="sm">
-            View {destination.name}
+            View
           </button>
         </Link>
         {/* {user && destination.owner === user._id ? (

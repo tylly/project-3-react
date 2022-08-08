@@ -35,7 +35,6 @@ const SearchActivityModal = (props) => {
       func();
     }, [value]
   );
-
   function changeBackground(e){
     e.target.style.background = '#a6e7f7'
   }
@@ -58,7 +57,9 @@ const SearchActivityModal = (props) => {
           onClick={() => {
             setActivity({
               name: i.poi.name,
-              address: i.address.freeformAddress
+              address: i.address.freeformAddress,
+              schedule: "",
+              priority: 0
             })
             setRecActivityModalShow(true);
             console.log(activity);
@@ -67,7 +68,6 @@ const SearchActivityModal = (props) => {
           {i.poi.name}
         </button>
       </li>
-
     </>
   ));
   console.log(items);
@@ -172,6 +172,8 @@ const SearchActivityModal = (props) => {
         show={recActivityModalShow}
         msgAlert={msgAlert}
         activity={activity}
+        triggerRefresh={props.triggerRefresh}
+        handleChange={handleChange}
         handleClose={() => setRecActivityModalShow(false)}
       />
     </Modal>

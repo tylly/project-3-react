@@ -55,9 +55,10 @@ const App = () => {
 			<>
 			
 			<Fragment>
-				<Header user={user} />
 				{/* <BackgroundVideo
-					/> */}
+				/> */}
+				<Header user={user} />
+			
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} destination={destination}/>} />
 					<Route

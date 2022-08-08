@@ -60,7 +60,8 @@ const NewActivityModal = (props) => {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton />
             <Modal.Body>
-                <ActivityForm 
+                <ActivityForm
+                    destination={destination} 
                     activity={activity}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}

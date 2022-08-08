@@ -12,55 +12,53 @@ const SearchActivityModal = (props) => {
   const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
     props;
   const [value, setValue] = useState("important tourist attraction");
-  const [activity, setActivity] = useState({});
+  const [activity, setActivity] = useState({ name: "" });
   const [recActivityModalShow, setRecActivityModalShow] = useState(false);
   const [recommendedListShow, setRecommendedListShow] = useState(false);
   const [places, setPlaces] = useState({
-    data: {results: []}
-  })
+    data: { results: [] },
+  });
   const handleSelect = (e) => {
     console.log(e);
     setValue(e);
   };
   console.log(value);
 
-  useEffect(/* (sync) effect function */ () => {
-    const func = async () => {
-      let newPlaces = await axios.get(
-        `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
-      );
-      console.log(newPlaces);
-      setPlaces(newPlaces)
-    };
-    func();
-  }, /* dependencies */ [value]);
+  useEffect(() => {
+      const func = async () => {
+        let newPlaces = await axios.get(
+          `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
+        );
+        console.log(newPlaces);
+        setPlaces(newPlaces);
+      };
+      func();
+    }, [value]
+  );
 
-  //let places;
- 
-  //places = func();
   console.log(places.data.results);
 
   let items = places.data.results.map((i) => (
     <>
-      <Button
-      onClick={() => setRecActivityModalShow(true)}
-      >
-      {i.poi.name}
-      </Button>
+      <li>
+        <Button
+          id={i.id}
+          onClick={() => {
+            setActivity({
+              name: i.poi.name,
+              address: i.address.freeformAddress
+            })
+            setRecActivityModalShow(true);
+            console.log(activity);
+          }}
+        >
+          {i.poi.name}
+        </Button>
+      </li>
 
-      <NewRecActivityModal
-        user={user}
-        destination={destination}
-        show={recActivityModalShow}
-        msgAlert={msgAlert}
-       name={i.poi.name}
-       address={i.address.freeformAddress}
-        handleClose={() => setRecActivityModalShow(false)}
-      />
-      </>
-      
-  ))
-
+    </>
+  ));
+  console.log(items);
   const handleChange = (e) => {
     setActivity((prevActivity) => {
       let value = e.target.value;
@@ -155,7 +153,15 @@ const SearchActivityModal = (props) => {
           {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
         </ul>
       </Modal.Body>
-
+      <NewRecActivityModal
+      //key={i.id}
+        user={user}
+        destination={destination}
+        show={recActivityModalShow}
+        msgAlert={msgAlert}
+        activity={activity}
+        handleClose={() => setRecActivityModalShow(false)}
+      />
     </Modal>
   );
 };

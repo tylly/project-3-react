@@ -30,11 +30,17 @@ console.log(props)
         })
     }
 
+    // let complete = {
+    //     name: props.activity.poi.name,
+    //     address: props.activity.address.freeformAddress
+        
+    // }
+
     const handleSubmit = (e) => {
         // e equals the event
         e.preventDefault()
-        console.log(destination)
-        createActivity(user, destination._id, activity)
+        console.log(props.activity)
+        createActivity(user, destination._id, props.activity)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
             // send a success message to the user
@@ -61,12 +67,11 @@ console.log(props)
             <Modal.Header closeButton />
             <Modal.Body>
                 <RecActivityForm 
-                    activity={activity}
+                    activity={props.activity}
+                    
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Plan Something To Do!"
-                    name={props.name}
-                    address={props.address}
                 />
             </Modal.Body>
         </Modal>

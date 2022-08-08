@@ -1,5 +1,5 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
@@ -30,7 +30,9 @@ const App = () => {
     console.log('clear user ran')
     setUser(null)
   }
-
+// useEffect (() => {
+// 	setDestination(destination)
+// }, [destination])
 	const deleteAlert = (id) => {
 		setMsgAlerts((prevState) => {
 			return (prevState.filter((msg) => msg.id !== id) )

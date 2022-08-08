@@ -11,23 +11,23 @@ const RecActivityForm = (props) => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Label htmlFor="name">Name</Form.Label>
                     <Form.Control
-                        placeholder={props.name}
+                        placeholder={props.activity.name}
                         name="name"
                         id="name"
-                        value={props.name}
+                        value={props.activity.name}
                         onChange={ handleChange }
                     />
                     <Form.Label htmlFor="address" className='mt-2'>Address</Form.Label>
                     <Form.Control
-                        placeholder={props.address}
+                        placeholder={props.activity.address}
                         name="address"
                         id="address"
-                        value={props.address}
+                        value={ props.activity.address }
                         onChange={ handleChange }
                     />
                     <Form.Label htmlFor="schedule" className='mt-2'>Schedule</Form.Label>
                     <Form.Control
-                        placeholder="When?"
+                        placeholder="when?"
                         name="schedule"
                         id="schedule"
                         value={ activity.schedule}

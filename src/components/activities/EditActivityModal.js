@@ -6,26 +6,26 @@ import { updateActivity } from '../../api/activities'
 
 const EditActivityModal = (props) => {
     const { 
-        user, destination, show, handleClose, msgAlert, triggerRefresh
+        user, destinationId, show, handleClose, msgAlert, updateActivity, triggerRefresh
     } = props
 
     const [activity, setActivity] = useState(props.activity)
     // console.log('this is the activity in the update modal', activity)
     const handleChange = (e) => {
         setActivity(prevActivity => {
-            let value = e.target.value
-            const name = e.target.name
+            let updatedValue = e.target.value
+            const updatedName = e.target.name
 
             // console.log('this is the input type', e.target.type)
             // this handles the checkbox, changing on to true etc
-            if (name === "isSqueaky" && e.target.checked) {
-                value = true
-            } else if (name === "isSqueaky" && !e.target.checked) {
-                value = false
-            }
+            // if (name === "isSqueaky" && e.target.checked) {
+            //     value = true
+            // } else if (name === "isSqueaky" && !e.target.checked) {
+            //     value = false
+            // }
 
             const updatedActivity = {
-                [name]: value
+                [updatedName]: updatedValue
             }
             return {
                 ...prevActivity,
@@ -38,7 +38,7 @@ const EditActivityModal = (props) => {
         // e equals the event
         e.preventDefault()
 
-        updateActivity(user, destination._id, activity)
+        updateActivity(user, destinationId, activity)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
             // send a success message to the user

@@ -10,7 +10,6 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneActivity, updateActivity, removeActivity } from '../../api/activities'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditActivityModal from './EditActivityModal'
-// import ShowActivity from "../activities/ShowActivity";
 
 
 // We need to get the activity's id from the parameters
@@ -21,29 +20,28 @@ import EditActivityModal from './EditActivityModal'
 const cardContainerLayout = {
     display: 'flex',
     justifyContent: 'center',
+    flexFlow: 'row wrap'
 }
 
 const ShowActivity = (props) => {
     const [activity, setActivity] = useState(null)
-    // const [activityModalShow, setActivityModalShow] = useState(false)
+    const [activityModalShow, setActivityModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
-    const { destinationId, activityId } = useParams()
-    console.log('this is the destinationId', destinationId)
-    console.log('this is the activityId', activityId)
+    const { id } = useParams()
     const navigate = useNavigate()
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
 
     const { user, msgAlert } = props
     console.log('user in props', user)
-    // console.log('the activity in showActivity', activity)
+    console.log('the activity in showActivity', activity)
     
     // destructuring to get the id value from our route parameters
 
     useEffect(() => {
-        getOneActivity(user, destinationId, activityId)
+        getOneActivity(id)
             .then(res => setActivity(res.data.activity))
             .catch(err => {                   
                 msgAlert({
@@ -51,7 +49,7 @@ const ShowActivity = (props) => {
                     message: messages.getActivityFailure,
                     variant: 'danger'
                 })
-                navigate(`/activities/${destinationId}/${activityId}`)
+                navigate('/destinations/:_id')
                 //navigate back to the destinations page if there's an error fetching
             })
     }, [updated])
@@ -102,58 +100,27 @@ const ShowActivity = (props) => {
         return <LoadingScreen />
     }
 
-    let priorityLevel 
-    if (activity.priority >= 75 ){
-        priorityLevel = <h2>💯🥵🙌</h2>
-    } else if (activity.priority >= 50){
-        priorityLevel = <h2>👏😄💪</h2>
-    } else if (activity.priority >= 25){
-        priorityLevel = <h2>🤷‍♀️😮‍💨🤷</h2>
-    } else {
-        priorityLevel = <h2>🤦‍♀️👎🤦</h2>
-    }
-
-
     return (
         <>
-        <Container className="fluid">
-        <Card
-          style={{ width: "30rem", zIndex: "2" }}
-          className="mx-auto mt-4"
-          id="card"
-        >
-          <Card.Img
-            id="card-img"
-            variant="top"
-            src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
-          />
-          <Card.Body>
-            <Card.Text>
-              <h1 style={cardContainerLayout}>{activity.name}</h1>
-              <h5 style={cardContainerLayout}>❓ When: {activity.schedule}</h5>
-              <h5 style={cardContainerLayout}> 🚥 Priority level: { priorityLevel } </h5>
-              <h5 style={cardContainerLayout}> 📍 Address: {activity.address}</h5>
-            </Card.Text>
-          </Card.Body>
-            {/* <Container className="fluid">
+            <Container className="fluid">
                 <Card>
                     <Card.Header>{ activity.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Schedule: { activity.schedule }</small></div> */}
+                            <div><small>Schedule: { activity.schedule }</small></div>
                             {/* <div><small>Type: { activity.type }</small></div>
                             <div><small>
                                 Adoptable: { activity.adoptable ? 'yes' : 'no'}
                             </small></div> */}
-                        {/* </Card.Text>
+                        </Card.Text>
                     </Card.Body>
-                    <Card.Footer> */}
-                        {/* <Button onClick={() => setActivityModalShow(true)}
+                    <Card.Footer>
+                        <Button onClick={() => setActivityModalShow(true)}
                             className="m-2" variant="info"
                         >
                             Give {activity.name} a activity!
-                        </Button> */}
-                        {/* {
+                        </Button>
+                        {
                             user && activity.owner === user._id 
                             ?
                             <>
@@ -173,13 +140,13 @@ const ShowActivity = (props) => {
                             :
                             null
                         }
-                    </Card.Footer>*/}
-                </Card> 
+                    </Card.Footer>
+                </Card>
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-            {/* <EditActivityModal 
+            <EditActivityModal 
                 user={user}
                 activity={activity} 
                 show={editModalShow} 
@@ -187,7 +154,7 @@ const ShowActivity = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            /> */}
+            />
         </>
     )
 }

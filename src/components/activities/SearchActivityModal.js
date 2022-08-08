@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DropdownButton, Modal } from "react-bootstrap";
 import ActivityForm from "../shared/ActivityForm";
 import { createActivity } from "../../api/activities";
@@ -11,28 +11,37 @@ import axios from "axios";
 const SearchActivityModal = (props) => {
   const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
     props;
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("important tourist attraction");
   const [activity, setActivity] = useState({});
   const [recommendedListShow, setRecommendedListShow] = useState(false);
+  const [places, setPlaces] = useState({
+    data: {results: []}
+  })
   const handleSelect = (e) => {
     console.log(e);
     setValue(e);
   };
   console.log(value);
+
+  useEffect(/* (sync) effect function */ () => {
+    const func = async () => {
+      let newPlaces = await axios.get(
+        `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
+      );
+      console.log(newPlaces);
+      setPlaces(newPlaces)
+    };
+    func();
+  }, /* dependencies */ [value]);
+
+  //let places;
  
-  let places;
-  let items;
-  const bussinFrFr = async () => {
-    console.log(Dropdown.Toggle);
-    places = await axios.get(
-      `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
-    );
-    console.log(places);
-    items = places.data.results.map((i) => 
-    <li>{i.poi.name}</li>);
-    
-    console.log(items);
-  };
+  //places = func();
+  console.log(places.data.results);
+
+  let items = places.data.results.map((i) => (
+    <li>{i.poi.name}</li>
+  ))
 
   const handleChange = (e) => {
     setActivity((prevActivity) => {
@@ -77,6 +86,7 @@ const SearchActivityModal = (props) => {
       );
   };
 
+  let item = <h2>hey</h2>;
   return (
     <Modal show={show} onHide={handleClose}>
       {<h3>Search {value}</h3>}
@@ -97,8 +107,8 @@ const SearchActivityModal = (props) => {
               natural tourist attraction
             </Dropdown.Item>
             <Dropdown.Item eventKey="statues">statues</Dropdown.Item>
-            <Dropdown.Item eventKey="skatepark">skateparks</Dropdown.Item>
             <Dropdown.Item eventKey="sushi">sushi</Dropdown.Item>
+            <Dropdown.Item eventKey="donut">timms suggestion</Dropdown.Item>
             <Dropdown.Item eventKey="mediterranean">
               mediterranean
             </Dropdown.Item>
@@ -106,26 +116,23 @@ const SearchActivityModal = (props) => {
           </DropdownButton>
           {/* </Dropdown> */}
         </Form>
-        {user && destination.owner === user._id ? (
+        {/* {user && destination.owner === user._id ? (
           <>
             <Button onClick={() => 
             {
                 setRecommendedListShow(true)
-                bussinFrFr()
+                
             
             }}
             
             >Submit</Button>
           </>
-        ) : null}
-           <ul>
-    <h1>{items}</h1>
-        {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
-        
-      </ul>
+        ) : null} */}
+        <ul>
+          {items}
+          {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
+        </ul>
       </Modal.Body>
-
-   
     </Modal>
   );
 };

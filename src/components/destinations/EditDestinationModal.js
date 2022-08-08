@@ -12,6 +12,7 @@ export default function EditDestinationModal(props) {
     const handleChange = (e) => {
         setDestination((prevDestination) => {
           let updatedValue = e.target.value;
+          updatedValue = updatedValue.charAt(0).toUpperCase()+updatedValue.slice(1)
           const updatedName = e.target.name;
           console.log(e.target.type);
 

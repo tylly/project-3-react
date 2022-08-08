@@ -91,7 +91,7 @@ const DestinationsIndex = (props) => {
       key={destination.id}
     >
       <Card.Img
-        style={{ borderRadius: "8px 8px 0 0" }}
+        style={{ borderRadius: "8px 8px 0 0", width:"17.88rem", height: "10rem" }}
         variant="top"
         src={destination.images}
       />

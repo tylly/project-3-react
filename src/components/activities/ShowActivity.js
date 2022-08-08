@@ -10,6 +10,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneActivity, updateActivity, removeActivity } from '../../api/activities'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditActivityModal from './EditActivityModal'
+// import ShowActivity from "../activities/ShowActivity";
 
 
 // We need to get the activity's id from the parameters
@@ -20,7 +21,6 @@ import EditActivityModal from './EditActivityModal'
 const cardContainerLayout = {
     display: 'flex',
     justifyContent: 'center',
-    flexFlow: 'row wrap'
 }
 
 const ShowActivity = (props) => {
@@ -29,19 +29,21 @@ const ShowActivity = (props) => {
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
-    const { id } = useParams()
+    const { destinationId, activityId } = useParams()
+    console.log('this is the destinationId', destinationId)
+    console.log('this is the activityId', activityId)
     const navigate = useNavigate()
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
 
     const { user, msgAlert, triggerRefresh } = props
     console.log('user in props', user)
-    console.log('the activity in showActivity', activity)
+    // console.log('the activity in showActivity', activity)
     
     // destructuring to get the id value from our route parameters
 
     useEffect(() => {
-        getOneActivity(id)
+        getOneActivity(user, destinationId, activityId)
             .then(res => setActivity(res.data.activity))
             .catch(err => {                   
                 msgAlert({
@@ -49,7 +51,7 @@ const ShowActivity = (props) => {
                     message: messages.getActivityFailure,
                     variant: 'danger'
                 })
-                navigate('/destinations/:_id')
+                navigate(`/activities/${destinationId}/${activityId}`)
                 //navigate back to the destinations page if there's an error fetching
             })
     }, [updated])
@@ -100,6 +102,18 @@ const ShowActivity = (props) => {
         return <LoadingScreen />
     }
 
+    let priorityLevel 
+    if (activity.priority >= 75 ){
+        priorityLevel = <h2>💯🥵🙌</h2>
+    } else if (activity.priority >= 50){
+        priorityLevel = <h2>👏😄💪</h2>
+    } else if (activity.priority >= 25){
+        priorityLevel = <h2>🤷‍♀️😮‍💨🤷</h2>
+    } else {
+        priorityLevel = <h2>🤦‍♀️👎🤦</h2>
+    }
+
+
     return (
         <>
         <Container className="fluid">
@@ -129,7 +143,7 @@ const ShowActivity = (props) => {
                     <Card.Header>{ activity.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Schedule: { activity.schedule }</small></div>
+                            <div><small>Schedule: { activity.schedule }</small></div> */}
                             {/* <div><small>Type: { activity.type }</small></div>
                             <div><small>
                                 Adoptable: { activity.adoptable ? 'yes' : 'no'}
@@ -143,8 +157,8 @@ const ShowActivity = (props) => {
                             Give {activity.name} a activity!
                         </Button>  */}
                         {
-                            // user && activity.owner === user._id 
-                            // ?
+                            user && activity.owner === user._id 
+                            ?
                             <>
                             <span style={{marginLeft: '25%'}}>
                                 <Button onClick={() => setEditModalShow(true)} 
@@ -163,8 +177,8 @@ const ShowActivity = (props) => {
                                 </Button>
                             </span>
                             </>
-                            // :
-                            // null
+                              :
+                             null
                         }
                      </Card.Body>
                 </Card> 

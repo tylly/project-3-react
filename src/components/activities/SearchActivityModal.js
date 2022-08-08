@@ -36,12 +36,24 @@ const SearchActivityModal = (props) => {
     }, [value]
   );
 
+  function changeBackground(e){
+    e.target.style.background = '#a6e7f7'
+  }
+  function originalBackground(e){
+    e.target.style.background = 'white'
+  }
   console.log(places.data.results);
 
   let items = places.data.results.map((i) => (
     <>
       <li>
-        <Button
+        <button
+        style={{color: 'black', marginBottom: '4px', borderRadius: '8px', transition: '0.25s ease-in-out' }}
+        class="btn btn-outline-light"
+        
+        onMouseOver={changeBackground}
+        onMouseLeave={originalBackground}
+        
           id={i.id}
           onClick={() => {
             setActivity({
@@ -53,7 +65,7 @@ const SearchActivityModal = (props) => {
           }}
         >
           {i.poi.name}
-        </Button>
+        </button>
       </li>
 
     </>
@@ -105,15 +117,15 @@ const SearchActivityModal = (props) => {
   let item = <h2>hey</h2>;
   return (
     <Modal show={show} onHide={handleClose}>
-      {<h3>Search {value}</h3>}
       <Modal.Header closeButton />
+      <h3 style={{textAlign: 'center', paddingTop: '8px'}}>Search {value}</h3>
       <Modal.Body>
         <Form>
           {/* <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Dropdown Button
           </Dropdown.Toggle> */}
-          <DropdownButton onSelect={handleSelect}>
+          <DropdownButton onSelect={handleSelect} variant="info">
             <Dropdown.Item eventKey="important tourist attraction">
               important tourist attraction
             </Dropdown.Item>
@@ -148,7 +160,7 @@ const SearchActivityModal = (props) => {
             >Submit</Button>
           </>
         ) : null} */}
-        <ul>
+        <ul style={{listStyle: 'none'}}>
           {items}
           {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
         </ul>

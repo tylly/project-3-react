@@ -18,6 +18,7 @@ const cardContainerStyle = {
   display: "flex",
   flexFlow: "row wrap",
   justifyContent: "center",
+  marginTop: '-3.5%'
 };
 
 const DestinationsIndex = (props) => {
@@ -87,11 +88,11 @@ const DestinationsIndex = (props) => {
   const destinationCards = destinations.map((destination) => (
     <Card
       className="cards"
-      style={{ width: "18rem", margin: "15px", borderRadius: "8px" }}
+      style={{ width: "18rem", margin: "15px", borderRadius: "8px",  }}
       key={destination.id}
     >
       <Card.Img
-        style={{ borderRadius: "8px 8px 0 0", width:"17.88rem", height: "10rem" }}
+        style={{ borderRadius: "8px 8px 0 0", width:"17.90rem", height: "10rem" }}
         variant="top"
         src={destination.images}
       />

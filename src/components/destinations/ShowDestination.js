@@ -144,7 +144,7 @@ const ShowDestination = (props) => {
 
   return (
     <>
-      <Container className="fluid">
+      <Container className="fluid" style={{marginTop: '-2%'}}>
         <Card
           style={{ width: "30rem", zIndex: "2" }}
           className="mx-auto mt-4"
@@ -154,6 +154,7 @@ const ShowDestination = (props) => {
             id="card-img"
             variant="top"
             src={destination.images}
+            style={{height: '15rem'}}
           />
           <Card.Body>
             <Card.Text>

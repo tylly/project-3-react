@@ -25,7 +25,7 @@ const cardContainerLayout = {
 
 const ShowActivity = (props) => {
     const [activity, setActivity] = useState(null)
-    // const [activityModalShow, setActivityModalShow] = useState(false)
+    const [activityModalShow, setActivityModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
@@ -36,7 +36,7 @@ const ShowActivity = (props) => {
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
 
-    const { user, msgAlert } = props
+    const { user, msgAlert, triggerRefresh } = props
     console.log('user in props', user)
     // console.log('the activity in showActivity', activity)
     
@@ -59,7 +59,7 @@ const ShowActivity = (props) => {
     // here we'll declare a function that runs which will remove the activity
     // this function's promise chain should send a message, and then go somewhere
     const removeTheActivity = () => {
-        removeActivity(user, activity._id)
+        removeActivity(user, destinationId, activityId)
             // on success send a success message
             .then(() => {
                 msgAlert({
@@ -69,11 +69,11 @@ const ShowActivity = (props) => {
                 })
             })
             // then navigate to index
-            .then(() => {navigate('/')})
+            .then(() => {navigate (`/destinations/${destinationId}`)})
             // on failure send a failure message
             .catch(err => {                   
                 msgAlert({
-                    heading: 'Error removing activty',
+                    heading: 'Error removing activity',
                     message: messages.removeActivityFailure,
                     variant: 'danger'
                 })
@@ -128,13 +128,16 @@ const ShowActivity = (props) => {
             src="https://images.unsplash.com/photo-1549041050-386c1c99d655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9zJTIwYW5nZWxlcyUyMHNreWxpbmV8ZW58MHx8MHx8&w=1000&q=80"
           />
           <Card.Body>
-            <Card.Text>
+            <Card.Text style={{paddingTop: '2%'}}>
               <h1 style={cardContainerLayout}>{activity.name}</h1>
-              <h5 style={cardContainerLayout}>❓ When: {activity.schedule}</h5>
-              <h5 style={cardContainerLayout}> 🚥 Priority level: { priorityLevel } </h5>
+            </Card.Text>
+            <Card.Text style={{paddingBottom: '10%', paddingTop: '2%'}}>
+              <h5 style={cardContainerLayout} className='mb-4'>❓ When: {activity.schedule}</h5>
+              <h5 style={cardContainerLayout} > 🚥 Priority level: { priorityLevel } </h5>
               <h5 style={cardContainerLayout}> 📍 Address: {activity.address}</h5>
             </Card.Text>
-          </Card.Body>
+            <hr />
+         
             {/* <Container className="fluid">
                 <Card>
                     <Card.Header>{ activity.name }</Card.Header>
@@ -146,48 +149,53 @@ const ShowActivity = (props) => {
                                 Adoptable: { activity.adoptable ? 'yes' : 'no'}
                             </small></div> */}
                         {/* </Card.Text>
-                    </Card.Body>
-                    <Card.Footer> */}
-                        {/* <Button onClick={() => setActivityModalShow(true)}
+                    </Card.Body>*/}
+                   
+                         {/* <Button onClick={() => setActivityModalShow(true)}
                             className="m-2" variant="info"
                         >
                             Give {activity.name} a activity!
-                        </Button> */}
-                        {/* {
-                            user && activity.owner === user._id 
-                            ?
+                        </Button>  */}
+                        {
+                            // user && activity.owner === user._id 
+                            // ?
                             <>
+                            <span style={{marginLeft: '25%'}}>
                                 <Button onClick={() => setEditModalShow(true)} 
                                     className="m-2" 
-                                    variant="warning"
+                                    variant="outline-primary"
+                                    size='sm'
                                 >
                                     Edit Activity
                                 </Button>
                                 <Button onClick={() => removeTheActivity()}
                                     className="m-2"
-                                    variant="danger"
+                                    variant="outline-danger"
+                                    size='sm'
                                 >
                                     Delete Activity
                                 </Button>
+                            </span>
                             </>
-                            :
-                            null
+                            // :
+                            // null
                         }
-                    </Card.Footer>*/}
+                     </Card.Body>
                 </Card> 
             </Container>
             {/* <Container style={cardContainerLayout}>
                 {activityCards}
             </Container>  */}
-            {/* <EditActivityModal 
+            <EditActivityModal 
                 user={user}
                 activity={activity} 
                 show={editModalShow} 
+                destinationId={destinationId}
                 updateActivity={updateActivity}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            /> */}
+            />
         </>
     )
 }

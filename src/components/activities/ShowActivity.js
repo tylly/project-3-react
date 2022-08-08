@@ -157,8 +157,8 @@ const ShowActivity = (props) => {
                             Give {activity.name} a activity!
                         </Button>  */}
                         {
-                            user && activity.owner === user._id 
-                            ?
+                            // user && activity.owner === user._id 
+                            // ?
                             <>
                             <span style={{marginLeft: '25%'}}>
                                 <Button onClick={() => setEditModalShow(true)} 
@@ -177,8 +177,8 @@ const ShowActivity = (props) => {
                                 </Button>
                             </span>
                             </>
-                              :
-                             null
+                            //   :
+                            //  null
                         }
                      </Card.Body>
                 </Card> 

@@ -3,16 +3,17 @@ import { DropdownButton, Modal } from "react-bootstrap";
 import ActivityForm from "../shared/ActivityForm";
 import { createActivity } from "../../api/activities";
 import Dropdown from "react-bootstrap/Dropdown";
-
+import { Link } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 import RecommendedList from "./RecommendedList";
 import axios from "axios";
-
+import NewRecActivityModal from "../activities/NewRecActivityModal";
 const SearchActivityModal = (props) => {
   const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
     props;
   const [value, setValue] = useState("important tourist attraction");
   const [activity, setActivity] = useState({});
+  const [recActivityModalShow, setRecActivityModalShow] = useState(false);
   const [recommendedListShow, setRecommendedListShow] = useState(false);
   const [places, setPlaces] = useState({
     data: {results: []}
@@ -40,9 +41,24 @@ const SearchActivityModal = (props) => {
   console.log(places.data.results);
 
   let items = places.data.results.map((i) => (
-    <li>
+    <>
+      <Button
+      onClick={() => setRecActivityModalShow(true)}
+      >
       {i.poi.name}
-      </li>
+      </Button>
+
+      <NewRecActivityModal
+        user={user}
+        destination={destination}
+        show={recActivityModalShow}
+        msgAlert={msgAlert}
+       name={i.poi.name}
+       address={i.address.freeformAddress}
+        handleClose={() => setRecActivityModalShow(false)}
+      />
+      </>
+      
   ))
 
   const handleChange = (e) => {
@@ -139,6 +155,7 @@ const SearchActivityModal = (props) => {
           {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
         </ul>
       </Modal.Body>
+
     </Modal>
   );
 };

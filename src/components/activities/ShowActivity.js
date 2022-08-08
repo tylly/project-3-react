@@ -37,6 +37,7 @@ const ShowActivity = (props) => {
     console.log('this is the destinationId', destinationId)
     console.log('this is the activityId', activityId)
     const navigate = useNavigate()
+    console.log('these are activity show props', props)
     // useNavigate returns a function
     // we can call that function to redirect the user wherever we want to
 
@@ -129,8 +130,8 @@ const ShowActivity = (props) => {
           <Card.Img
             id="card-img"
             variant="top"
-            style={{height: '15rem'}}
-            src="https://as2.ftcdn.net/v2/jpg/01/69/97/13/1000_F_169971359_ncUPIozaHFYpigqVKSoKP8ij1P306sDj.jpg"
+            style={{height: '15rem', objectFit: 'cover' }}
+            src={activity.images}
           />
           <Card.Body>
             <Card.Text style={{paddingTop: '2%'}}>

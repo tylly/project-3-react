@@ -70,6 +70,7 @@ const SearchActivityModal = (props) => {
       </li>
     </>
   ));
+  
   console.log(items);
   const handleChange = (e) => {
     setActivity((prevActivity) => {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import RecActivityForm from "../shared/RecActivityForm";
 import { createActivity } from "../../api/activities";
+import axios from 'axios'
 
 const NewRecActivityModal = (props) => {
   const { user, destination, show, handleClose, msgAlert, triggerRefresh } =
@@ -34,10 +35,14 @@ const NewRecActivityModal = (props) => {
 
   // }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     // e equals the event
     e.preventDefault();
     console.log(props.activity);
+    let imageSearchId = await axios.get(`https://api.unsplash.com/search/photos?query=${props.activity.name}&client_id=QJzcjsf5p0Yo-yCWtDRNhN9Picgt8P0Bc4W9N_O9o0k
+    `);
+    console.log('this is the image response', imageSearchId)
+    props.activity.images = imageSearchId.data.results[0].urls.full
     createActivity(user, destination._id, props.activity)
       // if we're successful in the modal, we want the modal to close
 

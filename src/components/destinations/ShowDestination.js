@@ -51,7 +51,7 @@ const ShowDestination = (props) => {
   const [editModalShow, setEditModalShow] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [searchActivityModalShow, setSearchActivityModalShow] = useState(false);
-
+console.log(props)
   const { id } = useParams();
   const navigate = useNavigate();
   // useNavigate returns a function
@@ -130,6 +130,7 @@ const ShowDestination = (props) => {
   const actList = destination.activities.map((a) => (
     <li>
       <Link
+      destination={destination}
         user={user}
         triggerRefresh= {() => setUpdated(prev => !prev)}
         style={{ textDecoration: "none", color: "black" }}

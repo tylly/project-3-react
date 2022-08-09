@@ -57,7 +57,7 @@ const App = () => {
 			<Fragment>
 				<BackgroundVideo
 				/>
-				<Header user={user} />
+				<Header user={user} style={{position: 'fixed'}}/>
 			
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} destination={destination}/>} />

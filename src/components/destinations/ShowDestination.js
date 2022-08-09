@@ -145,7 +145,8 @@ console.log(props)
 
   return (
     <>
-      <Container className="fluid" style={{marginTop: '-2%'}}>
+      <Container className="fluid" style={{marginTop: '10%'}}>
+        {/* <div> */}
         <Card
           style={{ width: "30rem", zIndex: "2" }}
           className="mx-auto mt-4"
@@ -155,7 +156,7 @@ console.log(props)
             id="card-img"
             variant="top"
             src={destination.images}
-            style={{height: '15rem'}}
+            style={{height: '15rem', objectFit: 'cover'}}
           />
           <Card.Body>
             <Card.Text>
@@ -225,6 +226,7 @@ console.log(props)
             
           </Card.Body>
         </Card>
+        {/* </div> */}
       </Container>
 
       {/* <Container style={cardContainerLayout}>

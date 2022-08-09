@@ -25,21 +25,20 @@ const SearchActivityModal = (props) => {
   console.log(value);
 
   useEffect(() => {
-      const func = async () => {
-        let newPlaces = await axios.get(
-          `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
-        );
-        console.log(newPlaces);
-        setPlaces(newPlaces);
-      };
-      func();
-    }, [value]
-  );
-  function changeBackground(e){
-    e.target.style.background = '#a6e7f7'
+    const func = async () => {
+      let newPlaces = await axios.get(
+        `https://api.tomtom.com/search/2/categorySearch/${value}.json?typeahead=true&lat=${destination.lat}&lon=${destination.lon}&view=Unified&relatedPois=off&key=9JyQb3r2IQDfXHOgwSTNBa8mkxAAuNAT`
+      );
+      console.log(newPlaces);
+      setPlaces(newPlaces);
+    };
+    func();
+  }, [value]);
+  function changeBackground(e) {
+    e.target.style.background = "#a6e7f7";
   }
-  function originalBackground(e){
-    e.target.style.background = 'white'
+  function originalBackground(e) {
+    e.target.style.background = "white";
   }
   console.log(places.data.results);
 
@@ -47,20 +46,23 @@ const SearchActivityModal = (props) => {
     <>
       <li>
         <button
-        style={{color: 'black', marginBottom: '4px', borderRadius: '8px', transition: '0.25s ease-in-out' }}
-        class="btn btn-outline-light"
-        
-        onMouseOver={changeBackground}
-        onMouseLeave={originalBackground}
-        
+          style={{
+            color: "black",
+            marginBottom: "4px",
+            borderRadius: "8px",
+            transition: "0.25s ease-in-out",
+          }}
+          class="btn btn-outline-light"
+          onMouseOver={changeBackground}
+          onMouseLeave={originalBackground}
           id={i.id}
           onClick={() => {
             setActivity({
               name: i.poi.name,
               address: i.address.freeformAddress,
               schedule: "",
-              priority: 0
-            })
+              priority: 0,
+            });
             setRecActivityModalShow(true);
             console.log(activity);
           }}
@@ -70,7 +72,7 @@ const SearchActivityModal = (props) => {
       </li>
     </>
   ));
-  
+
   console.log(items);
   const handleChange = (e) => {
     setActivity((prevActivity) => {
@@ -119,7 +121,7 @@ const SearchActivityModal = (props) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton />
-      <h3 style={{textAlign: 'center', paddingTop: '8px'}}>Search {value}</h3>
+      <h3 style={{ textAlign: "center", paddingTop: "8px" }}>Search {value}</h3>
       <Modal.Body>
         <Form>
           {/* <Dropdown>
@@ -161,13 +163,13 @@ const SearchActivityModal = (props) => {
             >Submit</Button>
           </>
         ) : null} */}
-        <ul style={{listStyle: 'none'}}>
+        <ul style={{ listStyle: "none" }}>
           {items}
           {/* <RecommendedList  style={{display:"none"}} items={items} /> */}
         </ul>
       </Modal.Body>
       <NewRecActivityModal
-      //key={i.id}
+        //key={i.id}
         user={user}
         destination={destination}
         show={recActivityModalShow}

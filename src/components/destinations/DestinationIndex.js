@@ -18,7 +18,7 @@ const cardContainerStyle = {
   display: "flex",
   flexFlow: "row wrap",
   justifyContent: "center",
-  marginTop: '-3.5%'
+  marginTop: "-3.5%",
 };
 
 const DestinationsIndex = (props) => {
@@ -56,47 +56,36 @@ const DestinationsIndex = (props) => {
   if (!destinations) {
     return <LoadingScreen />;
   } else if (destinations.length === 0) {
-    { navigate('/addDestination') }
+    {
+      navigate("/addDestination");
+    }
     // return <p>No destinations yet. Better add some.</p>;
   }
-//   const removeTheDestination = (destId) => {
-//     console.log(destId);
-//     removeDestination(user, destId)
-//       // on success send a success message
-//       .then(() => {
-//         msgAlert({
-//           heading: "Success",
-//           message: messages.removeDestinationSuccess,
-//           variant: "success",
-//         });
-//       })
-//       .then(() => getAllDestinations())
-//       .then((res) => {
-//         console.log(res);
-//         return setDestinations(res.data.destinations);
-//       })
-//       .catch((err) => {
-//         msgAlert({
-//           heading: "Error removing destination",
-//           message: messages.removeDestinationFailure,
-//           variant: "danger",
-//         });
-//       });
-//   };
 
-
+  if (!user) {
+    navigate("/sign-up");
+  }
 
   const destinationCards = destinations.map((destination) => (
     <Card
       className="cards"
-      style={{ width: "18rem", margin: "15px", borderRadius: "8px", marginTop: '8%' }}
+      style={{
+        width: "18rem",
+        margin: "15px",
+        borderRadius: "8px",
+        marginTop: "8%",
+      }}
       key={destination.id}
     >
       <Card.Img
-        style={{ borderRadius: "8px 8px 0 0", width:"17.90rem", height: "10rem", objectFit: 'cover'}}
+        style={{
+          borderRadius: "8px 8px 0 0",
+          width: "17.90rem",
+          height: "10rem",
+          objectFit: "cover",
+        }}
         variant="top"
         src={destination.images}
-        
       />
       <Card.Body style={{ textAlign: "center" }}>
         <Card.Title>{destination.name}</Card.Title>
@@ -106,39 +95,6 @@ const DestinationsIndex = (props) => {
             View
           </button>
         </Link>
-        {/* {user && destination.owner === user._id ? (
-          <>
-            <Button
-              onClick={() => {
-                navigate(`/destinations/${destination._id}`)  
-                setEditModalShow(true, destination)}}
-              className="m-2"
-              variant="warning"
-              size="sm"
-              destination={destination}
-              key={destination._id}
-            >
-              Edit Destination
-            </Button>
-            <Button
-              onClick={() => removeTheDestination(destination._id)}
-              className="m-2"
-              variant="danger"
-            >
-              Delete
-            </Button>
-            <EditDestinationModal
-              user={user}
-              destination={destination}
-              key={destination._id}
-              show={editModalShow}
-              updateDestination={updateDestination}
-              msgAlert={msgAlert}
-              triggerRefresh={() => setUpdated((prev) => !prev)}
-              handleClose={() => setEditModalShow(false)}
-            />
-          </>
-        ) : null} */}
       </Card.Body>
     </Card>
   ));

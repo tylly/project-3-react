@@ -137,7 +137,7 @@ const ShowActivity = (props) => {
             <Card.Text style={{paddingTop: '2%'}}>
               <h1 style={{textAlign:'center'}}>{activity.name}</h1>
             </Card.Text>
-            <Card.Text style={{paddingBottom: '10%', paddingTop: '2%', width: '18rem', marginLeft: '25%'}}>
+            <Card.Text style={{paddingBottom: '10%', paddingTop: '2%', width: '18rem', marginLeft: '22%'}}>
               <h5 style={cardContainerLayout} className='mb-4'>❓ When: {activity.schedule}</h5>
               <h5 style={cardContainerLayout} > 🚥 Priority level: { priorityLevel } </h5>
               <h5 style={cardContainerLayout}> 📍 Address: {activity.address}</h5>

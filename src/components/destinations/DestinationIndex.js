@@ -89,11 +89,11 @@ const DestinationsIndex = (props) => {
   const destinationCards = destinations.map((destination) => (
     <Card
       className="cards"
-      style={{ width: "18rem", margin: "15px", borderRadius: "8px", marginTop: '8%' }}
+      style={{ width: "18rem", margin: "15px", borderRadius: "8px", marginTop: '8%', border: '0px solid black' }}
       key={destination.id}
     >
       <Card.Img
-        style={{ borderRadius: "8px 8px 0 0", width:"17.90rem", height: "10rem", objectFit: 'cover'}}
+        style={{ borderRadius: "8px 8px 0 0", width:"18rem", height: "10rem", objectFit: 'cover'}}
         variant="top"
         src={destination.images}
         

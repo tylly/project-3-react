@@ -46,7 +46,7 @@ const SearchActivityModal = (props) => {
   let items = places.data.results.map((i) => (
     <>
       <li>
-      <button
+        <button
         style={{color: 'black', marginBottom: '4px', borderRadius: '8px', transition: '0.25s ease-in-out' }}
         class="btn btn-outline-light"
         
@@ -68,9 +68,9 @@ const SearchActivityModal = (props) => {
           {i.poi.name}
         </button>
       </li>
-
     </>
   ));
+  
   console.log(items);
   const handleChange = (e) => {
     setActivity((prevActivity) => {
@@ -118,7 +118,6 @@ const SearchActivityModal = (props) => {
   let item = <h2>hey</h2>;
   return (
     <Modal show={show} onHide={handleClose}>
-      {<h3>Search {value}</h3>}
       <Modal.Header closeButton />
       <h3 style={{textAlign: 'center', paddingTop: '8px'}}>Search {value}</h3>
       <Modal.Body>

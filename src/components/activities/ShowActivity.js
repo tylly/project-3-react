@@ -10,6 +10,9 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneActivity, updateActivity, removeActivity } from '../../api/activities'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditActivityModal from './EditActivityModal'
+import {
+    getOneDestination
+  } from "../../api/destinations";
 // import ShowActivity from "../activities/ShowActivity";
 
 
@@ -28,6 +31,7 @@ const ShowActivity = (props) => {
     const [activityModalShow, setActivityModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
+    // const [destination, setDestination] = useState(null);
 
     const { destinationId, activityId } = useParams()
     console.log('this is the destinationId', destinationId)
@@ -40,7 +44,6 @@ const ShowActivity = (props) => {
     const { user, msgAlert, triggerRefresh } = props
     console.log('user in props', user)
     // console.log('the activity in showActivity', activity)
-    
     // destructuring to get the id value from our route parameters
 
     useEffect(() => {
@@ -114,6 +117,7 @@ const ShowActivity = (props) => {
         priorityLevel = <h2>🤦‍♀️👎🤦</h2>
     }
 
+    // console.log('this is the destination.images', destination.images)
 
     return (
         <>
@@ -126,7 +130,8 @@ const ShowActivity = (props) => {
           <Card.Img
             id="card-img"
             variant="top"
-            src=""
+            style={{height: '15rem', objectFit: 'cover' }}
+            src={activity.images}
           />
           <Card.Body>
             <Card.Text style={{paddingTop: '2%'}}>
@@ -157,7 +162,9 @@ const ShowActivity = (props) => {
                         >
                             Give {activity.name} a activity!
                         </Button>  */}
-                        
+                        {
+                            // user && activity.owner === user._id 
+                            // ?
                             <>
                             <span style={{marginLeft: '25%'}}>
                                 <Button onClick={() => setEditModalShow(true)} 
@@ -176,7 +183,9 @@ const ShowActivity = (props) => {
                                 </Button>
                             </span>
                             </>
-                  
+                            //   :
+                            //  null
+                        }
                      </Card.Body>
                 </Card> 
             </Container>

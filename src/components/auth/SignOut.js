@@ -30,7 +30,7 @@ const SignOut = (props) => {
 
 	return (
 		<>
-        <Container style={{position: 'absolute', zIndex: '2'}} >
+        <Container style={{position: 'absolute', zIndex: '2', marginLeft: '33%', marginTop: '15%'}} >
             <div className='row'>
                 <div className='col-sm col-md mx-auto mt-5'style={{color: 'white', justifyContent: 'center',}}>
                     <h2>Are you sure you want to sign out?</h2>

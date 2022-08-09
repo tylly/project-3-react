@@ -74,13 +74,14 @@ const DestinationsIndex = (props) => {
         margin: "15px",
         borderRadius: "8px",
         marginTop: "8%",
+        border: "0px solid black",
       }}
       key={destination.id}
     >
       <Card.Img
         style={{
           borderRadius: "8px 8px 0 0",
-          width: "17.90rem",
+          width: "18rem",
           height: "10rem",
           objectFit: "cover",
         }}

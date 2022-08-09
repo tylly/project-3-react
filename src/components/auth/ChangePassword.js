@@ -7,6 +7,12 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+const changePasswordStyle = {
+    color: "white",
+    textAlign: 'center'
+}
+
+
 const ChangePassword = (props) => {
 	// constructor(props) {
 	// 	super(props)
@@ -53,12 +59,11 @@ const ChangePassword = (props) => {
 
 
     return (
-        <div className='row'>
+        <div className='row' id='change-password'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Change Password</h3>
-                <Form onSubmit={onChangePassword}>
+                <h3 style={changePasswordStyle}>Change Password</h3>
+                <Form onSubmit={onChangePassword} style={changePasswordStyle}>
                     <Form.Group controlId='oldPassword'>
-                        <Form.Label>Old password</Form.Label>
                         <Form.Control
                             required
                             name='oldPassword'
@@ -66,10 +71,11 @@ const ChangePassword = (props) => {
                             type='password'
                             placeholder='Old Password'
                             onChange={e => setOldPassword(e.target.value)}
+                            className="mt-3"
+                            style={{textAlign: 'center'}}
                         />
                     </Form.Group>
                     <Form.Group controlId='newPassword'>
-                        <Form.Label>New Password</Form.Label>
                         <Form.Control
                             required
                             name='newPassword'
@@ -77,9 +83,11 @@ const ChangePassword = (props) => {
                             type='password'
                             placeholder='New Password'
                             onChange={e => setNewPassword(e.target.value)}
+                            className="mt-3"
+                            style={{textAlign: 'center'}}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant='info' type='submit'className="mt-3" size="sm">
                         Submit
                     </Button>
                 </Form>

@@ -40,8 +40,13 @@
     z-index: 2;
 }
 
+
+
 #card, #card-body{
+   width: 30rem;
+   border: 0px solid black;
     border-radius: 8px;
+    
 }
 #card-img{
     border-radius: 8px 8px 0 0;

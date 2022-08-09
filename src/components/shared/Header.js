@@ -55,7 +55,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar style={{position: 'fixed', width: "100%"}} bg='black' variant='dark' expand='md'>
+	<Navbar className='fixed-top' style={{position: 'fixed', width: "100%"}} bg='black' variant='dark' expand='md'>
 		<Navbar.Brand className='ms-2'>
             <Link to='/' style={linkStyle}>
                 Globetrotters

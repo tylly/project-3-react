@@ -144,24 +144,7 @@ const ShowActivity = (props) => {
             </Card.Text>
             <hr />
          
-            {/* <Container className="fluid">
-                <Card>
-                    <Card.Header>{ activity.name }</Card.Header>
-                    <Card.Body>
-                        <Card.Text>
-                            <div><small>Schedule: { activity.schedule }</small></div> */}
-                            {/* <div><small>Type: { activity.type }</small></div>
-                            <div><small>
-                                Adoptable: { activity.adoptable ? 'yes' : 'no'}
-                            </small></div> */}
-                        {/* </Card.Text>
-                    </Card.Body>*/}
-                   
-                         {/* <Button onClick={() => setActivityModalShow(true)}
-                            className="m-2" variant="info"
-                        >
-                            Give {activity.name} a activity!
-                        </Button>  */}
+
                         {
                             // user && activity.owner === user._id 
                             // ?

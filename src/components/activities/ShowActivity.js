@@ -23,7 +23,7 @@ import {
 // we'll use a style object to lay out the activity cards
 const cardContainerLayout = {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'left',
 }
 
 const ShowActivity = (props) => {
@@ -135,9 +135,9 @@ const ShowActivity = (props) => {
           />
           <Card.Body>
             <Card.Text style={{paddingTop: '2%'}}>
-              <h1 style={cardContainerLayout}>{activity.name}</h1>
+              <h1 style={{textAlign:'center'}}>{activity.name}</h1>
             </Card.Text>
-            <Card.Text style={{paddingBottom: '10%', paddingTop: '2%'}}>
+            <Card.Text style={{paddingBottom: '10%', paddingTop: '2%', width: '18rem', marginLeft: '25%'}}>
               <h5 style={cardContainerLayout} className='mb-4'>❓ When: {activity.schedule}</h5>
               <h5 style={cardContainerLayout} > 🚥 Priority level: { priorityLevel } </h5>
               <h5 style={cardContainerLayout}> 📍 Address: {activity.address}</h5>

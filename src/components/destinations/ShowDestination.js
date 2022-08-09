@@ -225,6 +225,7 @@ console.log(props)
             
           </Card.Body>
         </Card>
+        {/* </div> */}
       </Container>
 
       {/* <Container style={cardContainerLayout}>

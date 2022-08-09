@@ -121,7 +121,7 @@ const ShowActivity = (props) => {
 
     return (
         <>
-        <Container className="fluid">
+        <Container className="fluid" style={{marginTop: "8%"}}>
         <Card
           style={{ width: "30rem", zIndex: "2" }}
           className="mx-auto mt-4"

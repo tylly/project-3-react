@@ -10,7 +10,7 @@
 } 
 
 #loginVideo{
-    position: absolute;
+    position: fixed;
     top: 56%;
     left: 50%;
     min-width: 100%;

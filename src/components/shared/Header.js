@@ -10,7 +10,8 @@ const linkStyle = {
 }
 
 const navStyle ={
-	display: 'inline'
+	display: 'inline',
+	
 }
 const authenticatedOptions = (
 	<>
@@ -54,7 +55,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='black' variant='dark' expand='md'>
+	<Navbar style={{position: 'fixed', width: "100%"}} bg='black' variant='dark' expand='md'>
 		<Navbar.Brand className='ms-2'>
             <Link to='/' style={linkStyle}>
                 Globetrotters

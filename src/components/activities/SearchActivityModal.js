@@ -138,12 +138,12 @@ const SearchActivityModal = (props) => {
               natural tourist attraction
             </Dropdown.Item>
             <Dropdown.Item eventKey="statues">statues</Dropdown.Item>
-            <Dropdown.Item eventKey="sushi">sushi</Dropdown.Item>
+            <Dropdown.Item eventKey="sushi">amanda's recommendations</Dropdown.Item>
             <Dropdown.Item eventKey="donut">timms suggestion</Dropdown.Item>
             <Dropdown.Item eventKey="mediterranean">
-              mediterranean
+              james' recommendations
             </Dropdown.Item>
-            <Dropdown.Item eventKey="breweries">breweries</Dropdown.Item>
+            <Dropdown.Item eventKey="breweries">dan's recommentations</Dropdown.Item>
             <Dropdown.Item eventKey="dispensaries">dispensaries</Dropdown.Item>
             <Dropdown.Item eventKey="sports">sports</Dropdown.Item>
             <Dropdown.Item eventKey="gas stations">gas stations</Dropdown.Item>

@@ -105,28 +105,11 @@ console.log(props)
         });
       });
   };
-  //   let activityCards;
-  //   if (destination) {
-  //     if (destination.activities.length > 0) {
-  //       activityCards = destination.activities.map((activity) => (
-  //         <ShowActivity
-  //           key={activity._id}
-  //           activity={activity}
-  //           destination={destination}
-  //           user={user}
-  //           msgAlert={msgAlert}
-  //           triggerRefresh={() => setUpdated((prev) => !prev)}
-  //         />
-  //       ));
-  //     }
-  //   }
 
   if (!destination) {
     return <LoadingScreen />;
   }
 
-  // const activityList = activity.map(activity => (
-  // <Link to={`/activities/${activity._id}`}> { activity.name }</Link>))
   const actList = destination.activities.map((a) => (
     <li>
       <Link
